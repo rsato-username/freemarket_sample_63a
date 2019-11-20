@@ -8,11 +8,6 @@
 |password|string|null: false|
 |tel|integer|null: false|
 |birthday|integer|null: false|
-|post_number|integer|null: false|
-|prefecture|string|null: false|
-|city|string|null: false|
-|address|string|null: false|
-|building|string| |
 |description|text| |
 |image|string| |
 |point|integer| |
@@ -25,6 +20,7 @@
 - belongs_to  :exhibits
 - belongs_to  :transactions
 - belongs_to  :sales
+- belongs_to  :address
 
 ## itemsテーブル
 |Column|Type|Options|
@@ -32,7 +28,7 @@
 |name|string|null: false|
 |price|integer|null: false|
 |description|text|null: false|
-|status|string|null: false|
+|status|integer|null: false|
 |post_money|string|null: false|
 |post_region|string|null: false|
 |post_day|string|null: false|
@@ -81,6 +77,17 @@
 ### Association
 - belongs_to  :item
 
+## addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|post_number|integer|null: false|
+|prefecture|string|null: false|
+|city|string|null: false|
+|address|string|null: false|
+|building|string| |
+### Association
+- belongs_to  :user
+
 ## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -91,17 +98,6 @@
 |user_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to  :user
-
-## cardsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|number|integer|null: false|
-|validity_year|integer|null: false|
-|validity_month|integer|null: false|
-|security_cord|integer|null: false|
-|user_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to  :users
 
 ## exhibitsテーブル
 |Column|Type|Options|
