@@ -3,11 +3,10 @@
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|nickname|string|null: false|
 |email|string|null: false|
 |password|string|null: false|
 |tel|integer|null: false|
-|birthday|integer|null: false|
 |description|text| |
 |image|string| |
 |point|integer| |
@@ -17,10 +16,10 @@
 - has_many    :items
 - has_many    :likes
 - has_many    :cards
-- belongs_to  :exhibits
-- belongs_to  :transactions
-- belongs_to  :sales
-- belongs_to  :address
+- belongs_to  :exhibit
+- belongs_to  :transaction
+- belongs_to  :sale
+- belongs_to  :user_info
 
 ## itemsテーブル
 |Column|Type|Options|
@@ -77,9 +76,14 @@
 ### Association
 - belongs_to  :item
 
-## addressesテーブル
+## user_infoテーブル
 |Column|Type|Options|
 |------|----|-------|
+|kan_familyname|string|null: false|
+|kan_firstname|string|null: false|
+|kana_familyname|string|null: false|
+|kana_firstname|string|null: false|
+|birthday|integer| |
 |post_number|integer|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
