@@ -1,0 +1,108 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color: #0099e8;
+}
+ul{
+  list-style: none;
+}
+
+//トップページヘッダー -------------------------------------------
+.toppage-header{
+  &__container{
+    width: 1020px;
+    margin: 8px auto 0;
+
+    &--ue{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      &__logo{
+        img{
+          height: 36px;
+          width: 134px;
+        }
+      }
+      
+      &__search{
+        position: relative;
+        width: 840px;
+        //検索窓
+        input{
+          width: 100%;
+          font-size: 16px;
+          background-color: #f5f5f5;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+        }
+        input[type="text"]:focus{
+          border-color: rgb(17,133,226);
+          outline: 0;
+        }
+        //虫眼鏡アイコン
+        i {
+          position: absolute;
+          right: 13px;
+          top: 13px;
+        }
+      }
+    }
+    //ヘッダーの下部分ーーーーーーーーー
+    &--shita{
+      display: flex;
+      justify-content: space-between;
+      height: 44px;
+      margin: 3px 0;
+      //左2つのボタン
+      &__left{
+        display: flex;
+        align-items: center;
+        i{
+          color: red;
+        }
+        a{
+          color: #333333;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        &--category{
+          margin-right: 20px;
+        }
+      }
+      //右4つのボタン
+      &__right{
+        display: flex;
+        align-items: center;
+        a{
+          font-size: 14px;
+          color: gray;
+        }
+        li{
+          margin-left: 20px;
+        }
+        &--mypage{
+          a{
+            display: flex;
+            align-items: center;
+          }
+          img{
+            width: 32px;
+            height: 32px;
+            border-radius: 32px;
+          }
+          p{
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+//-------------------------------------------------------------
+//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
