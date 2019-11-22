@@ -10,12 +10,18 @@
         .body__main__top__btn
           = link_to "新規会員登録", new_registration_path(resource_name)
       .body__main__medium
-        .body__main__medium__facebook
-          = link_to user_facebook_omniauth_authorize_path do
-            facebook
-        .body__main__medium__google
-          = link_to user_google_oauth2_omniauth_authorize_path do
-            google
+        = link_to user_facebook_omniauth_authorize_path do
+          .body__main__medium__facebook
+          -# .body__main__medium__facebook__icon
+          -#   = icon 'fab', 'facebook-square'
+          -# .body__main__medium__facebook__text
+          -#   = link_to "Facebookでログイン", user_facebook_omniauth_authorize_path
+        = link_to user_google_oauth2_omniauth_authorize_path do
+          .body__main__medium__google
+          -# .body__main__medium__google__icon
+            -# = icon 'fab', 'google'
+          -# .body__main__medium__google__text
+            -# = link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path 
       .body__main__bottom
         .body__main__bottom__email
           = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", id: "email"
@@ -31,11 +37,11 @@
     .body__footer
       .body__footer__top
         .body__footer__top__privacy
-          プライバシーポリシー
+          = link_to "プライバシーポリシー", "http://www.nogizaka46.com/" 
         .body__footer__top__rule
-          メルカリ利用規約
+          = link_to "メルカリ利用規約", "https://www.hinatazaka46.com/s/official/?ima=0000" 
         .body__footer__top__trade
-          特定商取引に関する表記
+          = link_to "特定商取引に関する表記", "https://www.keyakizaka46.com/s/k46o/?ima=0000" 
       .body__footer__bottom
         .body__footer__bottom__image
           = image_tag "/assets/logo_gray.svg", alt: "フリマの画像", size: "100x80"
