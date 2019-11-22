@@ -44,6 +44,9 @@
     &__medium{
       height: 180px;
       padding: 32px 64px;
+      border-bottom: solid;
+      border-width: 1px;
+      border-color: #EEEEEE;
       &__facebook{
         cursor: pointer;
         position: relative;
@@ -97,7 +100,7 @@
     }
     &__bottom{
       height: 406px;
-      padding: 32px 64px ;
+      padding: 32px 64px;
       #email{
         border-color: #DDDDDD;
         outline: none;
@@ -112,7 +115,7 @@
         border-color: #DDDDDD;
         outline: none;
         padding: 8px 16px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         width: 100%;
       }
       #password:focus{
@@ -138,7 +141,7 @@
         }
       }
       &__forget{
-        margin-top: 40px;
+        margin-top: 30px;
         font-size: 12px;
         a{
           text-decoration: none;
