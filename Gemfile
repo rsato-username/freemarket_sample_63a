@@ -69,3 +69,8 @@ gem "font-awesome-sass"
 gem 'devise'
 gem 'pry-rails'
 gem 'rails-i18n', '~> 5.1'
+gem 'recaptcha', require: "recaptcha/rails"
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2' 
