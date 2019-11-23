@@ -181,10 +181,12 @@ ul{
         padding: 2px;
       }
     }
+    //出品物たち
     &--items{
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      //商品ボックス
       li{
         width: 188px;
         height: 252px;
@@ -222,7 +224,6 @@ ul{
               font-size: 14px;
               overflow: hidden;
               white-space: normal;
-              // text-overflow: ellipsis;
             }
             .gradient{
               position: absolute;
