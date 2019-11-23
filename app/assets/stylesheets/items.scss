@@ -11,6 +11,8 @@ ul{
   list-style: none;
 }
 
+//-------------------------------------------------------------
+//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //トップページヘッダー -------------------------------------------
 .toppage-header{
   &__container{
@@ -106,3 +108,144 @@ ul{
 }
 //-------------------------------------------------------------
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//トップページボデぃー -------------------------------------------
+
+.toppage-body{
+  background-color: rgb(245, 245, 245);
+  padding-bottom: 70px;
+  &__heading{
+    background-color: #fff;
+    padding: 30px 0;
+    &--title{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333333;
+      margin-bottom: 16px;
+    }
+    &--categores{
+      display: flex;
+      justify-content: center;
+    }
+    &--category{
+      font-size: 14px;
+      background-color: #efefef;
+      padding: 8px 16px;
+      margin-right: 10px;
+      border-radius: 28px;
+      a{
+        color: #333333;
+        font-weight: bold;
+      }
+    }
+  }
+  &__container{
+    width: 1020px;
+    padding: 42px 0;
+    margin: 0 auto;
+    &--heading{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      color: #333333;
+      font-size: 24px;
+      font-weight: bold;
+      a{
+        font-size: 14px;
+        padding: 2px;
+      }
+    }
+    &--items{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      li{
+        width: 188px;
+        height: 252px;
+        background-color: #fff;
+        box-shadow: 0 0 8px gray;
+        margin-top: 20px;
+      }
+      .item-box{
+        height: 100%;
+        a{
+          position: relative;
+          .item-box__img{
+            height: 188px;
+            span{
+              position: absolute;
+              top: 150px;
+              color: white;
+              font-size: 17px;
+              background-color: rgba(0, 0, 0, 0.4);
+              border-radius: 0 20px 20px 0;
+              padding: 0 12px;
+            }
+            img{
+              height: 100%;
+            }
+          }
+          .item-box__title{
+            height: calc(100% - 188px);
+            padding: 12px;
+            position: relative;
+            p{
+              display: block;
+              height: 100%;
+              color: #222;
+              font-size: 14px;
+              overflow: hidden;
+              white-space: normal;
+              // text-overflow: ellipsis;
+            }
+            .gradient{
+              position: absolute;
+              top: 35px;
+              left: 115px;
+              height: 14px;
+              width: 50px;
+              background: linear-gradient(to left, white, transparent);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+//-------------------------------------------------------------
+//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//出品ボタンとフッター ------------------------------------------------
+
+.sell-btn{
+  width: 160px;
+  height: 160px;  
+  background-color: #ea352d;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 160px;
+  color: white;
+  text-align: center;
+  align-items: center;
+  &__text{
+    font-size: 22px;
+    margin-top: 26px;
+  }
+  &__icon{
+    position: relative;
+    top: -20px;
+    font-size: 65px;
+    padding-top: 0;
+  }
+}
+
+.aside{
+  height: 261px;
+}
+
+footer{
+  height: 389px;
+}
