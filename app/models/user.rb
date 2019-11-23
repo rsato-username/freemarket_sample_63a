@@ -11,11 +11,11 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+      
 
   validates :nickname, :tel, presence: true
   validates :email, :tel, uniqueness: true
   validates :password, :password_confirmation, allow_nil: true, presence: true, length: { minimum: 7 }
-
 
   has_many :items
   has_many :likes
@@ -24,4 +24,5 @@ class User < ApplicationRecord
   # belongs_to :transactions
   # belongs_to :sale
   # belongs_to :user_info
+
 end
