@@ -74,3 +74,4 @@ gem "font-awesome-sass"
 gem 'devise'
 gem 'pry-rails'
 gem 'rails-i18n', '~> 5.1'
+gem 'jquery-rails'
