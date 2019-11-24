@@ -73,5 +73,11 @@ gem 'haml-rails'
 gem "font-awesome-sass"
 gem 'devise'
 gem 'pry-rails'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem "omniauth-rails_csrf_protection"
+gem 'recaptcha', require: "recaptcha/rails"
+gem 'dotenv-rails'
 gem 'rails-i18n', '~> 5.1'
 gem 'jquery-rails'
