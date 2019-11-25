@@ -3,7 +3,7 @@
   .l-container
     %section.mypage__user-icon
       = link_to root_path do
-        %img(asset_paht="user-image.jpg" alt="本人イメージ" width= "60" height= "60")
+        = image_tag asset_path("/user-image.jpg"), alt: "本人イメージ", width: "60", height: "60"
         %h2 user.name
         .mypage__user__data
           .user--evaluation
