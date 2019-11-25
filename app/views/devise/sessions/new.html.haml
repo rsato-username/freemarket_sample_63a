@@ -29,7 +29,7 @@
         .body__main__bottom__password
           = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", id: "password"
         .body__main__bottom__robot
-          = flash[:recaptcha_error]
+          -# = flash[:recaptcha_error]
           = recaptcha_tags
         .body__main__bottom__login
           = f.submit "ログイン"
