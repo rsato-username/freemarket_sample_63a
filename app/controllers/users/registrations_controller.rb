@@ -1,12 +1,11 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
+
   prepend_before_action :check_captcha, only: [:create]
   prepend_before_action :customize_sign_up_params, only: [:create]
 
   private
   def customize_sign_up_params
-    devise_parameter_sanitizer.permit :sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :tel, :email, :password, :password_confirmation, :remember_me]
   end
 
   def check_captcha

@@ -25,6 +25,7 @@
     %br/
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .actions
+    = flash[:recaptcha_error]
     = recaptcha_tags
     = f.submit "Sign up"
 = render "devise/shared/links" 
