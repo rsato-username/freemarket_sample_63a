@@ -1,19 +1,28 @@
 class Users::SessionsController < Devise::SessionsController
 
-  prepend_before_action :check_captcha, only: [:create]
-  prepend_before_action :customize_sign_in_params, only: [:create]
+  prepend_before_action :check_captcha, only: :create
+  prepend_before_action :customize_sign_in_params, only: :create
+
+  
 
   private
   def customize_sign_in_params
-    devise_parameter_sanitizer.permit :sign_in, keys: [:nickname, :tel, :email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
   end
 
   def check_captcha
-    self.resource = resource_class.new sign_in_params
-    resource.validate
-    unless verify_recaptcha(model: resource)
-      respond_with_navigational(resource) { render :new }
-    end
+    unless verify_recaptcha
+      # @user = User.new(params[:user].permit(:email, :password))
+      redirect_to new_user_session_path
+    end 
   end
+
+  # def check_captcha
+  #   self.user = User.new(params[:user].permit(:email, :password))
+  #   user.validate
+  #   unless verify_recaptcha(model: user)
+  #     respond_with_navigational(user) { render :new }
+  #   end
+  # end
 
 end
