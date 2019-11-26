@@ -14,12 +14,13 @@
 *= require_self
 */
 
-@import "reset";
-@import "font-awesome-sprockets";
-@import "./font-awesome";
-@import "slick-theme"; 
-@import "slick";
-@import "modules/mypage-common";
-@import "modules/signup";
-@import "users";
-@import "items";
+ @import "reset";
+ @import "font-awesome-sprockets";
+ @import "./font-awesome";
+ @import "slick-theme"; 
+ @import "slick";
+ @import "modules/mypage-common";
+ @import "modules/signup";
+ @import "users";
+ @import "items";
+ @import "./item-new";

@@ -1,0 +1,155 @@
+.exhibit
+  .exhibit__logo
+    %a(href="https://fril.jp/" target="_blank")
+      %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2177740229" alt="ラクマ")/
+  .exhibit__container
+    
+    .exhibit__container--form
+      .exhibit__container--form__head
+        %p 商品の情報を入力
+
+    .exhibit__container--form
+      .exhibit__container--form__image
+        .exhibit__container--form__image--label
+          出品画像
+          %span 必須
+          %p 最大10枚までアップロードできます
+        .exhibit__container--form__image--input
+          %form(action="#")
+            %label
+              ドラッグアンドドロップ
+              またはクリックしてファイルを選択してください
+              %input(type="file")
+
+    .exhibit__container--form
+      .exhibit__container--form__name
+        .exhibit__container--form__name--label
+          商品名
+          %span 必須
+        .exhibit__container--form__name--input
+          %input{name: "name", type: "text", placeholder: "商品名 (必須40文字まで)"}
+
+      .exhibit__container--form__text
+        .exhibit__container--form__text--label
+          商品の説明
+          %span 必須
+        .exhibit__container--form__text--input
+          %textarea{placeholder: "商品名 (必須1,000文字以内) (色、素材、重さ、定価、注意点など) 例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"}
+    
+    .exhibit__container--form
+      %h3 商品の詳細
+      .right-box
+        .exhibit__container--form__category--label
+          カテゴリー
+          %span 必須
+        .exhibit__container--form__category--input
+          %input{name: "category", type: "text", placeholder: ""}
+
+        .exhibit__container--form__status--label
+          商品の状態
+          %span 必須
+        .exhibit__container--form__status--input
+          %input{name: "status", type: "text", placeholder: ""}
+
+    .exhibit__container--form
+      %h3 配送について
+      .right-box
+        .exhibit__container--form__category--label
+          配送料の負担
+          %span 必須
+        .exhibit__container--form__category--input
+          %input{name: "category", type: "text", placeholder: "---"}
+
+        .exhibit__container--form__status--label
+          発送元の地域
+          %span 必須
+        .exhibit__container--form__status--input
+          %input{name: "status", type: "text", placeholder: "---"}
+
+        .exhibit__container--form__status--label
+          発送までの日数
+          %span 必須
+        .exhibit__container--form__status--input
+          %input{name: "status", type: "text", placeholder: "---"}
+
+    .exhibit__container--form
+      %h3 販売価格(300〜9,999,999)
+      .exhibit__container--form__price
+        .price-box
+          .price__input
+            .price__input--title
+              価格
+              %span 必須
+            .price__input--yen
+              ¥
+              %input{id: "price", name: "category", type: "text", placeholder: "例）300"}
+          .price__fee
+            %p 販売手数料(10%)
+            .p
+              %p#pa
+              %p#p -
+          .price__profit
+            %p 販売利益
+            .p
+              %p#pb
+              %p#pp -
+
+    .exhibit__container--form
+      .exhibit__container--form__submit
+        %p
+          %a(href="#") 禁止されている出品
+          ,
+          %a(href="#") 行為
+          を必ずご確認ください。
+        %p
+          またブランド品でシリアルナンバー等がある場合はご記載ください。
+          %a(href="#") 偽ブランドの販売
+          は犯罪であり処罰される可能性があります。
+        %p
+          また,出品をもちまして
+          %a(href="#") 加盟店規約
+          に同意したことになります。
+        %input(type="submit" value="出品する")/
+        .back
+          %a(href="#") もどる
+  
+  //販売手数料を計算するためのjs-----------------------------
+  %script
+    $(function() {
+    $("#price").on("keyup", function() {
+    var input = $("#price").val();
+
+    if (input >= 300 && input <= 9999999) {
+    var number = Number(input);
+
+    t = number / 10;
+    te = Math.round(t);
+    r = number * 0.9;
+    ri = Math.round(r);
+    tesuryo = te.toLocaleString();
+    rieki = ri.toLocaleString();
+
+    $('p#pa').html('<p>¥</p>');
+    $('p#p').html(tesuryo);
+    $('p#pb').html('<p>¥</p>');
+    $('p#pp').html(rieki);
+    }else{
+    $('p#pa').html('<p></p>');
+    $('p#p').html('-');
+    $('p#pb').html('<p></p>');
+    $('p#pp').html('-');
+    }
+
+    });
+    });
+    //---------------------------------------------------
+  .exhibit__footer
+    .exhibit__footer--kiyaku
+      %ul.exhibit__footer--kiyaku__list
+        %li プライバシーポリシー
+        %li メルカリ利用規約
+        %li 特定商取引に関する表記
+    .exhibit__footer--logo
+      %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2177740229" alt="Rakuten")/
+    .exhibit__footer--copy
+      %small © 2019 Mercari
