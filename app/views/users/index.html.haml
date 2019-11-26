@@ -1,0 +1,84 @@
+%main.container.clearfix
+  = render 'shared/side_bar'
+  .l-container
+    %section.mypage__user-icon
+      = link_to root_path do
+        = image_tag asset_path("user-image.jpg"), alt: "本人イメージ", width: "60", height: "60"
+        %h2 user.name
+        .mypage__user__data
+          .user--evaluation
+            評価
+            %span 0
+          .user--transaction
+            出品数
+            %span 0
+    %section.mypage__tab
+      %ul.mypage__tab
+        %li.active
+          %h3 お知らせ
+        %li
+          %h3 やることリスト
+      .tab-content
+        %ul.show
+          %li
+            = link_to root_path do
+              = image_tag asset_path("logo_white.svg"), alt: "本人イメージ", width: "45", height: "45"
+              .mypage__item-body
+                .mypage__item-body__text
+                  事務局から...
+                %time
+                  %i.fa.fa-clock
+                  %span 1日前
+              %i.fa.fa-fighter-jet
+          %li
+            = link_to root_path do
+              一覧を見る
+        %ul
+          %li
+            = link_to root_path do
+              = image_tag asset_path("logo_white.svg"), alt: "本人イメージ", width: "45", height: "45"
+              .mypage__item-body
+                .mypage__item-body__text
+                  本社から...
+                %time
+                  %i.fa.fa-clock
+                  %span 2日前
+              %i.fa.fa-fighter-jet
+          %li
+            = link_to root_path do
+              一覧を見る
+
+    %section.mypage__buy
+      %h2 購入した商品
+      %ul.mypage__buy__tab
+        %li.active
+          %h3 取引中
+        %li
+          %h3 過去の取引
+      .tab-content
+        %ul.show
+          %li
+            = link_to root_path do
+              = image_tag asset_path("logo_white.svg"), alt: "本人イメージ", width: "45", height: "45"
+              .buy-item__body
+                .buy-item__body__text
+                  「フェラーリ」を購入しました。取引が完了しました
+                .buy-status
+                  取引完了
+              %i.fa.fa-fighter-jet
+          %li
+            = link_to root_path do
+              一覧を見る
+        %ul
+          %li
+            = link_to root_path do
+              = image_tag asset_path("logo_white.svg"), alt: "本人イメージ", width: "45", height: "45"
+              .buy-item__body
+                .buy-item__body__text
+                  「ランボルギーニ」を購入しました。取引が完了しました
+                .buy-status
+                  取引完了
+              %i.fa.fa-fighter-jet
+          %li
+            = link_to root_path do
+              一覧を見る

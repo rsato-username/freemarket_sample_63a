@@ -1,0 +1,172 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//ーーーーーーーーーーー
+//マイページ上部画像部分
+//ーーーーーーーーーーー
+section.mypage__user-icon {
+  height: 200px;
+  padding: 20px;
+  background-image: url("/images/mypage_bgi.jpg");
+  position: relative;
+  box-sizing: border-box;
+  a {
+    width: 100%;
+    display: block;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-decoration: none;
+    img {
+      border-radius: 50%;
+    }
+    h2 {
+      color: white;
+    }
+    .mypage__user__data {
+      font-size: 14px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      .user--evaluation {
+        span {
+          margin-left: 8px;
+        }
+      }
+      .user--transaction {
+        margin-left: 16px;
+        span {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
+//ーーーーーーーーーーーーーー
+//マイページタブ・リスト等部分
+//ーーーーーーーーーーーーーー
+.mypage__tab,.mypage__buy {
+  ul.mypage__tab,ul.mypage__buy__tab {
+    display: flex;
+    li {
+      width: 50%;
+      text-align: center;
+      h3 {
+        display: block;
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
+        line-height: 70px;
+        width: 100%;
+        font-weight: bold;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    li.active {
+      border-top: 2px solid #ea532d;
+      background-color: white;
+    }
+  }
+}
+.tab-content {
+  ul {
+    display: none;
+    li {
+      background-color: white;
+      a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        color: #333;
+        padding: 16px;
+        margin-bottom: 1.5px;
+        &:hover {
+          background-color: #eee;
+        }
+        &:hover i.fa-fighter-jet {
+          color: black;
+          -webkit-transform: translate(20%,-50%);
+          transform: translate(20%, -50%);
+          transition-duration: 0.2s;
+        }
+        img {
+          position: absolute;
+        }
+        .mypage__item-body {
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+          margin: 0 40px 0 70px;
+          &__text {
+            color: #333;
+          }
+        }
+        .buy-item__body {
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+          margin: 0 40px 0 70px;
+          &__text {
+            color: #333;
+          }
+          .buy-status {
+            border-radius: 5%;
+            width: 70px;
+            padding: 2px;
+            background-color: gray;
+            text-align: center;
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+            margin: 3px 0 0 5px;
+          }
+        }
+        time {
+          color: #888;
+        }
+        i.fa-fighter-jet {
+          position: absolute;
+          top: 50%;
+          right: 20px;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          color: #888;
+        }
+      }
+    }
+    li:last-child {
+      padding: 16px;
+    }
+    li:last-child a{
+      line-height: 30px;
+      margin: 0 auto;
+      text-align: center;
+      background-color: #eee;
+      &:hover {
+        background-color: whitesmoke;
+      }
+    }
+  }
+  ul.show {
+    display: block;
+  }
+}
+//ーーーーーーーーーーーーーーーーーーーーーーー
+//マイページ購入した商品文字部分（上記部分以外）
+//ーーーーーーーーーーーーーーーーーーーーーーー
+.mypage__buy {
+  margin-top: 40px;
+  h2 {
+    padding: 0 16px;
+    line-height: 72px;
+    font-style: 16px;
+    background-color: #fafafa;
+  }
+}

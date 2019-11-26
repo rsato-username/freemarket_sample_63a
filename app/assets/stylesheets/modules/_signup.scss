@@ -1,0 +1,190 @@
+*{
+  box-sizing: border-box;
+}
+*{
+  text-decoration: none;
+}
+
+.body{
+  background-color: #EEEEEE;
+  &__header{
+    display: flex;
+    justify-content: center;
+    line-height: 128px;
+    height: 128px;
+  }
+  &__main{
+    background-color: #fff;
+    margin: 0 auto;
+    width: 456px;
+    height: 730px;
+    &__top{
+      box-sizing: border-box;
+      height: 144px;
+      padding: 40px 64px;
+      border-bottom: solid;
+      border-width: 1px;
+      border-color: #EEEEEE;
+      &__text{
+        text-align: center;
+        font-size: 14px;
+        color: #555555;
+      }
+      &__btn{
+        cursor: pointer;
+        text-align: center;
+        margin-top: 10px;
+        width: 100%;
+        height: 45px;
+        line-height: 45px;
+        background-color: #2C7CFF;
+        color: #fff;
+        font-size: 14px;
+      }
+    }
+    &__medium{
+      box-sizing: border-box;
+      height: 180px;
+      padding: 32px 64px;
+      border-bottom: solid;
+      border-width: 1px;
+      border-color: #EEEEEE;
+      &__facebook{
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        // text-align: center;
+        // line-height: 50px;
+        // background-color: #003399;
+        width: 100%;
+        height: 50px;
+        background-image: url(../images/facebook.png);
+        background-size: contain;
+        // &__icon{
+        //   position: absolute;
+        //   left: 30px;
+        //   font-size: 25px;
+        //   color: #fff;
+        // }
+        // &__text{
+        //   a{
+        //     color: #fff;
+        //     text-decoration: none;
+        //   }
+        // }
+      }
+      &__google{
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        // text-align: center;
+        // line-height: 50px;
+        margin-top: 20px;
+        width: 100%;
+        height: 50px;
+        background-image: url(../images/google.png);
+        background-size: contain;
+        border: solid 1px;
+        border-color: #C0C0C0;
+      }
+    }
+    &__bottom{
+      box-sizing: border-box;
+      height: 406px;
+      padding: 32px 64px ;
+      #email{
+        border-radius: 3px;
+        border: solid 1px #bbbbbb;
+        outline: none;
+        padding: 8px 16px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      #email:focus{
+        border-color: #2C7CFF;
+      }
+      #password{
+        border-radius: 3px;
+        border: solid 1px #bbbbbb;
+        outline: none;
+        padding: 8px 16px;
+        margin-bottom: 40px;
+        width: 100%;
+      }
+      #password:focus{
+        border-color: #2C7CFF;
+      }
+      &__login{
+        height: 50px;
+        margin-top: 24px;
+        font-size: 13px;
+        input{
+          cursor: pointer;
+          width: 100%;
+          height: 50px;
+          border: none;
+          color: #fff;
+          background-color: #CC3300;
+        }
+        input:hover{
+          background-color: #FF3300;
+        }
+        input:focus{
+          outline: none;
+        }
+      }
+      &__forget{
+        margin-top: 30px;
+        font-size: 12px;
+        a{
+          text-decoration: none;
+          color: #2C7CFF;
+        }
+      }
+      &__forget:hover{
+        a{
+          color: #A4C6FF;
+        }
+      }
+    }
+  }
+  &__footer{
+    width: 456px;
+    margin: 0 auto;
+    padding: 40px 0;
+    &__top{
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 40px;
+      a{
+        text-decoration: none;
+        color: gray;
+      }
+      &__privacy:hover{
+        a{
+          color: #9400D3;
+        }
+      }
+      &__rule:hover{
+        a{
+          color: #00BFFF;
+        }
+      }
+      &__trade:hover{
+        a{
+          color: #00AA00;
+        }
+      }
+    }
+    &__bottom{
+      margin-top:40px;
+      text-align: center;
+      &__string{
+        font-size: 10px;
+      }
+    }
+  }
+} 
