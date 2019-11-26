@@ -2,8 +2,7 @@
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .body__header
       .body__header__logo
-        = link_to root_path do
-          = image_tag asset_path("fmarket_logo_red.svg"), alt: "ふりまの画像", size: "200x128"
+        = image_tag "/images/fmarket_logo_red.svg", alt: "ふりまの画像", size: "200x128"
     .body__main
       .body__main__top
         .body__main__top__text
@@ -46,7 +45,6 @@
           = link_to "特定商取引に関する表記", "https://www.keyakizaka46.com/s/k46o/?ima=0000" 
       .body__footer__bottom
         .body__footer__bottom__image
-          = link_to root_path do
-            = image_tag asset_path("logo_gray.svg"), alt: "フリマの画像", size: "100x80"
+          = image_tag "/images/logo_gray.svg", alt: "フリマの画像", size: "100x80"
         .body__footer__bottom__string
           © 1973 FamilyMart
