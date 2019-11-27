@@ -1,3 +1,16 @@
+input[type="text"]:focus{
+  outline: 0;
+  border-color: rgb(17,133,226);
+}
+input[type="text"]:focus{
+  outline: 0;
+  border-color: rgb(17,133,226);
+}
+textarea:focus{
+  outline: 0;
+  border-color: rgb(17,133,226);
+}
+
 @mixin label() {
   font-size: 14px;
   font-weight: bold;
@@ -108,6 +121,10 @@
             font-size: 16px;
             border: 1px solid #ccc;
           }
+          textarea:focus{
+            outline: 0;
+            border-color: rgb(17,133,226);
+          }
         }
       }
       .right-box{
@@ -165,7 +182,6 @@
             align-items: center;
             border-bottom: 1px solid #ccc;
             padding-bottom: 24px;
-            // font-family: 'Source Sans Pro';
             &--title{
               span {
                 color: white;
@@ -180,10 +196,15 @@
                 width: 160px;
                 height: 48px;
                 font-size: 16px;
+                font-weight: normal;
                 padding: 10px 16px 8px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
                 text-align: right;
+              }
+              input[type="text"]:focus{
+                outline: 0;
+                border-color: rgb(17,133,226);
               }
             }
           }
