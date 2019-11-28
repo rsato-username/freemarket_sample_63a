@@ -1,0 +1,354 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+ul{
+  list-style: none;
+}
+input[type="text"]:focus{
+  outline: 0;
+  border-color: rgb(17,133,226);
+}
+textarea:focus{
+  outline: 0;
+  border-color: rgb(17,133,226);
+}
+.member-header{
+  background-color: rgb(245, 245, 245);
+  height: 128px;
+  display: flex;
+  align-items: center;
+  img {
+    width: 185px;
+    height: 49px;
+    padding-left: 320px;
+  }
+  .texts{
+    color: #888888;
+    font-size: 12px;
+    font-weight: bold;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 100px;
+  }
+  .text{
+    text-align: center;
+    &-now{
+      color: red;
+    }
+    .dot{
+      font-size: 12px;
+    }
+  }
+}
+
+.member-body{
+  background-color: rgb(245, 245, 245);
+  &__inner{
+    box-sizing: border-box;
+    width: 720px;
+    margin: 0 auto;
+    &--header{
+      background-color: white;
+      height: 97px;
+      margin: 0 auto;
+      border-bottom: 1px solid rgb(245, 245, 245);
+      font-size: 22px;
+      color: #333333;
+      font-weight: bold;
+      text-align: center;
+      line-height: 97px;
+    }
+    &--body{
+      background-color: white;
+      padding: 20px 190px;
+    }
+  }
+}
+.member{
+  &__form{
+    margin-top: 24px; 
+  }
+  &__nickname{
+    &--label{
+      label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+      }
+      span {
+        font-size: 12px;
+        color: white;
+        padding: 2px 4px;
+        background-color: #ea352d;
+        border-radius: 3px;
+      }
+    }
+    &--input{
+      margin-top: 5px;
+      input[type="text"]{
+        box-sizing: border-box;
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0 16px;
+      }
+      input[type="text"]:focus{
+        outline: 0;
+        border-color: rgb(17,133,226);
+      }
+    }
+  }
+  &__checkbox{
+    padding-top: 5px;
+    font-size: 14px;
+    color: #333333;
+  }
+}
+
+.user-info{
+  padding-top: 20px;
+  width: 100%;
+  label {
+    font-size: 16px;
+    color: #333333;
+    font-weight: bold;
+  }
+  p {
+    padding-top: 3px;
+    font-size: 14px;
+    color: #333333;
+  }
+  &__name{
+    &--label{
+      label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+      }
+      span {
+        font-size: 12px;
+        color: white;
+        padding: 2px 4px;
+        background-color: #ea352d;
+        border-radius: 3px;
+      }
+    }
+    &--input{
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-between;
+      input[type="text"]{
+        box-sizing: border-box;
+        width: 48%;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0 16px;
+      }
+      input[type="text"]:focus{
+        outline: 0;
+        border-color: rgb(17,133,226);
+      }
+    }
+  }
+  &__birthday{
+    padding-top: 20px;
+    &--label{
+      label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+      }
+      span {
+        font-size: 12px;
+        color: white;
+        padding: 2px 4px;
+        background-color: #ea352d;
+        border-radius: 3px;
+      }
+    }
+    &--input{
+      input[type="text"]{
+        box-sizing: border-box;
+        width: 20%;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0 16px;
+      }
+      input[type="text"]:focus{
+        outline: 0;
+        border-color: rgb(17,133,226);
+      }
+    }
+    &--text{
+      p {
+        font-size: 14px;
+        color: #888888;
+        margin-top: 5px;
+      }
+    }
+  }
+  &__robot{
+    p {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+  }
+  &__alert{
+    color: #333333;
+    font-size: 14px;
+    text-align: center;
+    a {
+      color: #0099e8;
+      font-size: 14px;
+    }
+  }
+  &__next-btn{
+    input[type="submit"]{
+      box-sizing: border-box;
+      width: 100%;
+      height: 50px;
+      color: white;
+      font-size: 14px;
+      background-color: #ea352d;
+      border: none;
+      margin-top: 30px;
+    }
+  }
+  &__how{
+    text-align: right;
+    padding: 25px 0 50px;
+    a {
+      color: #0099e8;
+      font-size: 14px;
+    }
+  }
+}
+
+.member-footer{
+  background-color: rgb(245, 245, 245);
+  text-align: center;
+  padding: 40px 0;
+  .list{
+    display: flex;
+    justify-content: center;
+    li {
+      margin-right: 10px;
+      font-size: 12px;
+      color: #333333;
+    }
+  }
+  &__logo{
+    padding-top: 15px;
+    img {
+      width: 90px;
+      height: 90px;
+    }
+  }
+  small {
+    font-size: 13px;
+    color: #333333;
+  }
+}
+
+//ここから電話番号認証画面
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+
+.tel-body{
+  background-color: rgb(245, 245, 245);
+  &__inner{
+    box-sizing: border-box;
+    width: 720px;
+    margin: 0 auto;
+    &--header{
+      background-color: white;
+      height: 97px;
+      margin: 0 auto;
+      border-bottom: 1px solid rgb(245, 245, 245);
+      font-size: 22px;
+      color: #333333;
+      font-weight: bold;
+      text-align: center;
+      line-height: 97px;
+    }
+    &--body{
+      background-color: white;
+      padding: 15px 190px;
+    }
+  }
+}
+.tel{
+  &__nickname{
+    padding-top: 20px;
+    &--label{
+      label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+      }
+      span {
+        font-size: 12px;
+        color: white;
+        padding: 2px 4px;
+        background-color: #ea352d;
+        border-radius: 3px;
+      }
+    }
+    &--input{
+      margin-top: 5px;
+      input[type="text"]{
+        box-sizing: border-box;
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0 16px;
+      }
+      input[type="text"]:focus{
+        outline: 0;
+        border-color: rgb(17,133,226);
+      }
+    }
+    &--description{
+      p{
+        margin-top: 10px;
+        color: #333333;
+        font-size: 14px;
+      }
+    }
+  }
+  &__fuseibousi{
+    p{
+      margin-top: 10px;
+      color: #333333;
+      font-size: 14px;
+    }
+  }
+  &__how{
+    text-align: right;
+    padding: 25px 0 50px;
+    a {
+      color: #0099e8;
+      font-size: 14px;
+    }
+  }
+}
