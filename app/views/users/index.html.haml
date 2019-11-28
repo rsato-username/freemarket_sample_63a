@@ -4,7 +4,8 @@
     %section.mypage__user-icon
       = link_to root_path do
         = image_tag asset_path("user-image.jpg"), alt: "本人イメージ", width: "60", height: "60"
-        %h2 user.name
+        %h2 
+          = current_user.nickname
         .mypage__user__data
           .user--evaluation
             評価
