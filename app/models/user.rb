@@ -47,5 +47,7 @@ class User < ApplicationRecord
   # belongs_to :exhibits
   # belongs_to :transactions
   # belongs_to :sale
-  # belongs_to :user_info
+  belongs_to :UserInfoId
+  belongs_to :UserInfo, dependent: :destroy
+  accepts_nested_attributes_for :UserInfo, allow_destroy: true, reject_if: :all_blank
 end
