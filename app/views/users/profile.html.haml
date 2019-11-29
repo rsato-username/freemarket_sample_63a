@@ -1,0 +1,13 @@
+%main.container.clearfix
+  = render 'shared/side_bar'
+  .l-container
+    %section.profil-box
+      %h2.profil--header プロフィール
+      %form{action: " ", method: "POST"}
+        %input{name: " ", type: "hidden"}
+        .setting-profile-icon
+          = image_tag asset_path("user-image.jpg"), alt: "本人イメージ", width: "60", height: "60"
+          %input.input-default{name: "nickname", placeholder: "例)まいやん", type: "text"}
+        .setting-profile-content
+          %textarea.textarea-default{name: "introduction", placeholder: "例）こんにちは！"}
+          %button.btn-default.btn-red{type: "submit"} 変更する
