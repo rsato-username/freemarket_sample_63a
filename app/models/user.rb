@@ -48,5 +48,5 @@ class User < ApplicationRecord
   has_one :exhibits
   has_one :transactions
   has_one :sale
-  has_one :UserInfo
+  has_one :user_infos
 end

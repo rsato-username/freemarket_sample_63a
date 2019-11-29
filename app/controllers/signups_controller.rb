@@ -30,15 +30,15 @@ class SignupsController < ApplicationController
   end
 
   def fifth
-    # session[:kan_familyname] = user_info_params[:kan_familyname]
-    # session[:kan_firstname] = user_info_params[:kan_firstname]
-    # session[:kana_familyname] = user_info_params[:kana_familyname]
-    # session[:kana_firstname] = user_info_params[:kana_firstname]
-    # session[:post_number] = user_info_params[:post_number]
-    # session[:prefecture] = user_info_params[:prefecture]
-    # session[:city] = user_info_params[:city]
-    # session[:address] = user_info_params[:address]
-    # session[:building] = user_info_params[:building]
+    session[:kan_familyname] = user_info_params[:kan_familyname]
+    session[:kan_firstname] = user_info_params[:kan_firstname]
+    session[:kana_familyname] = user_info_params[:kana_familyname]
+    session[:kana_firstname] = user_info_params[:kana_firstname]
+    session[:post_number] = user_info_params[:post_number]
+    session[:prefecture] = user_info_params[:prefecture]
+    session[:city] = user_info_params[:city]
+    session[:address] = user_info_params[:address]
+    session[:building] = user_info_params[:building]
     @card = Card.new
   end
 
@@ -109,7 +109,7 @@ class SignupsController < ApplicationController
   end
 
   def user_info_params
-    params.require(:UserInfo).permit(
+    params.require(:user_infos).permit(
       :kan_familyname, 
       :kan_firstname, 
       :kana_familyname, 
