@@ -9,5 +9,9 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
   resources :items, only: [:index, :new, :create]
-  resources :users, only: [:index]
+  resources :users, only: [:index] do
+    collection do
+      get :logout
+    end
+  end
 end
