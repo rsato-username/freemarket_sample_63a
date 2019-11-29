@@ -1,0 +1,163 @@
+//ーーーーーーーー
+//商品購入確認画面部分
+//ーーーーーーーー
+.buy-confirmation {
+  &__header {
+    display: block;
+    height: 128px;
+    text-align: center;
+    h3 {
+      display: inline-block;
+      margin-top: 40px;
+    }
+  }
+  &__main {
+    display: block;
+    .buy__mainbox {
+      width: 720px;
+      margin: 0 auto;
+      background-color: white;
+      h2 {
+        padding: 16px;
+        font-size: 22px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .buy__item {
+        text-align: center;
+        &-box {
+          display: flex;
+          flex-wrap: wrap;
+          max-width: 320px;
+          margin: 0 auto;
+          p.item-name {
+            font-size: 16px;
+            padding-left: 16px;
+            width: calc(100% - 80px);
+            text-align: left;
+            font-weight: bold;
+          }
+          form {
+            width: 100%;
+            .buy-price {
+              margin-top: 8px;
+              line-height: 30px;
+              font-size: 22px;
+              span {
+                font-size: 14px;
+                margin-left: 8px;
+              }
+            }
+            .buy__point-box {
+              margin-top: 16px;
+              padding: 16px;
+              background-color: #ccc;
+              font-size: 15px;
+            }
+            .buy__price-box {
+              display: block;
+              font-weight: bold;
+              font-size: 18px;
+              width: 100%;
+              .price-tag {
+                float: left;
+                padding: 16px 0;
+                font-size: 18px;
+              }
+              .total-price {
+                float: right;
+                padding: 10px 0;
+                span{
+                  font-size: 26px;
+                }
+              }
+            }
+            button {
+              margin-top: 8px;
+              background-color: #888;
+              color: white;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .buy__user-address {
+        margin-top: 40px;
+        &__box {
+          max-width: 320px;
+          margin: 0 auto;
+        }
+      }
+      .buy__user-payment {
+        margin-top: 40px;
+        padding-bottom: 40px;
+        &__box {
+          max-width: 320px;
+          margin: 0 auto;
+        }
+      }
+      .buy__user-address,.buy__user-payment {
+        a {
+          display: block;
+          text-align: right;
+          color: #0099e8;
+          text-decoration: none;
+          font-size: 14px;
+          span {
+            &:hover {
+              border-bottom: 1px solid #0099e8;
+            }
+          }
+        }
+        p,address {
+          margin-top: 8px;
+          display: block;
+          height: 40px;
+        }
+      }
+      section {
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+      }
+
+    }
+  }
+  &__footer {
+    height: 220px;
+    width: 456px;
+    margin: 0 auto;
+    padding: 40px 0;
+    nav {
+      text-align: center;
+      li {
+        display: inline-block;
+        a {
+          margin: 0 8px;
+          font-size: 12px;
+          display: block;
+          text-decoration: none;
+          color: #333;
+        }
+      }
+    }
+    a.app-logo {
+      display: block;
+      text-align: center;
+      color: #333;
+      width: 80px;
+      height: 65px;
+      margin: 40px auto 0;
+      img{
+        color: #333;
+      }
+    }
+    p.footer-text {
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
