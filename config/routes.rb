@@ -10,4 +10,12 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :new, :create]
   resources :users, only: [:index]
+  resources :signups, only: [:index, :create] do
+    collection do
+      get :first, :second, :third, :forth, :fifth
+    end
+  end
+  resources :users do
+    resources :cards, only: [:index, :new, :create]
+  end
 end
