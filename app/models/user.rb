@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   
-  validates :nickname, :tel, presence: true
+  validates :nickname, :tel,presence: true
   validates :email, :tel, uniqueness: true
+  validates :tel, uniqueness: true, on: :create
   validates :password, :password_confirmation, allow_nil: true, presence: true, length: { minimum: 7 }
 
   def self.find_oauth(auth)
@@ -44,8 +45,8 @@ class User < ApplicationRecord
   has_many :items
   has_many :likes
   has_many :cards
-  # belongs_to :exhibits
-  # belongs_to :transactions
-  # belongs_to :sale
-  # belongs_to :user_info
+  has_one :exhibits
+  has_one :transactions
+  has_one :sale
+  has_one :UserInfo
 end
