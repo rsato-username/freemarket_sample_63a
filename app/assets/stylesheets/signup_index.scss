@@ -1,0 +1,33 @@
+*{
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.registration{
+  background-color: #eee;
+  padding: 25 px 0;
+  text-align: center;
+  height: 100vh;
+  &__link{
+    width: 700px;
+    margin: 30px auto;
+    background-color: #fff;
+    &__title{
+      padding: 20px;
+      font-size: 25px;
+      font-weight: bold;
+      border-bottom: 1px solid #eee;
+    }
+    &__content{
+      padding: 30px;
+      div{
+        background-color: #FF3333;
+        color: #fff;
+        width: 300px;
+        height: 50px;
+        margin: 10px auto;
+        line-height: 50px;
+      }
+    }
+  }
+}
