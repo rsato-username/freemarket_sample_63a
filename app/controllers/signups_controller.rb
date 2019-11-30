@@ -16,7 +16,7 @@ class SignupsController < ApplicationController
     session[:kan_firstname] = user_params[:kan_firstname]
     session[:kana_familyname] = user_params[:kana_familyname]
     session[:kana_firstname] = user_params[:kana_firstname]
-    session[:birthday] = user_params[:birthday].to_i
+    session[:birthday] = user_params[:birthday]
 
     @user = User.new
   end
@@ -30,15 +30,15 @@ class SignupsController < ApplicationController
   end
 
   def fifth
-    session[:kan_familyname] = user_info_params[:kan_familyname]
-    session[:kan_firstname] = user_info_params[:kan_firstname]
-    session[:kana_familyname] = user_info_params[:kana_familyname]
-    session[:kana_firstname] = user_info_params[:kana_firstname]
-    session[:post_number] = user_info_params[:post_number]
-    session[:prefecture] = user_info_params[:prefecture]
-    session[:city] = user_info_params[:city]
-    session[:address] = user_info_params[:address]
-    session[:building] = user_info_params[:building]
+    # session[:kan_familyname] = user_info_params[:kan_familyname]
+    # session[:kan_firstname] = user_info_params[:kan_firstname]
+    # session[:kana_familyname] = user_info_params[:kana_familyname]
+    # session[:kana_firstname] = user_info_params[:kana_firstname]
+    # session[:post_number] = user_info_params[:post_number]
+    # session[:prefecture] = user_info_params[:prefecture]
+    # session[:city] = user_info_params[:city]
+    # session[:address] = user_info_params[:address]
+    # session[:building] = user_info_params[:building]
     @card = Card.new
   end
 
@@ -53,7 +53,6 @@ class SignupsController < ApplicationController
     #   render 'first'
     # end
     sign_in User.find(@user.id) if @user.save
-    
 
 
     save_to_session_user_info
@@ -63,33 +62,25 @@ class SignupsController < ApplicationController
     else
       render "forth"
     end
-    
-    # if @user_info.save
-    #   # ログインするための情報を保管
-    #   session[:id] = @user_info.id
-    #   redirect_to fifth_signups_path and return
-    # else
-    #   redirect_to forth_signups_path and return
-    # end
 
 
+    # Card.create(card_params)
+    # # save_to_session_card
     # @card = Card.new(
-    #   number: session[:number],
-    #   validity_year: session[:validity_year],
-    #   citvalidity_monthy: session[:cvalidity_monthity],
-    #   security_cord: session[:security_cord] 
-    # )
+    #     number: card_params[:number],
+    #     validity_year: card_params[:validity_year],
+    #     validity_month: card_params[:validity_month],
+    #     security_cord: card_params[:security_cord] 
+    #   )
+    # # @card.user_id = current_user.id
     # if @card.save
-    #   # ログインするための情報を保管
-    #   session[:id] = @card.id
-    #   redirect_to signups_path, method: :post and return
+    #   redirect_to signups_path, method: :post
     # else
-    #   render "fifth" and return
+    #   render "fifth"
     # end
 
     # sign_in User.find(session[:id]) unless user_signed_in?
 
-    # binding.pry
   end
 
   private
@@ -109,7 +100,7 @@ class SignupsController < ApplicationController
   end
 
   def user_info_params
-    params.require(:user_infos).permit(
+    params.require(:user_info).permit(
       :kan_familyname, 
       :kan_firstname, 
       :kana_familyname, 
@@ -119,6 +110,15 @@ class SignupsController < ApplicationController
       :city,
       :address,
       :building
+    )
+  end
+
+  def card_params
+    params.require(:card).permit(
+      :number, 
+      :validity_year, 
+      :validity_month, 
+      :security_cord
     )
   end
 
@@ -144,8 +144,8 @@ class SignupsController < ApplicationController
     session[:kan_firstname] = user_params[:kan_firstname]
     session[:kana_familyname] = user_params[:kana_familyname]
     session[:kana_firstname] = user_params[:kana_firstname]
-    session[:birthday] = user_params[:birthday].to_i
-    session[:tel] = user_params[:tel].to_i
+    session[:birthday] = user_params[:birthday]
+    session[:tel] = user_params[:tel]
 
     user_create
 
@@ -177,19 +177,19 @@ class SignupsController < ApplicationController
   end
 
 
-  
+  def save_to_session_card
+    session[:number] = card_params[:number]
+    session[:validity_year] = card_params[:validity_year]
+    session[:validity_month] = card_params[:validity_month]
+    session[:security_cord] = card_params[:security_cord]
 
-  # if @user.save && @user_info.save && @card.save
-  #   # ログインするための情報を保管
-  #   session[:id] = @user.id && @user_info.id && @card.id
-  #   redirect_to signups_path
-  # else
-  #   # render 'signups'
-  # end
-
-  # def card_params
-  #   params.require(:card).permit(:number, :validity_year, :validity_month, :security_cord)
-  # end
+    @card = Card.new(
+      number: session[:number],
+      validity_year: session[:validity_year],
+      validity_month: session[:validity_month],
+      security_cord: session[:security_cord]
+    )
+  end
 
 
 end

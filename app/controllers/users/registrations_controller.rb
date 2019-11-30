@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
   def customize_sign_up_params
-    devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :tel, :password, :password_confirmation] 
+    devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation] 
   end
 
   # def check_captcha

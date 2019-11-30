@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :tel]) #:tel抜かした、
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname]) #:tel抜かした、
   end
 end
