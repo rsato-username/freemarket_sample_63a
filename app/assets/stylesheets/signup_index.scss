@@ -21,12 +21,15 @@
     &__content{
       padding: 30px;
       div{
-        background-color: #FF3333;
+        background-color: #FF5192;
         color: #fff;
         width: 300px;
         height: 50px;
         margin: 10px auto;
         line-height: 50px;
+        &:hover{
+          background-color: #FF97C2;
+        }
       }
     }
   }
