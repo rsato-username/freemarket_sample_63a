@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_075715) do
+ActiveRecord::Schema.define(version: 2019_11_30_085733) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "number", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_075715) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "tel", null: false
+    t.bigint "tel", null: false
     t.text "description"
     t.string "image"
     t.integer "point"
