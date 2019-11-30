@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   
-  validates :nickname, :tel,presence: true
-  validates :email, :tel, uniqueness: true
+  validates :nickname, presence: true # :tel抜かした
+  validates :email, uniqueness: true  # :tel抜かした
   validates :tel, uniqueness: true, on: :create
   validates :password, :password_confirmation, allow_nil: true, presence: true, length: { minimum: 7 }
 
@@ -44,9 +44,9 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :likes
-  has_many :cards
+  has_many :card
   has_one :exhibits
   has_one :transactions
   has_one :sale
-  has_one :user_infos
+  has_one :user_info
 end
