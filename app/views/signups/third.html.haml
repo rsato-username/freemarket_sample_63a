@@ -35,7 +35,8 @@
           %p SMSで届いた認証番号を入力してください
           
       .user-info__next-btn
-        %input(type="submit" value="認証して完了")/
+        = link_to forth_signups_path do
+          %input(type="submit" value="認証して完了")/
 
       .tel__how
         %a(href="#")

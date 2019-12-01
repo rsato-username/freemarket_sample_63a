@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_23_061345) do
+ActiveRecord::Schema.define(version: 2019_11_30_085733) do
+
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "number", null: false
+    t.integer "validity_year", null: false
+    t.integer "validity_month", null: false
+    t.integer "security_cord", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
 
   create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider"
@@ -21,6 +32,23 @@ ActiveRecord::Schema.define(version: 2019_11_23_061345) do
     t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
+  create_table "user_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "kan_familyname", null: false
+    t.string "kan_firstname", null: false
+    t.string "kana_familyname", null: false
+    t.string "kana_firstname", null: false
+    t.integer "birthday"
+    t.integer "post_number", null: false
+    t.string "prefecture", null: false
+    t.string "city", null: false
+    t.string "address", null: false
+    t.string "building"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_infos_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
@@ -28,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_061345) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "tel", null: false
+    t.bigint "tel", null: false
     t.text "description"
     t.string "image"
     t.integer "point"
@@ -36,9 +64,16 @@ ActiveRecord::Schema.define(version: 2019_11_23_061345) do
     t.integer "sales"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "kan_familyname", null: false
+    t.string "kan_firstname", null: false
+    t.string "kana_familyname", null: false
+    t.string "kana_firstname", null: false
+    t.integer "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cards", "users"
   add_foreign_key "sns_credentials", "users"
+  add_foreign_key "user_infos", "users"
 end

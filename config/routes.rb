@@ -19,4 +19,13 @@ Rails.application.routes.draw do
       get :profile
     end
   end
+  resources :signups, only: [:index, :create] do
+    collection do
+      get :first, :second, :third, :forth, :fifth
+    end
+  end
+  resources :users do
+    resources :cards, only: [:index, :new, :create]
+  end
+  
 end

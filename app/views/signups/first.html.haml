@@ -1,36 +1,3 @@
--# %h2 Sign up
--# = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
--#   = render "devise/shared/error_messages", resource: resource
--#   .field
--#     = f.label :nickname
--#     %br/
--#     = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
--#   .field
--#     = f.label :tel
--#     %br/
--#     = f.text_field :tel, autofocus: true, autocomplete: "tel"
--#   .field
--#     = f.label :email
--#     %br/
--#     = f.email_field :email, autofocus: true, autocomplete: "email"
--#   .field
--#     = f.label :password
--#     - if @minimum_password_length
--#       %em
--#         (#{@minimum_password_length} characters minimum)
--#     %br/
--#     = f.password_field :password, autocomplete: "new-password"
--#   .field
--#     = f.label :password_confirmation
--#     %br/
--#     = f.password_field :password_confirmation, autocomplete: "new-password"
--#   .actions
--#     -# = flash[:recaptcha_error]
--#     = recaptcha_tags
--#     = f.submit "Sign up"
--# = render "devise/shared/links" 
-
-= render "devise/shared/error_messages", resource: resource
 .member-header
   .img
     %a(href="https://fril.jp/")
@@ -56,7 +23,7 @@
     .member-body__inner--header
       会員情報入力
     .member-body__inner--body
-      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = form_with model: @user, url: second_signups_path, method: :get, local: true do |f|
         .member__nickname.member__form
           .member__nickname--label
             = f.label :nickname, 'ニックネーム'
@@ -104,7 +71,7 @@
               = f.label :birthday, '生年月日'
               %span 必須
             .user-info__birthday--input
-              = f.date_select(:birthday, start_year: 1930, end_year: (Time.now.year - 18), default: Date.new(1989, 1, 1))
+              = f.date_select(:birthday, start_year: 1945, end_year: (Time.now.year), default: Date.new(2018, 1, 1))
               -# = f.select{name: "toshi", type: "text", placeholder: "○"
               -# 年
               -# = f.select{name: "tsuki", type: "text", placeholder: "○"
@@ -130,3 +97,4 @@
           .user-info__how
             %a(href="#")
               本人情報の登録について〉
+            
