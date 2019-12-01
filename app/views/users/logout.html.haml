@@ -1,3 +1,4 @@
+= render 'shared/top_header'
 %main.container.clearfix
   = render 'shared/side_bar'
   .l-container
@@ -6,3 +7,4 @@
         .user-logout__btn
           = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user-logout__btn"
           -# %input{type: 'submit', value: "ログアウト", class: "user-logout__btn"}
+= render 'shared/top_footer'

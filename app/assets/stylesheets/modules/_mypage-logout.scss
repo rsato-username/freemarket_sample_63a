@@ -9,16 +9,17 @@
     div.user-logout__btn {
       width: 320px;
       margin: 0 auto;
-    }
-    .user-logout__btn {
-      color: white;
-      background-color: #ea352d;
-      border: 1px solid #ea352d;
-      font-style: 14px;
-      text-align: center;
-      line-height: 48px;
-      width: 100%;
-      outline: none;
+      .user-logout__btn {
+        color: white;
+        background-color: #ea352d;
+        border: 1px solid #ea352d;
+        font-style: 14px;
+        text-align: center;
+        line-height: 48px;
+        width: 100%;
+        outline: none;
+        display: inline-block;
+      }
     }
   }
 }
