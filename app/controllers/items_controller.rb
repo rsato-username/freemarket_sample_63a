@@ -6,16 +6,20 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     
-    @category_parent_array = ["---"]
+    @category_parent_array = []
     #データベースから、親カテゴリーのみ抽出し、配列化
     Category.where(ancestry: nil).each do |parent|
-        @category_parent_array << parent.name
+        @category_parent_array << parent
     end
   end
   
   def create
-    Item.create(item_params)
-    redirect_to root_path
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   # 親カテゴリーが選択された後に動くアクション
@@ -32,6 +36,6 @@ class ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :user_id, :category_id, :brand_id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id).merge(user_id: current_user.id)
   end
 end

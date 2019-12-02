@@ -3,10 +3,7 @@
     %a(href="https://fril.jp/" target="_blank")
       %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2177740229" alt="ラクマ")/
 = form_for @item do |i|
-  = i.text_field :user_id
-  = i.text_field :brand_id
   .exhibit__container
-    
     .exhibit__container--form
       .exhibit__container--form__head
         %p 商品の情報を入力
@@ -22,6 +19,9 @@
               ドラッグアンドドロップ
               またはクリックしてファイルを選択してください
               %input(type="file")
+        -# %ul
+        -#   %li
+        -#     %input(type="file" name="image_file[]" multiple="multiple")
 
     .exhibit__container--form
       .exhibit__container--form__name
@@ -40,19 +40,20 @@
         
     .exhibit__container--form
       %h3 商品の詳細
-      //--------------------------------------------------------------------------------------------------------------
       .right-box
         .exhibit__container--form__category--label
           = i.label 'カテゴリー', class: 'listing-default__label'
           %span 必須
         .exhibit__container--form__category--input
           .category-box
-            = i.select :category_id, @category_parent_array, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+            = i.collection_select(:category_id, Category.all, :id, :name)
+            -# = i.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'item_category_id'}
+
         .exhibit__container--form__status--label
           商品の状態
           %span 必須
         .exhibit__container--form__status--input
-          = i.select :status,[["新品、未使用",1],["未使用に近い",2],["目立った傷や汚れなし",3],["やや傷や汚れあり",4],["傷や汚れあり",5],["全体的に状態が悪い",6]],prompt: "---"
+          = i.select :status,[["新品、未使用","新品、未使用"],["未使用に近い","未使用に近い"],["目立った傷や汚れなし","目立った傷や汚れなし"],["やや傷や汚れあり","やや傷や汚れあり"],["傷や汚れあり","傷や汚れあり"],["全体的に状態が悪い","全体的に状態が悪い"]],prompt: "---"
 
     .exhibit__container--form
       %h3 配送について
