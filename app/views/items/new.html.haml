@@ -19,9 +19,8 @@
               ドラッグアンドドロップ
               またはクリックしてファイルを選択してください
               %input(type="file")
-        -# %ul
-        -#   %li
-        -#     %input(type="file" name="image_file[]" multiple="multiple")
+        = i.fields_for :photos do |p|
+          = p.file_field :url
 
     .exhibit__container--form
       .exhibit__container--form__name
