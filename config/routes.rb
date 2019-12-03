@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create] do
     member do
       get :buy
-      get :pay
+      post :pay
     end
   end
   resources :users, only: [:index] do
