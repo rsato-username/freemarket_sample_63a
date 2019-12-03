@@ -6,7 +6,7 @@
   .toppage-header__container
     .toppage-header__container--ue
       .toppage-header__container--ue__logo
-        %a(href="#")
+        = link_to root_path, data: {"turbolinks" => false} do
           %img(src="https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg" alt="mercari" class="top__logo--img")/
       .toppage-header__container--ue__search
         %form(action="#")
@@ -38,7 +38,7 @@
               %i.fas.fa-check
               やることリスト
           %li.toppage-header__container--shita__right--mypage
-            = link_to users_path, data: {"turbolinks" => false} do
+            = link_to users_path(current_user), data: {"turbolinks" => false} do
               %img(src="https://static.mercdn.net/thumb/members/629605614.jpg?1413174838" alt="myimage")/
               %p マイページ
         - else

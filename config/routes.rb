@@ -24,8 +24,7 @@ Rails.application.routes.draw do
       get :first, :second, :third, :forth, :fifth
     end
   end
-  resources :users do
-  end
+  resources :users
   
   resources :cards, only: [:create, :show, :new] do
     collection do
