@@ -1,12 +1,14 @@
 .member-header
   .img
-    %a(href="https://fril.jp/" target="_blank")
-      %img(src="https://asset.fril.jp/assets/new_web/site-logo_with_logo-05541314c14ec45997862f221cfbcebc5103aae0426451047914e06bfb0f4679.png" alt="ラクマ")/
+    = link_to root_path do
+      = image_tag "/images/fmarket_logo_red.svg", alt: "ふりまの画像", size: "200x128"
+    -# %a(href="https://fril.jp/" target="_blank")
+    -#   %img(src="https://asset.fril.jp/assets/new_web/site-logo_with_logo-05541314c14ec45997862f221cfbcebc5103aae0426451047914e06bfb0f4679.png" alt="ラクマ")/
   %ul.texts
     %li.text.text-now
       会員情報
       .dot●
-    %li.text
+    %li.text.text-now
       電話番号認証
       .dot●
     %li.text
