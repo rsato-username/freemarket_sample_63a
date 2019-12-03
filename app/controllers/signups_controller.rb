@@ -9,6 +9,7 @@ class SignupsController < ApplicationController
   end
 
   def second
+    # binding.pry
     session[:nickname] = user_params[:nickname]
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
@@ -16,7 +17,7 @@ class SignupsController < ApplicationController
     session[:kan_firstname] = user_params[:kan_firstname]
     session[:kana_familyname] = user_params[:kana_familyname]
     session[:kana_firstname] = user_params[:kana_firstname]
-    session[:birthday] = user_params[:birthday]
+    session[:birthday] = user_params['birthday(1i)'] + "/" + user_params['birthday(2i)'] + "/" + user_params['birthday(3i)']
 
     @user = User.new
   end
@@ -43,8 +44,9 @@ class SignupsController < ApplicationController
   end
 
 
-  def create
+  def create    
     user_create
+    # birthday_join
     # if @user.save
     #   # ログインするための情報を保管
     #   # session[:id] = @user.id
@@ -95,6 +97,9 @@ class SignupsController < ApplicationController
       :kana_familyname, 
       :kana_firstname, 
       :birthday,
+      'birthday(1i)',
+      'birthday(2i)',
+      'birthday(3i)',
       :tel
     )
   end
@@ -144,7 +149,7 @@ class SignupsController < ApplicationController
     session[:kan_firstname] = user_params[:kan_firstname]
     session[:kana_familyname] = user_params[:kana_familyname]
     session[:kana_firstname] = user_params[:kana_firstname]
-    session[:birthday] = user_params[:birthday]
+    session[:birthday] = user_params['birthday(1i)'] + "/" + user_params['birthday(2i)'] + "/" + user_params['birthday(3i)']
     session[:tel] = user_params[:tel]
 
     user_create

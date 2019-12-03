@@ -1,0 +1,66 @@
+= render 'shared/top_header'
+%main.container.clearfix
+  = render 'shared/side_bar'
+  .l-container
+    .content
+      .content__header
+        本人情報の登録
+      .content__inner
+        .content__inner__discription
+          お客さまの本人情報をご登録ください。<br>
+          登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。<br>
+        .content__inner__confirmation
+          = link_to "本人確認書類のアップロードについて＞", "https://ja.wikipedia.org/wiki/%E6%9C%AC%E4%BA%BA%E7%A2%BA%E8%AA%8D"
+        .content__inner__field
+          .content__inner__field__label
+            名前<br>
+            = current_user.kan_familyname
+            = current_user.kan_firstname
+        .content__inner__field
+          .content__inner__field__label
+            名前カナ<br>
+            = current_user.kana_familyname
+            = current_user.kana_firstname
+            
+        .content__inner__field
+          .content__inner__field__label
+            生年月日<br>
+            = current_user.birthday
+        .content__inner__field
+          .content__inner__field__label
+            郵便番号 
+          .content__inner__field__arbitrary
+            任意
+        %input.text_area
+        .content__inner__field
+          .content__inner__field__label
+            都道府県 
+          .content__inner__field__arbitrary
+            任意
+        %input.select_box
+        .content__inner__field
+          .content__inner__field__label
+            市区町村 
+          .content__inner__field__arbitrary
+            任意
+        %input.text_area
+        .content__inner__field
+          .content__inner__field__label
+            番地 
+          .content__inner__field__arbitrary
+            任意
+        %input.text_area
+        .content__inner__field
+          .content__inner__field__label
+            建物名
+          .content__inner__field__arbitrary
+            任意
+        %input.text_area
+        .content__inner__submit
+          %button 登録する
+        .content__inner__info
+          = link_to "本人情報の登録について＞", "https://www.amazon.co.jp/gp/help/customer/display.html?nodeId=202075030"
+        
+
+
+= render 'shared/top_footer'

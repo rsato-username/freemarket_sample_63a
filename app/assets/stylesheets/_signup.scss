@@ -20,14 +20,14 @@ textarea:focus{
 }
 .member-header{
   background-color: rgb(245, 245, 245);
+  width: 800px;
   height: 128px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  img {
-    width: 185px;
-    height: 49px;
-    padding-left: 320px;
-  }
+  margin: 0 auto;
+  // .img {
+  // }
   .texts{
     color: #888888;
     font-size: 12px;
@@ -35,17 +35,17 @@ textarea:focus{
     width: 500px;
     display: flex;
     justify-content: space-between;
-    padding-left: 100px;
-  }
-  .text{
-    text-align: center;
-    &-now{
-      color: red;
+    .text{
+      text-align: center;
+      &-now{
+        color: red;
+      }
+      .dot{
+        font-size: 12px;
+      }
     }
-    .dot{
-      font-size: 12px;
-    }
   }
+  
 }
 
 .member-body{
@@ -105,6 +105,42 @@ textarea:focus{
         outline: 0;
         border-color: rgb(17,133,226);
       }
+      input[type="email"]{
+        box-sizing: border-box;
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0 16px;
+      }
+      input[type="email"]:focus{
+        outline: 0;
+        border-color: rgb(17,133,226);
+      }
+      input[type="password"]{
+        box-sizing: border-box;
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0 16px;
+      }
+      input[type="password"]:focus{
+        outline: 0;
+        border-color: rgb(17,133,226);
+      }
+      select{
+        box-sizing: border-box;
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0 16px;
+        background-color: #fff;
+      }
     }
   }
   &__checkbox{
@@ -112,6 +148,10 @@ textarea:focus{
     font-size: 14px;
     color: #333333;
   }
+}
+
+.aida{
+  padding: 50px 0;
 }
 
 .user-info{
@@ -178,7 +218,7 @@ textarea:focus{
       }
     }
     &--input{
-      input[type="text"]{
+      select{
         box-sizing: border-box;
         width: 20%;
         height: 48px;
@@ -186,6 +226,7 @@ textarea:focus{
         border-radius: 3px;
         border: 1px solid #ccc;
         padding: 0 16px;
+        background-color: #fff;
       }
       input[type="text"]:focus{
         outline: 0;
@@ -314,6 +355,19 @@ textarea:focus{
     }
     &--input{
       margin-top: 5px;
+      input[type="tel"]{
+        box-sizing: border-box;
+        width: 100%;
+        height: 48px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0 16px;
+      }
+      input[type="tel"]:focus{
+        outline: 0;
+        border-color: rgb(17,133,226);
+      }
       input[type="text"]{
         box-sizing: border-box;
         width: 100%;
