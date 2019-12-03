@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :likes
-  has_many :card
+  has_many :cards
   has_one :exhibits
   has_one :transactions
   has_one :sale
