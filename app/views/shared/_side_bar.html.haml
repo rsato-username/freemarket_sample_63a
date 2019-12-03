@@ -80,7 +80,7 @@
           発送元・お届け先住所変更
           %i.fa.fa-fighter-jet
       %li
-        = link_to root_path do
+        = link_to confirmation_card_path(current_user.id), method: :get do
           支払い方法
           %i.fa.fa-fighter-jet
       %li

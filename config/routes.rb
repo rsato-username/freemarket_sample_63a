@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
   resources :items, only: [:index, :new, :create] do
-    collection do
-      get :buy
+    member do
+      get :pay
     end
   end
   resources :users, only: [:index] do
@@ -24,8 +24,16 @@ Rails.application.routes.draw do
       get :first, :second, :third, :forth, :fifth
     end
   end
-  resources :users do
-    resources :cards, only: [:index, :new, :create, :edit, :update]
-  end
+  resources :users
   
+  resources :cards, only: [:create, :show, :new] do
+    collection do
+      post 'delete', to: 'cards#delete'
+      post 'show'
+    end
+    member do
+      get 'confirmation'
+    end
+  end 
+
 end
