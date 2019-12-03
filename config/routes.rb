@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
   resources :items, only: [:index, :new, :create] do
-    collection do
-      get :buy
+    member do
+      get :pay
     end
   end
   resources :users, only: [:index] do
@@ -31,7 +31,6 @@ Rails.application.routes.draw do
     collection do
       post 'delete', to: 'cards#delete'
       post 'show'
-      # post 'pay'
     end
     member do
       get 'confirmation'
