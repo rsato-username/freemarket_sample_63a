@@ -38,7 +38,7 @@
               %i.fas.fa-check
               やることリスト
           %li.toppage-header__container--shita__right--mypage
-            = link_to users_path, data: {"turbolinks" => false} do
+            = link_to users_path(current_user), data: {"turbolinks" => false} do
               %img(src="https://static.mercdn.net/thumb/members/629605614.jpg?1413174838" alt="myimage")/
               %p マイページ
         - else
