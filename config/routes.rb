@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :new, :create] do
     member do
+      get :buy
       get :pay
     end
   end
