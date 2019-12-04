@@ -24,7 +24,7 @@ class CardsController < ApplicationController
       if @card.save
         redirect_to action: :show
       else
-        redirect_to action: :new, id: current_user.id
+        render action: :new, id: current_user.id
       end
     end
   end
