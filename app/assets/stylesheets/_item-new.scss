@@ -61,6 +61,10 @@ select{
       }
       //画像選択-----------------------
       &__image{
+        #output {
+          height: 100px;
+          width: 100px;
+        }
         &--label{
           @include label();
           font-size: 16px;
