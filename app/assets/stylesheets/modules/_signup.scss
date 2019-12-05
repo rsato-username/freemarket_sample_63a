@@ -1,9 +1,8 @@
 *{
   box-sizing: border-box;
-}
-*{
   text-decoration: none;
 }
+
 
 .body{
   background-color: #EEEEEE;
@@ -127,12 +126,12 @@
           border: none;
           color: #fff;
           background-color: #CC3300;
-        }
-        input:hover{
-          background-color: #FF3300;
-        }
-        input:focus{
-          outline: none;
+          &:hover{
+            background-color: #FF3300;
+          }
+          &:focus{
+            outline: none;
+          }
         }
       }
       &__forget{
@@ -141,11 +140,9 @@
         a{
           text-decoration: none;
           color: #2C7CFF;
-        }
-      }
-      &__forget:hover{
-        a{
-          color: #A4C6FF;
+          :hover{
+            color: #A4C6FF;
+          }
         }
       }
     }

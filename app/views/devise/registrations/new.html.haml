@@ -1,31 +1,132 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
-  .field
-    = f.label :tel
-    %br/
-    = f.text_field :tel, autofocus: true, autocomplete: "tel"
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    -# = flash[:recaptcha_error]
-    = recaptcha_tags
-    = f.submit "Sign up"
-= render "devise/shared/links" 
+-# %h2 Sign up
+-# = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+-#   = render "devise/shared/error_messages", resource: resource
+-#   .field
+-#     = f.label :nickname
+-#     %br/
+-#     = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
+-#   .field
+-#     = f.label :tel
+-#     %br/
+-#     = f.text_field :tel, autofocus: true, autocomplete: "tel"
+-#   .field
+-#     = f.label :email
+-#     %br/
+-#     = f.email_field :email, autofocus: true, autocomplete: "email"
+-#   .field
+-#     = f.label :password
+-#     - if @minimum_password_length
+-#       %em
+-#         (#{@minimum_password_length} characters minimum)
+-#     %br/
+-#     = f.password_field :password, autocomplete: "new-password"
+-#   .field
+-#     = f.label :password_confirmation
+-#     %br/
+-#     = f.password_field :password_confirmation, autocomplete: "new-password"
+-#   .actions
+-#     -# = flash[:recaptcha_error]
+-#     = recaptcha_tags
+-#     = f.submit "Sign up"
+-# = render "devise/shared/links" 
+
+= render "devise/shared/error_messages", resource: resource
+.member-header
+  .img
+    %a(href="https://fril.jp/")
+      %img(src="https://asset.fril.jp/assets/new_web/site-logo_with_logo-05541314c14ec45997862f221cfbcebc5103aae0426451047914e06bfb0f4679.png" alt="ラクマ")/
+  %ul.texts
+    %li.text.text-now
+      会員情報
+      .dot●
+    %li.text
+      電話番号認証
+      .dot●
+    %li.text
+      お届け先住所入力
+      .dot●
+    %li.text
+      支払い方法
+      .dot●
+    %li.text
+      完了
+      .dot●
+.member-body
+  .member-body__inner
+    .member-body__inner--header
+      会員情報入力
+    .member-body__inner--body
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        .member__nickname.member__form
+          .member__nickname--label
+            = f.label :nickname, 'ニックネーム'
+            %span 必須
+          .member__nickname--input
+            = f.text_field :nickname, placeholder: "例）メルカリ太郎"
+        .member__nickname.member__form
+          .member__nickname--label
+            = f.label :email, "メールアドレス"
+            %span 必須
+          .member__nickname--input
+            = f.email_field :email, placeholder: "PC・携帯どちらでも可"
+        .member__nickname.member__form
+          .member__nickname--label
+            = f.label :password, "パスワード"
+            %span 必須
+          .member__nickname--input
+            = f.password_field :password, placeholder: "7文字以上"
+        
+        .member__checkbox
+          %input(type="checkbox")/
+          パスワードを表示する
+        .user-info
+          .user-info__description
+            %label 本人確認
+            %p 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+        
+          .user-info__name.member__form
+            .user-info__name--label
+              %label お名前(全角)
+              %span 必須
+            .user-info__name--input.double
+              = f.text_field :kan_familyname, placeholder: "例）山田"
+              = f.text_field :kan_firstname, placeholder: "例）彩"
+          .user-info__name.member__form
+            .user-info__name--label
+              %label お名前カナ(全角)
+              %span 必須
+            .user-info__name--input.double
+              = f.text_field :kana_familyname, placeholder: "例）ヤマダ"
+              = f.text_field :kana_firstname, placeholder: "例）アヤ"
+
+          .user-info__birthday
+            .user-info__birthday--label
+              = f.label :birthday, '生年月日'
+              %span 必須
+            .user-info__birthday--input
+              = f.date_select(:birthday, start_year: 1930, end_year: (Time.now.year - 18), default: Date.new(1989, 1, 1))
+              -# = f.select{name: "toshi", type: "text", placeholder: "○"
+              -# 年
+              -# = f.select{name: "tsuki", type: "text", placeholder: "○"
+              -# 月
+              -# = f.select{name: "hi", type: "text", placeholder: "○"
+              -# 日
+            .user-info__birthday--text
+              %p ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+
+          .user-info__robot
+            %p 私はロボットではありますぇん<br>押してほしぇん
+            = recaptcha_tags
+
+          .user-info__alert
+            「次へ進む」のボタンを押すことにより
+            %a(href="#")
+              利用規約
+            に同意したものとみなします
+
+          .user-info__next-btn
+            = f.submit "次へ進む"
+
+          .user-info__how
+            %a(href="#")
+              本人情報の登録について〉

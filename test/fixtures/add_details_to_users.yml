@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kan_familyname: MyString
+  kan_firstname: MyString
+  kana_familyname: MyString
+  kana_firstname: MyString
+  birthday: 1
+
+two:
+  kan_familyname: MyString
+  kan_firstname: MyString
+  kana_familyname: MyString
+  kana_firstname: MyString
+  birthday: 1

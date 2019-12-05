@@ -1,0 +1,30 @@
+.registration
+  = link_to root_path do
+    = image_tag "/images/fmarket_logo_red.svg", alt: "ふりまの画像", size: "200x128"
+  .registration__link
+    .registration__link__title
+      新規会員登録
+    .registration__link__content
+      = link_to first_signups_path do
+        %div
+          メールアドレスで会員登録
+      = link_to user_facebook_omniauth_authorize_path, method: :post do
+        %div
+          facebookで会員登録
+      = link_to user_google_oauth2_omniauth_authorize_path, method: :post do
+        %div
+          googleで会員登録
+  .body__footer
+    .body__footer__top
+      .body__footer__top__privacy
+        = link_to "プライバシーポリシー", "http://www.nogizaka46.com/" 
+      .body__footer__top__rule
+        = link_to "メルカリ利用規約", "https://www.hinatazaka46.com/s/official/?ima=0000"
+      .body__footer__top__trade
+        = link_to "特定商取引に関する表記", "https://www.keyakizaka46.com/s/k46o/?ima=0000" 
+    .body__footer__bottom
+      .body__footer__bottom__image
+        = link_to root_path do
+          = image_tag "/images/logo_gray.svg", alt: "フリマの画像", size: "100x80"
+      .body__footer__bottom__string
+        © 1973 FamilyMart

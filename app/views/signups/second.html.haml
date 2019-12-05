@@ -1,0 +1,59 @@
+.member-header
+  .img
+    = link_to root_path do
+      = image_tag "/images/fmarket_logo_red.svg", alt: "ふりまの画像", size: "200x128"
+    -# %a(href="https://fril.jp/" target="_blank")
+    -#   %img(src="https://asset.fril.jp/assets/new_web/site-logo_with_logo-05541314c14ec45997862f221cfbcebc5103aae0426451047914e06bfb0f4679.png" alt="ラクマ")/
+  %ul.texts
+    %li.text.text-now
+      会員情報
+      .dot●
+    %li.text.text-now
+      電話番号認証
+      .dot●
+    %li.text
+      お届け先住所入力
+      .dot●
+    %li.text
+      支払い方法
+      .dot●
+    %li.text
+      完了
+      .dot●
+
+
+.tel-body
+  .tel-body__inner
+    = form_with model: @user, url: forth_signups_path, method: :get, local: true do |f|
+      .tel-body__inner--header
+        電話番号の確認
+
+      .tel-body__inner--body
+        .tel__nickname
+          .tel__nickname--label
+            = f.label :tel, "携帯電話の番号"
+          .tel__nickname--input
+            = f.telephone_field :tel, placeholder: "携帯電話の番号を入力"
+          .tel__nickname--description
+            %p 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+            
+        .user-info__next-btn
+          = f.submit "SMSを送信する"
+
+        .tel__fuseibousi
+          %p ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません
+
+        .tel__how
+          %a(href="#")
+            電話番号の確認が必要な理由〉
+
+  .member-footer
+    .member-footer__kiyaku
+      %ul.list
+        %li プライバシーポリシー
+        %li メルカリ利用規約
+        %li 特定商取引に関する表記
+    .member-footer__logo
+      %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2177740229" alt="Rakuten")/
+    .member-footer__copy
+      %small © 2019 Mercari

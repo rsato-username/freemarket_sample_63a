@@ -2,7 +2,7 @@
   %nav.mypage-nav
     %ul.mypage-nav-list
       %li
-        = link_to root_path do
+        = link_to users_path(current_user), data: {"turbolinks" => false} do
           マイページ
           %i.fa.fa-fighter-jet
       %li
@@ -18,7 +18,7 @@
           いいね！一覧
           %i.fa.fa-fighter-jet
       %li
-        = link_to root_path do
+        = link_to new_item_path do
           出品する
           %i.fa.fa-fighter-jet
       %li
@@ -80,7 +80,7 @@
           発送元・お届け先住所変更
           %i.fa.fa-fighter-jet
       %li
-        = link_to root_path do
+        = link_to confirmation_card_path(current_user.id), method: :get do
           支払い方法
           %i.fa.fa-fighter-jet
       %li
@@ -88,7 +88,7 @@
           メール/パスワード
           %i.fa.fa-fighter-jet
       %li
-        = link_to root_path do
+        = link_to edit_user_path(current_user) do
           本人情報
           %i.fa.fa-fighter-jet
       %li
@@ -96,6 +96,6 @@
           電話番号の確認
           %i.fa.fa-fighter-jet
       %li
-        = link_to root_path do
+        = link_to logout_users_path do
           ログアウト
           %i.fa.fa-fighter-jet

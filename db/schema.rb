@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2019_12_03_013441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_photos_on_item_id"
+
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -54,6 +62,23 @@ ActiveRecord::Schema.define(version: 2019_12_03_013441) do
     t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
+  create_table "user_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "kan_familyname", null: false
+    t.string "kan_firstname", null: false
+    t.string "kana_familyname", null: false
+    t.string "kana_firstname", null: false
+    t.integer "birthday"
+    t.integer "post_number", null: false
+    t.string "prefecture", null: false
+    t.string "city", null: false
+    t.string "address", null: false
+    t.string "building"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_infos_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
@@ -61,7 +86,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_013441) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "tel", null: false
+    t.bigint "tel", null: false
     t.text "description"
     t.string "image"
     t.integer "point"
@@ -69,6 +94,11 @@ ActiveRecord::Schema.define(version: 2019_12_03_013441) do
     t.integer "sales"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "kan_familyname", null: false
+    t.string "kan_firstname", null: false
+    t.string "kana_familyname", null: false
+    t.string "kana_firstname", null: false
+    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -76,5 +106,8 @@ ActiveRecord::Schema.define(version: 2019_12_03_013441) do
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
   add_foreign_key "photos", "items"
+
+  add_foreign_key "cards", "users"
   add_foreign_key "sns_credentials", "users"
+  add_foreign_key "user_infos", "users"
 end

@@ -1,0 +1,49 @@
+//------------------------------------------------------------
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//トップページヘッダー  -----------------------------------------
+
+.toppage-header
+  .toppage-header__container
+    .toppage-header__container--ue
+      .toppage-header__container--ue__logo
+        = link_to root_path, data: {"turbolinks" => false} do
+          %img(src="https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg" alt="mercari" class="top__logo--img")/
+      .toppage-header__container--ue__search
+        %form(action="#")
+          %input(type="text" placeholder="何かお探しですか？")/
+          %i.fas.fa-search
+            
+    .toppage-header__container--shita
+      .toppage-header__container--shita__left
+        .toppage-header__container--shita__left--category
+          %a(href="#")
+            %i.fas.fa-bars
+            カテゴリーから探す
+        .toppage-header__container--shita__left--brand
+          %a(href="#")
+            %i.fas.fa-tags
+            ブランドから探す
+      %ul.toppage-header__container--shita__right
+        - if user_signed_in?
+          %li.toppage-header__container--shita__right--like
+            %a(href="#")
+              %i.fas.fa-heart
+              いいね！一覧
+          %li.toppage-header__container--shita__right--Notice
+            %a(href="#")
+              %i.fas.fa-bell
+              お知らせ
+          %li.toppage-header__container--shita__right--mylist
+            %a(href="#")
+              %i.fas.fa-check
+              やることリスト
+          %li.toppage-header__container--shita__right--mypage
+            = link_to users_path(current_user), data: {"turbolinks" => false} do
+              %img(src="https://static.mercdn.net/thumb/members/629605614.jpg?1413174838" alt="myimage")/
+              %p マイページ
+        - else
+          %li.toppage-header__container--shita__right--sign-up
+            = link_to "新規会員登録", signups_path
+              
+          %li.toppage-header__container--shita__right--login
+            = link_to "ログイン", new_user_session_path

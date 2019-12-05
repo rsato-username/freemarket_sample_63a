@@ -1,0 +1,25 @@
+//ーーーーーーー
+//ログアウト部分
+//ーーーーーーー
+.logout__box {
+  width: 100%;
+  .form {
+    padding: 64px;
+    background-color: white;
+    div.user-logout__btn {
+      width: 320px;
+      margin: 0 auto;
+      .user-logout__btn {
+        color: white;
+        background-color: #ea352d;
+        border: 1px solid #ea352d;
+        font-style: 14px;
+        text-align: center;
+        line-height: 48px;
+        width: 100%;
+        outline: none;
+        display: inline-block;
+      }
+    }
+  }
+}

@@ -13,9 +13,36 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
+    member do
+      get :buy
+      post :pay
+    end
   end
 
-  resources :users, only: [:index]
 
   
+
+  resources :users, only: [:index] do
+    collection do
+      get :logout
+      get :profile
+    end
+  end
+  resources :signups, only: [:index, :create] do
+    collection do
+      get :first, :second, :third, :forth, :fifth
+    end
+  end
+  resources :users
+  
+  resources :cards, only: [:create, :show, :new] do
+    collection do
+      post 'delete', to: 'cards#delete'
+      post 'show'
+    end
+    member do
+      get 'confirmation'
+    end
+  end 
+
 end

@@ -1,0 +1,13 @@
+= render 'shared/top_header'
+.breadcrumbs-box
+  - breadcrumb :logout
+  = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "
+%main.container.clearfix
+  = render 'shared/side_bar'
+  .l-container
+    .logout__box
+      .form
+        .user-logout__btn
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user-logout__btn"
+          -# %input{type: 'submit', value: "ログアウト", class: "user-logout__btn"}
+= render 'shared/top_footer'

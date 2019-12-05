@@ -1,0 +1,174 @@
+//ーーーーーーーーーーー
+//カード表示画面共通部分
+//ーーーーーーーーーーー
+.chapter__container,.chapter__container--add {
+  height: 400px;
+  background-color: white;
+  h2.chapter__head {
+    font-size: 24px;
+    padding: 8px 24px;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+    font-weight: bold;
+  }
+  .payment__mainbox {
+    padding: 64px;
+    .payment__main {
+      margin: 0 auto;
+      padding: 0;
+      .payment__list {
+        max-width: 320px;
+        margin: 0 auto;
+        .sub__head {
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+      .card__payment__list {
+        border-bottom: 1px solid #f5f5f5;
+        .card__payment__listbox {
+          max-width: 320px;
+          margin: 0 auto;
+          padding: 24px 0;
+          position: relative;
+          .delete__button {
+            font-size: 14px;
+            position: absolute;
+            right: 20px;
+            top: 30px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid #ea352d;
+            color: #ea352d;
+          }
+        }
+      }
+      .payment--description {
+        a {
+          display: block;
+          margin-top: 40px;
+          text-align: right;
+          color: #0099e8;
+          text-decoration: none;
+          span {
+            &:hover {
+              border-bottom: 1px solid #0099e8;
+          }
+          }
+        }
+      }
+      //カード追加画面部分
+      .add__card {
+        padding: 24px 0;
+        border-bottom: 1px solid #f5f5f5;
+        .payment__list__content {
+          max-width: 320px;
+          margin: 0 auto;
+          a {
+            display: block;
+            line-height: 50px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            width: 320px;
+            background-color: #ea352d;
+            margin: 0 auto;
+            text-align: center;
+            &:hover {
+              background-color: rgba(#ea352d,0.7);
+              transition: 0.3s;
+            }
+            i {
+              position: relative;
+              top: 4px;
+              font-size: 25px;
+              margin-right: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+//カード登録画面部分
+.chapter__container--add {
+  height: 600px;
+  #charge-form {
+    padding: 40px 40px 64px;
+    .form__main__container {
+      max-width: 350px;
+      margin: 0 auto;
+    }
+    input[type="text"],select {
+      box-sizing: border-box;
+      width: 100%;
+      height: 48px;
+      font-size: 16px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      padding: 0 16px;
+    }
+    input[type="text"]:focus {
+      outline: 0;
+      border-color: rgb(17,133,226);
+    }
+    .number-cards {
+      display: flex;
+      margin-top: 5px;
+      &-img {
+        margin-right: 8px;
+      }
+    }
+    .form__content {
+      margin-top: 32px;
+      .select__box {
+        display: flex;
+        .select__box__half {
+          display: inline-block;
+          width: calc(50% - 2px);
+          .select__default {
+            width: calc(100% - 38px);
+            background-color: white;
+          }
+        }
+      }
+      .single__code {
+        float: right;
+        color: #0099e8;
+        text-decoration: none;
+        font-size: 13px;
+        .form__question {
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          background-color: #0099e8;
+          border-radius: 50%;
+          color: white;
+          text-align: center;
+          font-size: 10px;
+        }
+      }
+      span {
+        font-size: 12px;
+        color: white;
+        padding: 2px 4px;
+        background-color: #ea352d;
+        border-radius: 3px;
+      }
+    }
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      height: 48px;
+      font-size: 16px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      padding: 0 16px;
+      margin-top: 50px;
+      color: white;
+      background-color: #ea352d;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+}

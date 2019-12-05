@@ -1,0 +1,26 @@
+= render 'shared/top_header'
+.breadcrumbs-box
+  - breadcrumb :card
+  = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "
+%main.container.clearfix
+  = render 'shared/side_bar'
+  .l-container
+    .main__content
+      %section.chapter__container
+        %h2.chapter__head 支払い方法
+        .payment__mainbox
+          .payment__main
+            .payment__list
+              .payment__list__content
+                %h3.sub__head クレジットカード一覧
+            .add__card
+              .payment__list__content
+                = link_to new_card_path(current_user), class: "red__btn", data: {"turbolinks" => false} do
+                  %i.fab.fa-cc-apple-pay.fa-2x
+                  クレジットカードを追加する
+            .payment--description
+              %a(href="")
+                %span 支払い方法について
+                %i.fa.fa-angle-double-right
+
+= render 'shared/top_footer'

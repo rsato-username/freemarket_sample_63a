@@ -1,10 +1,15 @@
+= render 'shared/top_header'
+.breadcrumbs-box
+  - breadcrumb :mypage
+  = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "
 %main.container.clearfix
   = render 'shared/side_bar'
   .l-container
     %section.mypage__user-icon
       = link_to root_path do
         = image_tag asset_path("user-image.jpg"), alt: "本人イメージ", width: "60", height: "60"
-        %h2 user.name
+        %h2 
+          = current_user.nickname
         .mypage__user__data
           .user--evaluation
             評価
@@ -82,3 +87,7 @@
           %li
             = link_to root_path do
               一覧を見る
+
+= render 'shared/exhibit_btn'
+
+= render 'shared/top_footer'

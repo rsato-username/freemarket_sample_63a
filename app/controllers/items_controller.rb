@@ -32,6 +32,22 @@ class ItemsController < ApplicationController
     #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
+
+  def pay
+    Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
+    card = current_user.cards.first
+    if card.blank?
+      redirect_to pay_cards_path
+    else
+      @item = Item.find(params[:id])
+      Payjp::Charge.create(
+        amount: @item.price,
+        customer: card.customer_id,
+        currency: 'jpy',
+      )
+    end
+    redirect_to items_path
+  end
   
   private
   def item_params
