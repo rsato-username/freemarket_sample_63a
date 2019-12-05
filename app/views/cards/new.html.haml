@@ -1,4 +1,7 @@
 = render 'shared/top_header'
+.breadcrumbs-box
+  - breadcrumb :card_new
+  = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "
 %main.container.clearfix
   = render 'shared/side_bar'
   .l-container
