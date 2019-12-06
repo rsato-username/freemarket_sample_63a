@@ -1,0 +1,30 @@
+*{
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.regist{
+  background-color: #fff;
+  width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  &__header{
+    border-bottom:solid 1px #eee;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 30px 0;
+  }
+  &__text{
+    margin: 30px;
+  }
+  &__btn{
+    background-color: #ea352d;
+    width: 50%;
+    height: 50px;
+    margin: 40px auto;
+    line-height: 50px;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+}

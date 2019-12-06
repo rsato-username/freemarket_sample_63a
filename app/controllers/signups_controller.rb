@@ -1,15 +1,18 @@
 class SignupsController < ApplicationController
   before_action :save_to_session_user, only: :second
+  before_action :get_payjp_info, only: :create
 
+  
   def index
   end
 
   def first
-    @user = User.new
+    @user = User.new(
+      password: Devise.friendly_token.first(20)
+    )
   end
 
   def second
-    # binding.pry
     session[:nickname] = user_params[:nickname]
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
@@ -27,7 +30,12 @@ class SignupsController < ApplicationController
 
   def forth
     session[:tel] = user_params[:tel]
-    @user_info = UserInfo.new
+    @user_info = UserInfo.new(
+      kan_familyname: session[:kan_familyname],
+      kan_firstname: session[:kan_firstname],
+      kana_familyname: session[:kana_familyname],
+      kana_firstname: session[:kana_firstname]
+    )
   end
 
   def fifth
@@ -43,17 +51,23 @@ class SignupsController < ApplicationController
     @card = Card.new
   end
 
+  def done
+    Payjp.api_key = ENV['PAYJP_API_KEY']
+    if params['payjp_token'].blank?
+      render :done
+    else  
+      customer = Payjp::Customer.create(card: pay_params[:payjp_token])  #顧客作成
+      Card.new(
+        customer_id: customer.id,
+        card_id: customer.default_card,
+        user_id: user.id
+      )
+    end
+  end
 
   def create    
+
     user_create
-    # birthday_join
-    # if @user.save
-    #   # ログインするための情報を保管
-    #   # session[:id] = @user.id
-    #   redirect_to signups_path
-    # else
-    #   render 'first'
-    # end
     sign_in User.find(@user.id) if @user.save
 
 
@@ -66,27 +80,11 @@ class SignupsController < ApplicationController
     end
 
 
-    # Card.create(card_params)
-    # # save_to_session_card
-    # @card = Card.new(
-    #     number: card_params[:number],
-    #     validity_year: card_params[:validity_year],
-    #     validity_month: card_params[:validity_month],
-    #     security_cord: card_params[:security_cord] 
-    #   )
-    # # @card.user_id = current_user.id
-    # if @card.save
-    #   redirect_to signups_path, method: :post
-    # else
-    #   render "fifth"
-    # end
-
-    # sign_in User.find(session[:id]) unless user_signed_in?
-
   end
 
+
   private
-  # 許可するキーを設定します
+
   def user_params
     params.require(:user).permit(
       :nickname, 
@@ -119,15 +117,12 @@ class SignupsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(
-      :number, 
-      :validity_year, 
-      :validity_month, 
-      :security_cord
-    )
+    params.permit(:payjp_token)
   end
 
+
   def user_create
+
     @user = User.new(
       nickname: session[:nickname],
       email: session[:email],
@@ -139,7 +134,10 @@ class SignupsController < ApplicationController
       birthday: session[:birthday],
       tel: session[:tel]
     )
+    render "first" unless @user.valid?
+  
   end
+
 
   def save_to_session_user
     session[:nickname] = user_params[:nickname]
@@ -153,9 +151,8 @@ class SignupsController < ApplicationController
     session[:tel] = user_params[:tel]
 
     user_create
-
-    render "first" unless @user.valid?
   end
+
 
   def save_to_session_user_info
     session[:kan_familyname] = user_info_params[:kan_familyname]
@@ -181,19 +178,8 @@ class SignupsController < ApplicationController
     )
   end
 
-
-  def save_to_session_card
-    session[:number] = card_params[:number]
-    session[:validity_year] = card_params[:validity_year]
-    session[:validity_month] = card_params[:validity_month]
-    session[:security_cord] = card_params[:security_cord]
-
-    @card = Card.new(
-      number: session[:number],
-      validity_year: session[:validity_year],
-      validity_month: session[:validity_month],
-      security_cord: session[:security_cord]
-    )
+  def get_payjp_info
+    Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
   end
 
 

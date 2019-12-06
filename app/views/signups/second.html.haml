@@ -34,6 +34,10 @@
             = f.label :tel, "携帯電話の番号"
           .tel__nickname--input
             = f.telephone_field :tel, placeholder: "携帯電話の番号を入力"
+          - if @user.errors.any?
+            %ul
+              - @user.errors.full_messages_for(:tel).each do |message|
+                %li= message
           .tel__nickname--description
             %p 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
             

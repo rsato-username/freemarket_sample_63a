@@ -9,22 +9,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def callback_for(provider)
-    @user = User.find_oauth(request.env["omniauth.auth"])
-    #if @user.persisted?
-    # 新規ユーザの場合、この時点ではDBレコードが存在しないので以下に変更
-    if @user
+    @omniauth = request.env['omniauth.auth']
+    info = User.find_oauth(@omniauth)
+    @user = info[:user]
+    @sns = info[:sns]
+    if @user.persisted? 
       sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
     else
-      session["#{provider}_data"] = request.env["omniauth.auth"].except("extra")
-      # redirect_to new_user_registration_path
-
-      @user = User.new()
-      render 'signups/first'
+      render template: "signups/first"
     end
-  end
 
-  
+  end
 
   def failure
     redirect_to root_path

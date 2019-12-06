@@ -22,7 +22,8 @@ class CardsController < ApplicationController
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to action: :show
+        # redirect_to action: :show
+        redirect_to controller: :signups, action: :done
       else
         render action: :new, id: current_user.id
       end
@@ -30,7 +31,7 @@ class CardsController < ApplicationController
   end
 
   def delete
-    card = current_user.cards.first
+    card = current_user.card.first
     if card.present?
       customer = Payjp::Customer.retrieve(card.customer_id)
       customer.delete
@@ -40,7 +41,7 @@ class CardsController < ApplicationController
   end
 
   def show
-    card = current_user.cards.first
+    card = current_user.card.first
     # card = Card.where(user_id: current_user.id).first
     if card.present?
       customer = Payjp::Customer.retrieve(card.customer_id)
@@ -51,7 +52,7 @@ class CardsController < ApplicationController
   end
 
   def confirmation
-    card = current_user.cards
+    card = current_user.card
     redirect_to action: :show if card.exists?
   end
 

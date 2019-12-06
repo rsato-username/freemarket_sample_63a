@@ -33,6 +33,9 @@ class ItemsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
+  def show
+  end
+
   def pay
     Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
     card = current_user.cards.first

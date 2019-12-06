@@ -1,0 +1,214 @@
+
+*{
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.show{
+  background-color: #eeeeee;
+  padding: 50px 0;
+  &__item{
+    background-color: #ffffff;
+    padding: 30px;
+    width: 700px;
+    margin: 20px auto;
+    &__title{
+      text-align: center;
+      font-weight: bold;
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+    &__infobox{
+      display: flex;
+      justify-content: space-between;
+      margin: 0 15px;
+      &__user{
+        width: 300px;
+        table{
+          border: none;
+          border-color: #eee;
+          width: 100%;
+        }
+        th{
+          background-color: #fafafa;
+          padding: 10px;
+        }
+      }
+    }
+    &__pricebox{
+      display: flex;
+      justify-content: center;
+      line-height: 45px;
+      margin-top: 30px;
+      &__price{
+        margin-left: 50px;
+        font-size: 40px;
+        font-weight: bold;
+      }
+      &__tax{
+        font-size: 0.5rem;
+        line-height: 60px;
+      }
+      &__postage{
+        line-height: 60px;
+      }
+    }
+    button.progress{
+      width: 100%;
+      height: 50px;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #CC3300;
+      border: none;
+      &:hover{
+        background-color: #FF3300;
+        cursor: pointer;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+    &__discription{
+      margin: 30px 0;
+      font-size: 18px;
+    }
+    &__bottom{
+      display: flex;
+      button.like{
+        border: none;
+        border-radius: 10px;
+        background-color: #eee;
+        font-size: 0.5rem;
+        width: 50%;
+        padding: 5px 20px;
+        &:hover{
+          background-color: #fafafa;
+          color: #bbb;
+          cursor: pointer;
+        }
+        &:focus{
+          outline: none;
+        }
+      }
+      button.inappropriate{
+        border: none;
+        border-radius: 10px;
+        background-color: #eee;
+        font-size: 0.5rem;
+        width: 50%;
+        padding: 5px 20px;
+        margin-left: 10px;
+        &:hover{
+          background-color: #fafafa;
+          color: #bbb;
+          cursor: pointer;
+        }
+        &:focus{
+          outline: none;
+        }
+      }
+      &__safe{
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        a{
+          color: #2C7CFF;
+          &:hover{
+            color: #A4C6FF;
+          }
+        }
+      }
+    }
+  }
+  &__chat{
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px 30px;
+    width: 700px;
+    &__box{
+      width: 100%;
+      display: flex;
+      &__massage{
+        width: 600px;
+        border: none;
+        border-radius: 20px;
+        background-color: #eee;
+        padding: 9px 18px;
+        &__content{
+          margin: 10px 0; 
+        }
+        &__bottom{
+          display: flex;
+          justify-content: space-between;
+          &__past{
+            font-size: 14px;
+            color: #bbb;
+          }
+        }
+      }
+    }
+    &__caution{
+      margin: 30px 0;
+      padding: 5px;
+      font-size: 13px;
+      background-color: #FFFFE0;
+    }
+    input.text_area{
+      width: 100%;
+      height: 100px;
+      margin: 10px 0;
+      padding: 9px 18px;
+      &:focus{
+        outline: none;
+        border: solid 1px #2C7CFF;
+      }
+    }
+    button.comment{
+      width: 100%;
+      height: 50px;
+      border: none;
+      background-color: #bbb;
+      color: #fff;
+      font-size: 15px;
+      &:hover{
+        cursor: pointer;
+      }
+      &:focus{
+        outline: none;
+        background-color: #aaa;
+      }
+    }
+  }
+  &__list{
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    margin: 10px auto;
+    a{
+      color: #2C7CFF;
+      &:hover{
+        color: #A4C6FF;
+      }
+    }
+  }
+  &__snsbox{
+    margin: 30px auto;
+    padding: 40px;
+    width: 700px;
+    text-align: center;
+    background-color: #fff;
+  }
+
+}
+.show__itemtable{
+  margin: 10px auto;
+  width: 700px;
+  a{
+    font-size: 25px;
+    color: #2C7CFF;
+    &:hover{
+      color: #A4C6FF;
+    }
+  }
+}

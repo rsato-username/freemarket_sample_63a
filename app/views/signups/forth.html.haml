@@ -34,6 +34,14 @@
             = f.text_field :kan_familyname, placeholder: "例）山田"
           .member__nickname--input
             = f.text_field :kan_firstname, placeholder: "例）彩"
+          - if @user_info.errors.any?
+            %ul
+              - @user_info.errors.full_messages_for(:kan_familyname).each do |message|
+                %li= message
+          - if @user_info.errors.any?
+            %ul
+              - @user_info.errors.full_messages_for(:kan_firstname).each do |message|
+                %li= message
         
         .member__nickname.member__form
           .member__nickname--label
@@ -43,6 +51,14 @@
             = f.text_field :kana_familyname, placeholder: "例）ヤマダ"
           .member__nickname--input
             = f.text_field :kana_firstname, placeholder: "例）アヤ"
+          - if @user_info.errors.any?
+            %ul
+              - @user_info.errors.full_messages_for(:kana_familyname).each do |message|
+                %li= message
+          - if @user_info.errors.any?
+            %ul
+              - @user_info.errors.full_messages_for(:kana_firstname).each do |message|
+                %li= message
         
         .member__nickname.member__form
           .member__nickname--label
@@ -50,6 +66,10 @@
             %span 必須
           .member__nickname--input
             = f.text_field :post_number, placeholder: "例)123-4567"
+          - if @user_info.errors.any?
+            %ul
+              - @user_info.errors.full_messages_for(:post_number).each do |message|
+                %li= message
         
         .member__nickname.member__form
           .member__nickname--label
@@ -57,6 +77,10 @@
             %span 必須
           .member__nickname--input
             = f.select :prefecture, UserInfo.prefectures.keys, {prompt: "---"}
+          - if @user_info.errors.any?
+            %ul
+              - @user_info.errors.full_messages_for(:prefecture).each do |message|
+                %li= message
         
         .member__nickname.member__form
           .member__nickname--label
@@ -64,6 +88,11 @@
             %span 必須
           .member__nickname--input
             = f.text_field :city, placeholder: "例)横浜市緑区"
+          - if @user_info.errors.any?
+            %ul
+              - @user_info.errors.full_messages_for(:city).each do |message|
+                %li= message
+        
         
         .member__nickname.member__form
           .member__nickname--label
@@ -71,20 +100,24 @@
             %span 必須
           .member__nickname--input
             = f.text_field :address, placeholder: "例)青山1-1-1"
+          - if @user_info.errors.any?
+            %ul
+              - @user_info.errors.full_messages_for(:address).each do |message|
+                %li= message
         
         .member__nickname.member__form
           .member__nickname--label
             = f.label :building, "建物名" 
             %span.nin 任意
           .member__nickname--input
-            = f.text_field :building, placeholder: "例)柳ビル103"
+            = f.text_field :building, placeholder: "例)柳ビル1003"
         
         .member__nickname.member__form
           .member__nickname--label
             %label 電話
             %span.nin 任意
           .member__nickname--input
-            %input{name: "password", type: "text", placeholder: "09012345678"}/
+            %input{name: "tel", type: "text", placeholder: "09012345678"}/
         
           .user-info__next-btn.aida
             = f.submit "次へ進む"

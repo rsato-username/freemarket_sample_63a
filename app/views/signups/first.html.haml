@@ -1,3 +1,8 @@
+- if @user.errors.any?
+  %ul
+    - @user.errors.full_messages.each do |message|
+      %li= message
+
 .member-header
   .img
     = link_to root_path do
@@ -32,22 +37,48 @@
             %span 必須
           .member__nickname--input
             = f.text_field :nickname, placeholder: "例）メルカリ太郎"
+          - if @user.errors.any?
+            %ul
+              - @user.errors.full_messages_for(:nickname).each do |message|
+                %li= message
         .member__nickname.member__form
           .member__nickname--label
             = f.label :email, "メールアドレス"
             %span 必須
           .member__nickname--input
             = f.email_field :email, placeholder: "PC・携帯どちらでも可"
-        .member__nickname.member__form
-          .member__nickname--label
-            = f.label :password, "パスワード"
-            %span 必須
-          .member__nickname--input
-            = f.password_field :password, placeholder: "7文字以上"
-        
-        .member__checkbox
-          %input(type="checkbox")/
-          パスワードを表示する
+          - if @user.errors.any?
+            %ul
+              - @user.errors.full_messages_for(:email).each do |message|
+                %li= message
+        - if @user.email == ""
+          .member__nickname.member__form
+            .member__nickname--label
+              = f.label :password, "パスワード"
+              %span 必須
+            .member__nickname--input
+              = f.password_field :password, placeholder: "7文字以上"
+            -# .member__checkbox
+            -# %input(type="checkbox")/
+            -# パスワードを表示する
+            - if @user.errors.any?
+              %ul
+                - @user.errors.full_messages_for(:password).each do |message|
+                  %li= message
+        - else
+          .member__nickname.member__form-hidden
+            .member__nickname--label
+              = f.label :password, "パスワード"
+              %span.hidden 必須
+            .member__nickname--input
+              = f.text_field :password, placeholder: "7文字以上"
+              -# .member__checkbox
+              -# %input(type="checkbox")/
+              -# パスワードを表示する
+            - if @user.errors.any?
+              %ul
+                - @user.errors.full_messages_for(:password).each do |message|
+                  %li= message
         .user-info
           .user-info__description
             %label 本人確認
@@ -55,18 +86,34 @@
         
           .user-info__name.member__form
             .user-info__name--label
-              %label お名前(全角)
+              %label お名前
               %span 必須
             .user-info__name--input.double
               = f.text_field :kan_familyname, placeholder: "例）山田"
               = f.text_field :kan_firstname, placeholder: "例）彩"
+          - if @user.errors.any?
+            %ul
+              - @user.errors.full_messages_for(:kan_familyname).each do |message|
+                %li= message
+          - if @user.errors.any?
+            %ul
+              - @user.errors.full_messages_for(:kan_firstname).each do |message|
+                %li= message
           .user-info__name.member__form
             .user-info__name--label
-              %label お名前カナ(全角)
+              %label お名前カナ
               %span 必須
             .user-info__name--input.double
               = f.text_field :kana_familyname, placeholder: "例）ヤマダ"
               = f.text_field :kana_firstname, placeholder: "例）アヤ"
+          - if @user.errors.any?
+            %ul
+              - @user.errors.full_messages_for(:kana_familyname).each do |message|
+                %li= message
+          - if @user.errors.any?
+            %ul
+              - @user.errors.full_messages_for(:kana_firstname).each do |message|
+                %li= message
 
           .user-info__birthday
             .user-info__birthday--label
@@ -74,6 +121,10 @@
               %span 必須
             .user-info__birthday--input
               != sprintf(f.date_select(:birthday, prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+            - if @user.errors.any?
+              %ul
+                - @user.errors.full_messages_for(:birthday).each do |message|
+                  %li= message
               -# = f.date_select(:birthday, start_year: 1945, end_year: (Time.now.year), include_blank: true)
               -# = f.select{name: "toshi", type: "text", placeholder: "○"
               -# 年
@@ -85,7 +136,7 @@
               %p ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
 
           .user-info__robot
-            %p 私はロボットではありますぇん<br>押してほしぇん
+            -# %p 私はロボットではありますぇん<br>押してほしぇん
             = recaptcha_tags
 
           .user-info__alert
@@ -100,4 +151,14 @@
           .user-info__how
             %a(href="#")
               本人情報の登録について〉
-            
+
+  .member-footer
+    .member-footer__kiyaku
+      %ul.list
+        %li プライバシーポリシー
+        %li メルカリ利用規約
+        %li 特定商取引に関する表記
+    .member-footer__logo
+      %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2177740229" alt="Rakuten")/
+    .member-footer__copy
+      %small © 2019 Mercari
