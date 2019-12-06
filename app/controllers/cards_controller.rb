@@ -25,7 +25,7 @@ class CardsController < ApplicationController
         # redirect_to action: :show
         redirect_to controller: :signups, action: :done
       else
-        redirect_to action: :new, id: current_user.id
+        render action: :new, id: current_user.id
       end
     end
   end
