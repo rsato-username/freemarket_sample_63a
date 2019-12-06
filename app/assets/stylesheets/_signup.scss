@@ -10,6 +10,9 @@ a{
 ul{
   list-style: none;
 }
+.field_with_errors {
+  display: inline;
+}
 input[type="text"]:focus{
   outline: 0;
   border-color: rgb(17,133,226);
@@ -71,7 +74,11 @@ textarea:focus{
     }
   }
 }
+.member__form-hidden {
+  display: none;
+}
 .member{
+
   &__form{
     margin-top: 24px; 
   }
