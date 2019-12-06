@@ -1,6 +1,13 @@
 class ItemsController < ApplicationController
 
   def index
+    # @parent_categories = Category.roots
+
+    # ladies = Category.find_by(name: "レディース").subtree
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
+    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos)
+    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos)
   end
 
   def new
@@ -21,6 +28,10 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   def get_category_children
