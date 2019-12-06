@@ -1,0 +1,54 @@
+.buy-confirmation
+  .buy-confirmation__header
+    %h3
+      = image_tag asset_path("logo_white.svg"), alt: "本人イメージ", width: "45", height: "45"
+  .buy-confirmation__main
+    %section.buy__mainbox
+      %h3 購入が完了しました
+      %section.buy__item
+        .buy__item-box
+          = image_tag asset_path("user-image.jpg"), alt: "本人イメージ", width: "60", height: "60"
+          %p.item-name サンプル
+          %form(action="#")
+            %p.buy-price
+              ¥○○
+              %span 送料込み
+            .buy__price-box.clearfix
+              .price-tag
+                支払い金額
+              .total-price
+                %span ¥○○
+
+      %section.buy__user-address
+        .buy__user-address__box
+          %h3 配送先
+          %address
+            〒 -
+          = link_to root_path do
+            %span 変更する
+            %i.fa.fa-angle-double-right
+      %section.buy__user-payment
+        .buy__user-payment__box
+          %h3 支払い方法
+          %p
+            %br
+            &frasl;
+          = link_to root_path do
+            %span 変更する
+            %i.fa.fa-angle-double-right
+  .buy-confirmation__footer
+    %nav
+      %ul
+        %li
+          = link_to root_path do
+            プライバシーポリシー
+        %li
+          = link_to root_path do
+            メルカリ利用規約
+        %li
+          = link_to root_path do
+            特定商取引に関する表記
+    = link_to root_path, class: "app-logo" do
+      = image_tag asset_path("logo_white.svg"), alt: "本人イメージ", width: "45", height: "45"
+    %p.footer-text
+      %small © 2019 Mercari
