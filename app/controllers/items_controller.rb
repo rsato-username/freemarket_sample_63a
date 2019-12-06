@@ -54,6 +54,10 @@ class ItemsController < ApplicationController
     redirect_to items_path
   end
 
+  def purchash
+    @item = Item.find(params[:id])
+  end
+
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
     @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
