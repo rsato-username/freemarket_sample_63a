@@ -1,0 +1,122 @@
+
+= render 'shared/top_header'
+
+.show
+  .show__item
+    .show__item__title
+      キウイの写真
+    .show__item__infobox
+      .show__item__infobox__image
+        = image_tag "/assets/kiui.jpeg", alt: "商品の写真", size: "300x300"
+      .show__item__infobox__user
+        %table{border: "1"}
+          %tr
+            %th 出品者
+            %td
+              = link_to "ユーザー", root_path
+              <br>
+              評価テーブル
+          %tr
+            %th カテゴリー
+            %td
+              = link_to "カテゴリ", root_path
+          %tr
+            %th ブランド
+            %td 
+              = link_to "ブランド", root_path
+          %tr
+            %th 商品のサイズ
+            %td ５L
+          %tr
+            %th 商品の状態
+            %td 腐敗
+          %tr
+            %th 配送料の負担
+            %td 知らん
+          %tr
+            %th 配送方法
+            %td 普通郵便
+          %tr
+            %th 配送元地域
+            %td 
+              = link_to "都道府県", root_path 
+          %tr
+            %th 発送日の目安
+            %td 即日
+    .show__item__pricebox
+      .show__item__pricebox__price
+        ￥111111
+      .show__item__pricebox__tax
+        （税金払え）
+      .show__item__pricebox__postage
+        送料込み？
+    %button.progress 購入画面に進む
+    .show__item__discription
+      お金恵んで<br>
+      はよ<br>
+      腹減った<br>
+      うおおおおおおおおおおおおおおお
+    .show__item__bottom
+      %button.like いいねすんな
+      %button.inappropriate 不適切な商品の報告
+      .show__item__bottom__safe
+        = link_to "🔓安心安全への取り組み", "https://www.alsok.co.jp/"
+  .show__chat
+    .show__chat__box
+      .show__chat__box__imgae
+        = image_tag "/assets/star-on.png", alt: "ユーザーの写真", size: "30x30"
+      .show__chat__box__box
+        .show__chat__box__nickname
+          nickname
+        .show__chat__box__massage
+          .show__chat__box__massage__content
+            値下げしろ高いしね
+          .show__chat__box__massage__bottom
+            .show__chat__box__massage__bottom__past
+              1万年と2000年前から
+            .show__chat__box__massage__bottom__inappropriate
+              🚫
+    .show__chat__caution
+      相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+    %input.text_area
+    %button.comment コメントする
+  .show__list
+    = link_to "＜ひとつ古く出品されたitem", root_path
+    = link_to "ひとつ新しく出品されたitem＞", root_path
+  .show__snsbox
+    = link_to "😄", root_path
+    = link_to "😄", root_path
+    = link_to "😄", root_path
+    = link_to "😄", root_path 
+    
+  .toppage-body__container
+    .toppage-body__container--heading
+      .show__itemtable
+        = link_to "nicknameさんのその他の出品", root_path
+    %ul.toppage-body__container--items
+      %li
+        .item-box
+          %a(href="#")
+            .item-box__img
+              %span
+                ¥1,000
+              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m68611963058_1.jpg?1574468972", :width => "186"}/
+            .item-box__title
+              %p ナイキ靴わーいわーいあああああああああああああああああああああ
+              .gradient
+    .toppage-body__container--heading
+      .show__itemtable
+        = link_to "カテゴリーにひもづくその他の出品", root_path
+    %ul.toppage-body__container--items
+      %li
+        .item-box
+          %a(href="#")
+            .item-box__img
+              %span
+                ¥1,000
+              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m67371857333_1.jpg?1564711282", :width => "186"}/
+            .item-box__title
+              %p ナイキ靴わーいわーいあああああああああああああああああああああ
+              .gradient
+
+= render 'shared/top_footer'
