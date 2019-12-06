@@ -10,22 +10,24 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :new, :create] do
     member do
-      get :pay
+      get :buy
+      post :pay
     end
   end
-  resources :users, only: [:index] do
+
+  resources :users, only: [:index, :edit] do
     collection do
       get :logout
       get :profile
     end
   end
+
   resources :signups, only: [:index, :create] do
     collection do
-      get :first, :second, :third, :forth, :fifth
+      get :first, :second, :third, :forth, :fifth, :done
     end
   end
-  resources :users
-  
+
   resources :cards, only: [:create, :show, :new] do
     collection do
       post 'delete', to: 'cards#delete'
@@ -35,5 +37,5 @@ Rails.application.routes.draw do
       get 'confirmation'
     end
   end 
-
+  
 end
