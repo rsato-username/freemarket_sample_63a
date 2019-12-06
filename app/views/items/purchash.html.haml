@@ -1,7 +1,7 @@
 .buy-confirmation
   .buy-confirmation__header
     %h3
-      = image_tag asset_path("logo_white.svg"), alt: "本人イメージ", width: "45", height: "45"
+      = image_tag asset_path("logo_white.svg"), alt: "ロゴ", width: "45", height: "45"
   .buy-confirmation__main
     %section.buy__mainbox
       %h3 購入が完了しました
@@ -11,13 +11,13 @@
           %p.item-name サンプル
           %form(action="#")
             %p.buy-price
-              ¥○○
+              = "¥#{@item.price.to_s(:delimited, delimiter: ',')}"
               %span 送料込み
             .buy__price-box.clearfix
               .price-tag
                 支払い金額
               .total-price
-                %span ¥○○
+                = "¥#{@item.price.to_s(:delimited, delimiter: ',')}"
 
       %section.buy__user-address
         .buy__user-address__box
@@ -43,6 +43,6 @@
           = link_to root_path do
             特定商取引に関する表記
     = link_to root_path, class: "app-logo" do
-      = image_tag asset_path("logo_white.svg"), alt: "本人イメージ", width: "45", height: "45"
+      = image_tag asset_path("logo_white.svg"), alt: "ロゴ", width: "45", height: "45"
     %p.footer-text
       %small © 2019 Mercari
