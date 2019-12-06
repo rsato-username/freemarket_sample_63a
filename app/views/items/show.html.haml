@@ -60,7 +60,9 @@
       %button.like いいねすんな
       %button.inappropriate 不適切な商品の報告
       .show__item__bottom__safe
-        = link_to "🔓安心安全への取り組み", "https://www.alsok.co.jp/"
+        = link_to "https://www.alsok.co.jp/" do
+          = icon 'fas', 'unlock-alt'
+          安心安全への取り組み
   .show__chat
     .show__chat__box
       .show__chat__box__imgae
@@ -70,7 +72,7 @@
           nickname
         .show__chat__box__massage
           .show__chat__box__massage__content
-            値下げしろ高いしね
+            値下げしろ高い
           .show__chat__box__massage__bottom
             .show__chat__box__massage__bottom__past
               1万年と2000年前から
@@ -84,11 +86,14 @@
     = link_to "＜ひとつ古く出品されたitem", root_path
     = link_to "ひとつ新しく出品されたitem＞", root_path
   .show__snsbox
-    = link_to "😄", root_path
-    = link_to "😄", root_path
-    = link_to "😄", root_path
-    = link_to "😄", root_path 
-    
+    = link_to root_path, class: "facebook" do
+      = icon 'fab', 'facebook-square'
+    = link_to 'https://fontawesome.com/icons/twitter-square?style=brands', class: "twitter" do
+      = icon 'fab', 'twitter-square'
+    = link_to 'https://matome.naver.jp/odai/2137179328498470601', class: "a" do
+      = icon 'fas', 'toilet'
+    = link_to 'https://www.facebook.com/', class: "b" do
+      = icon 'fab', 'accessible-icon'
   .toppage-body__container
     .toppage-body__container--heading
       .show__itemtable
@@ -104,6 +109,7 @@
             .item-box__title
               %p ナイキ靴わーいわーいあああああああああああああああああああああ
               .gradient
+  .toppage-body__container
     .toppage-body__container--heading
       .show__itemtable
         = link_to "カテゴリーにひもづくその他の出品", root_path
@@ -118,5 +124,8 @@
             .item-box__title
               %p ナイキ靴わーいわーいあああああああああああああああああああああ
               .gradient
+.breadcrumbs-box-itemshow
+  - breadcrumb :mypage
+  = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "
 
 = render 'shared/top_footer'

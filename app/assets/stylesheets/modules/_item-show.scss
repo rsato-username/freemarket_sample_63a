@@ -198,12 +198,31 @@
     width: 700px;
     text-align: center;
     background-color: #fff;
+    font-size: 50px;
+    a{
+      &.facebook{
+        color: #003399;
+      }
+      &.twitter{
+        color: #2C7CFF;
+      }
+      &.a{
+        color: pink;
+      }
+      &.b{
+        color: yellowgreen;
+      }
+    }
+  }
+  &____itemkuso{
+    margin-bottom: 30px;
   }
 
 }
 .show__itemtable{
-  margin: 10px auto;
+  margin-bottom: 10px;
   width: 700px;
+
   a{
     font-size: 25px;
     color: #2C7CFF;
