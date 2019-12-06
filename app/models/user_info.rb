@@ -1,5 +1,15 @@
 class UserInfo < ApplicationRecord
   
+  validates :kan_familyname, presence: true
+  validates :kan_firstname, presence: true
+  validates :kana_familyname, presence: true
+  validates :kana_firstname, presence: true
+  validates :post_number, presence: true
+  validates :prefecture, presence: true
+  validates :city, presence: true
+  validates :address, presence: true
+
+
   belongs_to :user
 
 
