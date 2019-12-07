@@ -6,10 +6,12 @@
     .show__item__title
       = @item.name
     .show__item__infobox
-      .show__item__infobox__image
-        = image_tag @item.photos[0].url.url, size: "300x300"
-        - @item.photos.each do |image|
-          = image_tag image.url.url, size: "75x75"
+      .show__item__infobox__box
+        .show__item__infobox__box__image
+          = image_tag @item.photos[0].url.url, size: "300x300"
+        .show__item__infobox__box__mini
+          - @item.photos.each do |image|
+            = image_tag image.url.url, size: "60x60"
       .show__item__infobox__user
         %table{border: "1"}
           %tr
