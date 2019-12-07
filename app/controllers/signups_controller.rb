@@ -3,7 +3,7 @@ class SignupsController < ApplicationController
   before_action :get_payjp_info, only: :create
   before_action :validates_first, only: :second
   before_action :validates_second, only: :forth
-  before_action :validates_forth, only: :fifth
+  # before_action :validates_forth, only: :fifth
 
   
   def index
