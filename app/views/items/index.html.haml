@@ -43,10 +43,9 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                -# 画像引っ張れるようにする。
-                %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m68611963058_1.jpg?1574468972", :width => "186"}/
+                = image_tag item.photos[0].url.url, width: "188"
               .item-box__title
-                = item.description
+                = item.name
                 .gradient
   .toppage-body__container
     .toppage-body__container--heading
@@ -61,10 +60,9 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                -# 画像引っ張れるようにする。
-                %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m68611963058_1.jpg?1574468972", :width => "186"}/
+                = image_tag item.photos[0].url.url, width: "188"
               .item-box__title
-                = item.description
+                = item.name
                 .gradient
   .toppage-body__container
     .toppage-body__container--heading
@@ -79,10 +77,9 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                -# 画像引っ張れるようにする。
-                %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m68611963058_1.jpg?1574468972", :width => "186"}/
+                = image_tag item.photos[0].url.url, width: "188"
               .item-box__title
-                = item.description
+                = item.name
                 .gradient
   .toppage-body__container
     .toppage-body__container--heading
@@ -97,10 +94,9 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                -# 画像引っ張れるようにする。
-                %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m68611963058_1.jpg?1574468972", :width => "186"}/
+                = image_tag item.photos[0].url.url, width: "188"
               .item-box__title
-                = item.description
+                = item.name
                 .gradient
 
 .toppage-body

@@ -32,6 +32,14 @@
           background-color: #fafafa;
           padding: 10px;
         }
+        td{
+          a{
+            color: #2C7CFF;
+            &:hover{
+              color: #A4C6FF;
+            }
+          }
+        }
       }
     }
     &__pricebox{
