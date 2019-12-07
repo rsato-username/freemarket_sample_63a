@@ -71,6 +71,7 @@ class ItemsController < ApplicationController
         currency: 'jpy',
       )
     end
+    @item.update( buyer_id: current_user.id)
     redirect_to purchash_item_path
   end
 
