@@ -47,6 +47,11 @@
               .item-box__title
                 = item.name
                 .gradient
+            - if item.buyer_id != nil
+              .sold-tag
+                .sold-text
+                  SOLD
+
   .toppage-body__container
     .toppage-body__container--heading
       メンズ新着アイテム
