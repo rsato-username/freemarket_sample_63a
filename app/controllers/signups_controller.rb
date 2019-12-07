@@ -1,6 +1,9 @@
 class SignupsController < ApplicationController
-  before_action :save_to_session_user, only: :second
+  # before_action :save_to_session_user, only: :second
   before_action :get_payjp_info, only: :create
+  before_action :validates_first, only: :second
+  before_action :validates_second, only: :forth
+  before_action :validates_forth, only: :fifth
 
   
   def index
@@ -13,14 +16,14 @@ class SignupsController < ApplicationController
   end
 
   def second
-    session[:nickname] = user_params[:nickname]
-    session[:email] = user_params[:email]
-    session[:password] = user_params[:password]
-    session[:kan_familyname] = user_params[:kan_familyname]
-    session[:kan_firstname] = user_params[:kan_firstname]
-    session[:kana_familyname] = user_params[:kana_familyname]
-    session[:kana_firstname] = user_params[:kana_firstname]
-    session[:birthday] = user_params['birthday(1i)'] + "/" + user_params['birthday(2i)'] + "/" + user_params['birthday(3i)']
+    # session[:nickname] = user_params[:nickname]
+    # session[:email] = user_params[:email]
+    # session[:password] = user_params[:password]
+    # session[:kan_familyname] = user_params[:kan_familyname]
+    # session[:kan_firstname] = user_params[:kan_firstname]
+    # session[:kana_familyname] = user_params[:kana_familyname]
+    # session[:kana_firstname] = user_params[:kana_firstname]
+    # session[:birthday] = user_params['birthday(1i)'] + "/" + user_params['birthday(2i)'] + "/" + user_params['birthday(3i)']
 
     @user = User.new
   end
@@ -29,7 +32,7 @@ class SignupsController < ApplicationController
   end
 
   def forth
-    session[:tel] = user_params[:tel]
+    # session[:tel] = user_params[:tel]
     @user_info = UserInfo.new(
       kan_familyname: session[:kan_familyname],
       kan_firstname: session[:kan_firstname],
@@ -182,5 +185,94 @@ class SignupsController < ApplicationController
     Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
   end
 
+
+  def validates_first
+    session[:nickname] = user_params[:nickname]
+    session[:email] = user_params[:email]
+    session[:password] = user_params[:password]
+    session[:kan_familyname] = user_params[:kan_familyname]
+    session[:kan_firstname] = user_params[:kan_firstname]
+    session[:kana_familyname] = user_params[:kana_familyname]
+    session[:kana_firstname] = user_params[:kana_firstname]
+    session[:birthday] = user_params['birthday(1i)'] + "/" + user_params['birthday(2i)'] + "/" + user_params['birthday(3i)']
+    # バリデーション用に、仮でインスタンスを作成する
+    @user = User.new(
+      nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+      kan_familyname: session[:kan_familyname],
+      kan_firstname: session[:kan_firstname],
+      kana_familyname: session[:kana_familyname],
+      kana_firstname: session[:kana_firstname],
+      birthday: session[:birthday],
+      tel: "08011112222"
+    )
+    # 仮で作成したインスタンスのバリデーションチェックを行う
+  render 'first' unless @user.valid?
+  # if @user.valid?
+  #   redirect_to second_signups_path
+  # else
+  #   render "first"
+  # end
+  end
+
+
+  def validates_second
+    session[:tel] = user_params[:tel]
+    # バリデーション用に、仮でインスタンスを作成する
+    @user = User.new(
+      nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+      kan_familyname: session[:kan_familyname],
+      kan_firstname: session[:kan_firstname],
+      kana_familyname: session[:kana_familyname],
+      kana_firstname: session[:kana_firstname],
+      birthday: session[:birthday],
+      tel: session[:tel]
+    )
+    # 仮で作成したインスタンスのバリデーションチェックを行う
+  render 'second' unless @user.valid?
+  # if @user.valid?
+  #   redirect_to forth_signups_path
+  # else
+  #   render "second"
+  # end
+  end
+
+
+  def validates_forth
+    session[:kan_familyname] = user_info_params[:kan_familyname]
+    session[:kan_firstname] = user_info_params[:kan_firstname]
+    session[:kana_familyname] = user_info_params[:kana_familyname]
+    session[:kana_firstname] = user_info_params[:kana_firstname]
+    session[:post_number] = user_info_params[:post_number]
+    session[:prefecture] = user_info_params[:prefecture]
+    session[:city] = user_info_params[:city]
+    session[:address] = user_info_params[:address]
+    session[:building] = user_info_params[:building]
+    # バリデーション用に、仮でインスタンスを作成する
+    @user_info = UserInfo.new(
+      kan_familyname: session[:kan_familyname],
+      kan_firstname: session[:kan_firstname],
+      kana_familyname: session[:kana_familyname],
+      kana_firstname: session[:kana_firstname],
+      post_number: session[:post_number],
+      prefecture: session[:prefecture],
+      city: session[:city],
+      address: session[:address],
+      building: session[:building]
+    )
+    # 仮で作成したインスタンスのバリデーションチェックを行う
+  # render 'forth' unless @user_info.valid?
+
+  if @user_info.valid?
+    redirect_to fifth_signups_path
+  else
+    render "forth"
+  end
+  end
 
 end
