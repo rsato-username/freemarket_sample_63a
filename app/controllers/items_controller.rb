@@ -32,6 +32,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
   end
 
   def get_category_children
@@ -42,9 +44,6 @@ class ItemsController < ApplicationController
   def get_category_grandchildren
     #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
-  end
-
-  def show
   end
 
   def pay
