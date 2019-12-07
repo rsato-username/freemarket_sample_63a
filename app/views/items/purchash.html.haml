@@ -1,10 +1,11 @@
 .buy-confirmation
   .buy-confirmation__header
     %h3
-      = image_tag asset_path("logo_white.svg"), alt: "ロゴ", width: "45", height: "45"
+      = link_to root_path do
+        = image_tag asset_path("logo_white.svg"), alt: "ロゴ", width: "45", height: "45"
   .buy-confirmation__main
     %section.buy__mainbox
-      %h3 購入が完了しました
+      %h2 購入が完了しました
       %section.buy__item
         .buy__item-box
           = image_tag asset_path("user-image.jpg"), alt: "本人イメージ", width: "60", height: "60"
@@ -23,13 +24,24 @@
         .buy__user-address__box
           %h3 配送先
           %address
-            〒 -
+            -# = "〒#{current_user.user_info.post_number.to_i(3,"-")}"
+            = "〒#{current_user.user_info.post_number}"
+            %br
+            = current_user.user_info.city
+            = current_user.user_info.address
+            = current_user.user_info.building
       %section.buy__user-payment
         .buy__user-payment__box
-          %h3 支払い方法
-          %p
-            %br
-            &frasl;
+          %form.card__payment__content
+            = image_tag 'https://www-mercari-jp.akamaized.net/assets/img/card/visa.svg', size: "49x20"
+            .card__list
+              .card__list__picture  
+            .card__number 
+              = "**** **** **** " + @card_info.last4
+            .expire__date 
+              - exp_month = @card_info.exp_month.to_s
+              - exp_year = @card_info.exp_year.to_s.slice(2,3)
+              = exp_month + " / " + exp_year
   .buy-confirmation__footer
     %nav
       %ul
