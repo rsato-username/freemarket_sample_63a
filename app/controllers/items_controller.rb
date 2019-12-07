@@ -44,13 +44,15 @@ class ItemsController < ApplicationController
   def get_category_grandchildren
     #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
+  def buy
+    @item = Item.find(params[:id])
   end
 
   def pay
     Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
-    card = current_user.cards.first
+    card = current_user.card.first
     if card.blank?
-      redirect_to pay_cards_path
+      redirect_to confirmation_card_path
     else
       @item = Item.find(params[:id])
       Payjp::Charge.create(
@@ -60,6 +62,20 @@ class ItemsController < ApplicationController
       )
     end
     redirect_to items_path
+  end
+
+  def purchash
+    @item = Item.find(params[:id])
+  end
+
+  def get_category_children
+    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+  def get_category_grandchildren
+    #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
   
   private

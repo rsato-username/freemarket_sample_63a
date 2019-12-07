@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
     member do
       get :buy
+      get :purchash
       post :pay
     end
   end
