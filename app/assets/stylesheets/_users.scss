@@ -76,7 +76,7 @@ section.mypage__user-icon {
   }
 }
 .tab-content {
-  ul {
+  ul.tab-contentbox {
     display: none;
     li {
       background-color: white;
@@ -154,7 +154,7 @@ section.mypage__user-icon {
       }
     }
   }
-  ul.show {
+  ul.tab-contentbox.showbox {
     display: block;
   }
 }
