@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2019_12_07_071912) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "situation"
+    t.integer "buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -100,8 +102,6 @@ ActiveRecord::Schema.define(version: 2019_12_07_071912) do
     t.string "kana_familyname", null: false
     t.string "kana_firstname", null: false
     t.date "birthday"
-    t.string "status"
-    t.integer "buyer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
