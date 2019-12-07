@@ -21,6 +21,11 @@
       display: flex;
       justify-content: space-between;
       margin: 0 15px;
+      &__box{
+        &__mini{
+          width: 300px;
+        }
+      }
       &__user{
         width: 300px;
         table{
