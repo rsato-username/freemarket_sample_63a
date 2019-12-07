@@ -2,8 +2,8 @@ class UserInfo < ApplicationRecord
   
   validates :kan_familyname, presence: true
   validates :kan_firstname, presence: true
-  validates :kana_familyname, presence: true
-  validates :kana_firstname, presence: true
+  validates :kana_familyname, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
+  validates :kana_firstname, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
   validates :post_number, presence: true
   validates :prefecture, presence: true
   validates :city, presence: true

@@ -7,12 +7,12 @@ class User < ApplicationRecord
   
   validates :nickname, presence: true
   validates :email, uniqueness: true  
-  validates :tel, uniqueness: true, length: { maximum: 12 }
+  validates :tel, uniqueness: true, presence: true, length: { maximum: 12 }, format: {with: /\A[0-9０-９]+\z/}
   validates :password, presence: true, length: { minimum: 7 }  #:password_confirmation,allow_blank: true 抜かした
   validates :kan_familyname, presence: true
   validates :kan_firstname, presence: true
-  validates :kana_familyname, presence: true
-  validates :kana_firstname, presence: true
+  validates :kana_familyname, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
+  validates :kana_firstname, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
   validates :birthday, presence: true
 
 

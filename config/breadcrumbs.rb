@@ -11,6 +11,11 @@ crumb :profile do
   parent :mypage
 end
 
+crumb :edit do
+  link "本人情報の登録", edit_user_path
+  parent :mypage
+end
+
 crumb :card do
   link "支払い方法", confirmation_card_path(current_user)
   parent :mypage
@@ -25,6 +30,9 @@ crumb :logout do
   link "ログアウト", logout_users_path
 end
 
+crumb :itemshow do
+  link "#{Item.find(params[:id]).name}", item_path
+end
 
 
 # crumb :projects do
