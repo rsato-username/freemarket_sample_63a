@@ -36,6 +36,14 @@ class ItemsController < ApplicationController
 
   def buy
     @item = Item.find(params[:id])
+    Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
+    card = current_user.card.first
+    if card.present?
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @card_info = customer.cards.retrieve(card.card_id)
+    else
+      redirect_to action: :confirmation, id: current_user.id
+    end
   end
 
   def pay
@@ -51,11 +59,19 @@ class ItemsController < ApplicationController
         currency: 'jpy',
       )
     end
-    redirect_to items_path
+    redirect_to purchash_item_path
   end
 
   def purchash
+    Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
     @item = Item.find(params[:id])
+    card = current_user.card.first
+    if card.present?
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @card_info = customer.cards.retrieve(card.card_id)
+    else
+      redirect_to action: :confirmation, id: current_user.id
+    end
   end
 
   def get_category_children
