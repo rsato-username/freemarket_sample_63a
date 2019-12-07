@@ -3,7 +3,7 @@
 //出品ボタン-----------------------------------------------------
 
 .sell-btn
-  = link_to new_item_path, class: "sell-btn__text" do
+  = link_to new_item_path, class: "sell-btn__text", data: {"turbolinks" => false} do
     出品
     .sell-btn__icon
       %i.fas.fa-camera
