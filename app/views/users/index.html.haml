@@ -24,7 +24,7 @@
         %li
           %h3 やることリスト
       .tab-content
-        %ul.show
+        %ul.tab-contentbox.showbox
           %li
             = link_to root_path do
               = image_tag asset_path("logo_white.svg"), alt: "ロゴ", width: "45", height: "45"
@@ -38,7 +38,7 @@
           %li
             = link_to root_path do
               一覧を見る
-        %ul
+        %ul.tab-contentbox
           %li
             = link_to root_path do
               = image_tag asset_path("logo_white.svg"), alt: "ロゴ", width: "45", height: "45"
@@ -61,7 +61,7 @@
         %li
           %h3 過去の取引
       .tab-content
-        %ul.show
+        %ul.tab-contentbox.showbox
           %li
             = link_to root_path do
               = image_tag asset_path("logo_white.svg"), alt: "ロゴ", width: "45", height: "45"
@@ -74,7 +74,7 @@
           %li
             = link_to root_path do
               一覧を見る
-        %ul
+        %ul.tab-contentbox
           %li
             = link_to root_path do
               = image_tag asset_path("logo_white.svg"), alt: "ロゴ", width: "45", height: "45"
