@@ -35,6 +35,11 @@ ul{
       &__search{
         position: relative;
         width: 840px;
+        form{
+          line-height: 0;
+          margin-top: 10px;
+          padding-top: 10px;
+        }
         //検索窓
         input{
           width: 100%;
@@ -43,6 +48,7 @@ ul{
           border: 1px solid #ccc;
           border-radius: 5px;
           padding: 10px;
+          margin: 0 auto;
         }
         input[type="text"]:focus{
           border-color: rgb(17,133,226);
@@ -51,8 +57,10 @@ ul{
         //虫眼鏡アイコン
         i {
           position: absolute;
-          right: 13px;
-          top: 13px;
+          right: 15px;
+          top: 35px;
+          font-size: 20px;
+          cursor: pointer;
         }
       }
     }
@@ -272,6 +280,7 @@ ul{
   border-radius: 160px;
   color: white;
   text-align: center;
+  z-index: 100;
   // align-items: center;
     // padding-top: 26px;
   a{

@@ -9,12 +9,25 @@ input{
   border-color: #bbbbbb;
   padding: 10px 5px;
   width: 100%;
+  &:focus{
+    outline: none;
+    border-color: #2C7CFF;
+  }
 }
 
-input:focus{
-  outline: none;
-  border-color: #2C7CFF;
+select{
+  border-radius: 3px;
+  border: solid 1px;
+  border-color: #bbbbbb;
+  padding: 10px 5px;
+  width: 100%;
+  &:focus{
+    outline: none;
+    border-color: #2C7CFF;
+  }
 }
+
+
 
 
 .content{
@@ -26,7 +39,7 @@ input:focus{
     line-height: 50px;
     text-align: center;
     border-bottom: solid 2px;
-    border-color: #EEEEEE;
+    border-color: #fafafa;
     font-size: 23px;
     font-weight: bold;
   }

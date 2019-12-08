@@ -35,6 +35,9 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @items = Item.all.limit(10).order("created_at DESC").includes(:user)
+    
+    # @items = Item.includes(:user).where("#{User.ids}").limit(10).order("created_at DESC")
     @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
     @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
   end
@@ -90,6 +93,17 @@ class ItemsController < ApplicationController
     else
       redirect_to action: :confirmation, id: current_user.id
     end
+  end
+
+  def search
+    # @item = Item.where(name: true).search(params[:search])
+    @item = Item.search(params[:name]).limit(132)
+    @search = params[:name]
+    # if params[:search]
+    #   @search = Item.where(['name LIKE ?', "%#{search}%"])
+    # else
+    #   @search = Item.all
+    # end
   end
   
   private
