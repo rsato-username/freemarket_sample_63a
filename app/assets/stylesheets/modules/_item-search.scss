@@ -1,0 +1,13 @@
+.search{
+  display: flex;
+  font-size: 20px;
+  &__input{
+    font-weight: bold;
+    margin-right: 5px;
+  }
+}
+.search-count{
+  color: #aaa;
+  margin: 10px;
+  font-size: 15px;
+}

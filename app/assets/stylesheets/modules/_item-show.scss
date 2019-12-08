@@ -22,6 +22,25 @@
       justify-content: space-between;
       margin: 0 15px;
       &__box{
+        &__image{
+          position: relative;
+          .sold-tag {
+            position: absolute;
+            top: 0;
+            border-style: solid;
+            border-color: #ea352d transparent transparent;
+            border-width: 150px 150px 0 0;
+            .sold-text {
+              position: absolute;
+              top: -120px;
+              left: 15px;
+              color: white;
+              font-weight: bold;
+              font-size: 25px;
+              transform: rotate(-45deg);
+            }
+          }
+        }
         &__mini{
           width: 300px;
         }
@@ -38,6 +57,7 @@
           padding: 10px;
         }
         td{
+          padding: 10px;
           a{
             color: #2C7CFF;
             &:hover{
@@ -78,6 +98,19 @@
         background-color: #FF3300;
         cursor: pointer;
       }
+      &:focus{
+        outline: none;
+      }
+    }
+    .sold{
+      width: 100%;
+      height: 50px;
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #ddd;
+      border: none;
       &:focus{
         outline: none;
       }
