@@ -39,7 +39,7 @@
       - @ladies_items.each do |item|
         %li
           .item-box
-            = link_to item_path(item) do
+            = link_to item_path(item), data: {"turbolinks" => false} do
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
