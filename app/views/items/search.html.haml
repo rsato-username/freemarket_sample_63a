@@ -1,0 +1,35 @@
+= render 'shared/top_header'
+
+%main.container.clearfix
+  = render 'shared/side_bar'
+  .l-container
+    .search
+      .search__input
+        = @search
+      .search__text
+        の検索結果
+    .search-count
+      = "#{@item.count}件の表示"
+    .search-results
+      %ul.toppage-body__container--items
+        - @item.each do |search|
+          %li
+            .item-box
+              = link_to item_path(search) do
+                .item-box__img
+                  %span
+                    = "¥#{search.price.to_s(:delimited, delimiter: ',')}"
+                  = image_tag search.photos[0].url.url, width: "188", alt: "商品の画像"
+                .item-box__title
+                  = search.name
+                  .gradient
+              - if search.buyer_id != nil
+                .sold-tag
+                  .sold-text
+                    SOLD
+
+.breadcrumbs-box-itemsearch
+  - breadcrumb :itemsearch
+  = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "
+= render 'shared/exhibit_btn'
+= render 'shared/top_footer'

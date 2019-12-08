@@ -15,10 +15,13 @@ class ItemsController < ApplicationController
     10.times{
       @item.photos.build
     }
-    @category_parent_array = []
-    Category.where(ancestry: nil).each do |parent|
-        @category_parent_array << parent
-    end
+    # @category_parent_array = ["---"]
+    # Category.where(ancestry: nil).each do |parent|
+    #   @category_parent_array << parent
+    # end
+
+    @parents = Category.all.order("id ASC").limit(13)
+
   end
   
   def create
@@ -32,20 +35,25 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @items = Item.all.limit(10).order("created_at DESC").includes(:user)
+    
+    # @items = Item.includes(:user).where("#{User.ids}").limit(10).order("created_at DESC")
     @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
     @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
   end
 
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+    # @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+    @category_children = Category.find(params[:parent_name]).children
   end
 
   def get_category_grandchildren
     #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
+    # @category_grandchildren = Category.find("#{params[:child_id]}").children
+    @category_grandchildren = Category.find(params[:child_id]).children
   end
-  
+
   def buy
     @item = Item.find(params[:id])
     Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
@@ -71,6 +79,7 @@ class ItemsController < ApplicationController
         currency: 'jpy',
       )
     end
+    @item.update( buyer_id: current_user.id)
     redirect_to purchash_item_path
   end
 
@@ -86,14 +95,15 @@ class ItemsController < ApplicationController
     end
   end
 
-  def get_category_children
-    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
-  end
-
-  def get_category_grandchildren
-    #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  def search
+    # @item = Item.where(name: true).search(params[:search])
+    @item = Item.search(params[:name]).limit(132)
+    @search = params[:name]
+    # if params[:search]
+    #   @search = Item.where(['name LIKE ?', "%#{search}%"])
+    # else
+    #   @search = Item.all
+    # end
   end
   
   private

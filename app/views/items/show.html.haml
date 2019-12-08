@@ -8,27 +8,37 @@
     .show__item__infobox
       .show__item__infobox__box
         .show__item__infobox__box__image
-          = image_tag @item.photos[0].url.url, size: "300x300"
+          = image_tag @item.photos[0].url.url, size: "300x300", class: "main-image"
+          - if @item.buyer_id != nil
+            .sold-tag
+              .sold-text
+                SOLD
         .show__item__infobox__box__mini
           - @item.photos.each do |image|
-            = image_tag image.url.url, size: "60x60"
+            = image_tag image.url.url, size: "60x60", class: "mini-image"
       .show__item__infobox__user
         %table{border: "1"}
           %tr
             %th 出品者
             %td
-              = link_to profile_users_path do
+              = link_to profile_users_path, data: {"turbolinks" => false} do
                 = @item.user.nickname
           %tr
             %th カテゴリー
             %td
-              = link_to root_path do
+              = link_to root_path, data: {"turbolinks" => false} do
                 = @item.category.name
-          %tr
-            %th ブランド
-            %td 
-              = link_to root_path do
-                = @item.brand
+                -# = @item.category.subtree.name
+                -# <br>
+                -# = "＞#{@item.category.children.name}"
+                -# <br>
+                -# = "＞#{@item.category.indirects.name}"
+          - if @item.brand == ""
+            %tr
+              %th ブランド
+              %td 
+                = link_to root_path, data: {"turbolinks" => false} do
+                  = @item.brand
           -# - if @item
           -# %tr
           -#   %th 商品のサイズ
@@ -47,7 +57,7 @@
           %tr
             %th 配送元地域
             %td 
-              = link_to root_path do
+              = link_to root_path, data: {"turbolinks" => false} do
                 = @item.post_region
           %tr
             %th 発送日の目安
@@ -58,11 +68,23 @@
         ¥
         = @item.price.to_s(:delimited, delimiter: ',')
       .show__item__pricebox__tax
-        （税金払え）
+        （税金込み）
       .show__item__pricebox__postage
-        送料込み？
-    = link_to buy_item_path do
-      %button.progress 購入画面に進む
+        送料込み
+    - if @item.buyer_id != nil
+      %button.sold 売り切れました
+    - else
+      - if user_signed_in? && current_user.id == @item.user.id
+        = link_to edit_item_path(current_user) do
+          %button.progress 編集する
+        = link_to item_path(current_user), method: :delete do
+          %button.progress 削除する
+      - else
+        = link_to buy_item_path do
+          %button.progress 購入画面に進む
+
+    -# = link_to buy_item_path do
+    -#   %button.progress 購入画面に進む
     .show__item__discription
       = @item.description
     .show__item__bottom
@@ -90,10 +112,17 @@
     .show__chat__caution
       相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
     %input.text_area
-    %button.comment コメントする
+    - if @item.buyer_id != nil
+      %button.comment 売り切れのためコメントできません
+    - else
+      %button.comment コメントする
   .show__list
-    = link_to "＜ひとつ古く出品されたitem", root_path
-    = link_to "ひとつ新しく出品されたitem＞", root_path
+    - if @item.previous
+      = link_to item_path(@item.previous) do
+        = "＜#{@item.previous.name}"
+    - if @item.next
+      = link_to item_path(@item.next) do 
+        = "#{@item.next.name}＞"
   .show__snsbox
     = link_to root_path, class: "facebook" do
       = icon 'fab', 'facebook-square'
@@ -109,17 +138,21 @@
         = link_to root_path do
           = "#{@item.user.nickname}さんのその他の出品"
     %ul.toppage-body__container--items
-      - @ladies_items.each do |item|
+      - @items.each do |item|
         %li
           .item-box
-            = link_to item_path(item) do
+            = link_to item_path(item), data: {"turbolinks" => false} do
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                -# = image_tag item.photos[0].url.url, width: "188"
+                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
               .item-box__title
                 = item.name
                 .gradient
+            - if item.buyer_id != nil
+              .sold-tag
+                .sold-text
+                  SOLD
   .toppage-body__container
     .toppage-body__container--heading
       .show__itemtable
@@ -129,14 +162,18 @@
       - @ladies_items.each do |item|
         %li
           .item-box
-            = link_to item_path(item) do
+            = link_to item_path(item), data: {"turbolinks" => false} do
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                -# = image_tag item.photos[0].url.url, width: "188"
+                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
               .item-box__title
                 = item.name
                 .gradient
+            - if item.buyer_id != nil
+              .sold-tag
+                .sold-text
+                  SOLD
 .breadcrumbs-box-itemshow
   - breadcrumb :itemshow
   = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "

@@ -1,4 +1,4 @@
-.breadcrumbs-box,.breadcrumbs-box-itemshow {
+.breadcrumbs-box,.breadcrumbs-box-itemshow,.breadcrumbs-box-itemsearch {
   margin-top: 1px;
   height: 50px;
   background-color: white;
@@ -24,6 +24,12 @@
   }
   &-itemshow{
     background-color: #eeeeee;
+    box-shadow: none;
+    margin: 0;
+    border-top: solid 1px #dddddd;
+  }
+  &-itemsearch{
+    background-color: #f5f5f5;
     box-shadow: none;
     margin: 0;
     border-top: solid 1px #dddddd;

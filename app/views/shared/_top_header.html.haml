@@ -9,9 +9,10 @@
         = link_to root_path, data: {"turbolinks" => false} do
           %img(src="https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg" alt="mercari" class="top__logo--img")/
       .toppage-header__container--ue__search
-        %form(action="#")
-          %input(type="text" placeholder="何かお探しですか？")/
-          %i.fas.fa-search
+        = form_with url: search_items_path, method: :get, local: true do |f|
+          = f.text_field :name, placeholder: "何かお探しですか？"
+          = f.button type: 'submit' do
+            %i.fas.fa-search
             
     .toppage-header__container--shita
       .toppage-header__container--shita__left

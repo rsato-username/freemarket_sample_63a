@@ -46,7 +46,8 @@
           %span 必須
         .exhibit__container--form__category--input
           .category-box
-            = i.collection_select(:category_id, Category.all, :id, :name)
+            = i.collection_select :category_id, @parents, :id, :name,{prompt: "---"}, id: "item_category_id"
+            -# = i.collection_select(:category_id, Category.all, :id, :name )
             -# = i.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'item_category_id'}
 
         .exhibit__container--form__status--label

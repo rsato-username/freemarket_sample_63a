@@ -21,6 +21,10 @@ crumb :card do
   parent :mypage
 end
 
+crumb :itemsearch do
+  link "#{params[:name]}", search_items_path
+end
+
 crumb :card_new do
   link "クレジットカード情報入力", new_card_path
   parent :card
