@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     collection do
       get :logout
       get :profile
+      get :myitem
     end
   end
 

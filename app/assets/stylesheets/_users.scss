@@ -170,3 +170,51 @@ section.mypage__user-icon {
     background-color: #fafafa;
   }
 }
+
+
+//ーーーーーーーーーーーーーーーーーーーーーーー
+//マイページ、出品した商品（トミヨシ）
+//ーーーーーーーーーーーーーーーーーーーーーーー
+.myitem{
+  &-title{
+    height: 70px;
+    background-color: #fafafa;
+    padding: 0 16px;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 70px;
+  }
+  &-status{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    &__title{
+      width: 100%;
+      height: 100%;
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 70px;
+        background-color: #eee;
+      }
+      .now{
+        background-color: #fff;
+        border-top: 2px solid #ea352d;
+      }
+    }
+  }
+  &-list{
+    &__box{
+      width: 100%;
+      height: 83px;
+      background-color: #fff;
+      padding: 16px;
+    }
+  }
+}
