@@ -77,7 +77,7 @@
       - if user_signed_in? && current_user.id == @item.user.id
         = link_to edit_item_path(current_user) do
           %button.progress 編集する
-        = link_to item_path(current_user), method: :delete do
+        = link_to item_path(@item), method: :delete do
           %button.progress 削除する
       - else
         = link_to buy_item_path do

@@ -42,6 +42,12 @@ class ItemsController < ApplicationController
     @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to root_path
+  end
+
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
     # @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
