@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
     @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos)
     @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos)
     # @chanels_items = Item.joins(:brand).where(brand.name: "a").limit(10).order("created_at DESC").includes(:photos)
+
   end
 
   def new
@@ -111,6 +112,18 @@ class ItemsController < ApplicationController
     # else
     #   @search = Item.all
     # end
+  end
+
+  def stopExhibit
+    @item = Item.find(params[:id])
+    @item.update(situation: "出品停止中")
+    redirect_to item_path
+  end
+
+  def resumeExhibit
+    @item = Item.find(params[:id])
+    @item.update(situation: nil)
+    redirect_to item_path
   end
   
   private

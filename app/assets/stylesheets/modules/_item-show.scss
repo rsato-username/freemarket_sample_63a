@@ -40,6 +40,23 @@
               transform: rotate(-45deg);
             }
           }
+          .stopexhibit-tag {
+            position: absolute;
+            top: 0;
+            border-style: solid;
+            border-color: #888 transparent transparent;
+            border-width: 150px 150px 0 0;
+            .stopexhibit-text {
+              position: absolute;
+              top: -130px;
+              left: -3px;
+              width: 150px;
+              color: white;
+              font-weight: bold;
+              font-size: 18px;
+              transform: rotate(-45deg);
+            }
+          }
         }
         &__mini{
           width: 300px;
@@ -89,10 +106,10 @@
       width: 100%;
       height: 50px;
       margin-top: 20px;
-      font-size: 20px;
-      font-weight: bold;
+      font-size: 14px;
+      // font-weight: bold;
       color: #fff;
-      background-color: #CC3300;
+      background-color: #ea352d;
       border: none;
       &:hover{
         background-color: #FF3300;

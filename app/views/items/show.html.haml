@@ -13,6 +13,10 @@
             .sold-tag
               .sold-text
                 SOLD
+          - if @item.situation != nil
+            .stopexhibit-tag
+              .stopexhibit-text
+                公開停止中
         .show__item__infobox__box__mini
           - @item.photos.each do |image|
             = image_tag image.url.url, size: "60x60", class: "mini-image"
@@ -77,18 +81,25 @@
       - if user_signed_in? && current_user.id == @item.user.id
         = link_to edit_item_path(current_user) do
           %button.progress 編集する
+        - if user_signed_in? && @item.situation == nil
+          = link_to stopExhibit_item_path(@item) do
+            %button.progress 出品停止
+        - else 
+          = link_to resumeExhibit_item_path(@item) do
+            %button.progress 出品を再開
         = link_to item_path(@item), method: :delete do
           %button.progress 削除する
       - else
         = link_to buy_item_path do
           %button.progress 購入画面に進む
 
-    -# = link_to buy_item_path do
-    -#   %button.progress 購入画面に進む
     .show__item__discription
       = @item.description
+
+    -# = link_to buy_item_path do
+    -#   %button.progress 購入画面に進む
     .show__item__bottom
-      %button.like いいねすんな
+      %button.like いいねすな
       %button.inappropriate 不適切な商品の報告
       .show__item__bottom__safe
         = link_to "https://www.alsok.co.jp/" do
