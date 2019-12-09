@@ -162,6 +162,32 @@ textarea:focus{
           }
         }
       }
+      //ブランド-----------------
+      &__brand{
+        &--label{
+          margin-top: 40px;
+          font-size: 14px;
+          font-weight: bold;
+          span {
+            color: white;
+            font-size: 12px;
+            background-color: #bbbbbb;
+            padding: 3px 4px;
+            border-radius: 2px;
+          }
+        }
+        &--input{
+          margin-top: 8px;
+          input {
+            width: 100%;
+            height: 48px;
+            font-size: 16px;
+            padding: 10px 16px 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+          }
+        }
+      }
       //商品の状態と発送元の地域、発送までの日数-----------------
       &__status{
         &--label{

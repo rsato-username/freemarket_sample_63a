@@ -4,10 +4,12 @@ class ItemsController < ApplicationController
     # @parent_categories = Category.roots
 
     # ladies = Category.find_by(name: "レディース").subtree
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
+    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos)
+    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos)
+    # @chanels_items = Item.joins(:brand).where(brand.name: "a").limit(10).order("created_at DESC").includes(:photos)
+
   end
 
   def new
@@ -19,7 +21,7 @@ class ItemsController < ApplicationController
     # Category.where(ancestry: nil).each do |parent|
     #   @category_parent_array << parent
     # end
-
+    @item.build_brand
     @parents = Category.all.order("id ASC").limit(13)
 
   end
@@ -126,6 +128,6 @@ class ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:url]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :category_id, :user_id, brand_attributes:[:id, :name], photos_attributes:[:url]).merge(user_id: current_user.id)
   end
 end
