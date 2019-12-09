@@ -25,4 +25,17 @@ $("turbolinks:load",function(){
 
     tabs.click(tabSwitch);
   });
+  // 出品中・取引中・売却済み部分
+  $(function() {
+    let tabs = $("ul.myitem-status li");
+  
+    function tabSwitch() {
+      $("ul.myitem-status li.active").removeClass("active");
+      $(this).addClass("active");
+      let index = tabs.index(this);
+      $(".myitem .myitem-lists .myitem-list").removeClass("showbox").eq(index).addClass("showbox");
+    }
+
+    tabs.click(tabSwitch);
+  });
 });
