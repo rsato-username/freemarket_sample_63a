@@ -124,7 +124,7 @@
       %li.toppage-body__heading--category
         %a(href="#") シャネル
       %li.toppage-body__heading--category
-        %a(href="#") ルイビィトン
+        %a(href="#") ルイヴィトン
       %li.toppage-body__heading--category
         %a(href="#") シュプリーム
       %li.toppage-body__heading--category
@@ -136,107 +136,85 @@
       %a(href="#")
         もっと見る 〉
     %ul.toppage-body__container--items
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m68611963058_1.jpg?1574468972", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m64911870317_1.jpg?1574058495", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m67371857333_1.jpg?1564711282", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m14003959380_1.jpg?1574497153", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m85044937589_1.jpg?1573355769", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m59557378877_1.jpg?1546171455", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m84182968478_1.jpg?1574033959", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m66387185356_1.jpg?1573989081", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m81771534578_1.jpg?1574471888", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-      %li
-        .item-box
-          %a(href="#")
-            .item-box__img
-              %span
-                ¥1,000
-              %img{:src => "https://static.mercdn.net/item/detail/orig/photos/m95100573867_1.jpg?1574500243", :width => "186"}/
-            .item-box__title
-              %p ナイキ靴わーいわーいあああああああああああああああああああああ
-              .gradient
-  
+      - @chanels_items.each do |item|
+        %li
+          .item-box
+            = link_to item_path(item), data: {"turbolinks" => false} do
+              .item-box__img
+                %span
+                  = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
+                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+              .item-box__title
+                = item.name
+                .gradient
+            - if item.buyer_id != nil
+              .sold-tag
+                .sold-text
+                  SOLD
+  .toppage-body__container
+    .toppage-body__container--heading
+      ルイヴィトン新着アイテム
+      %a(href="#")
+        もっと見る 〉
+    %ul.toppage-body__container--items
+      - @vuittons_items.each do |item|
+        %li
+          .item-box
+            = link_to item_path(item), data: {"turbolinks" => false} do
+              .item-box__img
+                %span
+                  = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
+                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+              .item-box__title
+                = item.name
+                .gradient
+            - if item.buyer_id != nil
+              .sold-tag
+                .sold-text
+                  SOLD
+  .toppage-body__container
+    .toppage-body__container--heading
+      シュプリーム新着アイテム
+      %a(href="#")
+        もっと見る 〉
+    %ul.toppage-body__container--items
+      - @sups_items.each do |item|
+        %li
+          .item-box
+            = link_to item_path(item), data: {"turbolinks" => false} do
+              .item-box__img
+                %span
+                  = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
+                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+              .item-box__title
+                = item.name
+                .gradient
+            - if item.buyer_id != nil
+              .sold-tag
+                .sold-text
+                  SOLD
+  .toppage-body__container
+    .toppage-body__container--heading
+      ナイキ新着アイテム
+      %a(href="#")
+        もっと見る 〉
+    %ul.toppage-body__container--items
+      - @nikes_items.each do |item|
+        %li
+          .item-box
+            = link_to item_path(item), data: {"turbolinks" => false} do
+              .item-box__img
+                %span
+                  = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
+                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+              .item-box__title
+                = item.name
+                .gradient
+            - if item.buyer_id != nil
+              .sold-tag
+                .sold-text
+                  SOLD
+
 - if user_signed_in?
   = render 'shared/exhibit_btn'
 
