@@ -17,8 +17,9 @@
           %a(href="#") 売却済み
       .myitem-list
         - @itemNow.each do |item|
-          = link_to item_path(item) do
+          = link_to item_path(item), data: {"turbolinks" => false} do
             .myitem-list__box
+              = image_tag item.photos[0].url.url, size: "60x60"
               = item.name
 
 = render 'shared/exhibit_btn'

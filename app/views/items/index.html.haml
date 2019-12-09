@@ -237,7 +237,7 @@
               %p ナイキ靴わーいわーいあああああああああああああああああああああ
               .gradient
   
-
-= render 'shared/exhibit_btn'
+- if user_signed_in?
+  = render 'shared/exhibit_btn'
 
 = render 'shared/top_footer'
