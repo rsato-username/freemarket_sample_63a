@@ -50,6 +50,12 @@
             -# = i.collection_select(:category_id, Category.all, :id, :name )
             -# = i.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'item_category_id'}
 
+        .exhibit__container--form__brand--label
+          ブランド
+          %span 任意
+        .exhibit__container--form__brand--input
+          = i.fields_for :brand do |b|
+            = b.text_field :name, placeholder: "例）シャネル",id: "input"
         .exhibit__container--form__status--label
           商品の状態
           %span 必須
