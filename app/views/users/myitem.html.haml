@@ -9,17 +9,51 @@
       .myitem-title
         出品した商品
       %ul.myitem-status
+        %li.myitem-status__title.active
+          %p 出品中
         %li.myitem-status__title
-          %a(href="#" class="now") 出品中
+          %p 取引中
         %li.myitem-status__title
-          %a(href="#") 取引中
-        %li.myitem-status__title
-          %a(href="#") 売却済み
-      .myitem-list
-        - @itemNow.each do |item|
-          = link_to item_path(item) do
-            .myitem-list__box
-              = item.name
+          %p 売却済み
+      .myitem-lists
+        .myitem-list.showbox
+          - @itemNow.each do |item|
+            = link_to item_path(item) do
+              .myitem-list__box
+                .myitem-list__box--img
+                  = image_tag item.photos[0].url.url, size: "50x50"
+                .myitem-list__box--info
+                  .myitem-list__box--info__name
+                    = item.name
+                  %ul.myitem-list__box--info__three
+                    %li 0
+                    %li 0
+                    - if item.situation != nil
+                      %li.myitem-list__box--info__three--stop 公開停止中
+                    - else
+                      %li.myitem-list__box--info__three--now 出品中
+                .myitem-list__box--icon
+                  >
+        .myitem-list
+          %img{:alt => "Image from Gyazo", :src => "https://i.gyazo.com/3e82e537e0b95d59469988666af1459e.png", :width => "700"}/
+        .myitem-list
+          - @itemSelled.each do |item|
+            = link_to item_path(item) do
+              .myitem-list__box
+                .myitem-list__box--img
+                  = image_tag item.photos[0].url.url, size: "50x50"
+                .myitem-list__box--info
+                  .myitem-list__box--info__name
+                    = item.name
+                  %ul.myitem-list__box--info__three
+                    %li 0
+                    %li 0
+                    -# - if item.situation != nil
+                    -#   %li.myitem-list__box--info__three--stop 公開停止中
+                    -# - else
+                    -#   %li.myitem-list__box--info__three--now 出品中
+                .myitem-list__box--icon
+                  >
 
 = render 'shared/exhibit_btn'
 = render 'shared/top_footer'

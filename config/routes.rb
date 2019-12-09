@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       get :buy
       get :purchash
       post :pay
+      get :stopExhibit
+      get :resumeExhibit
     end
   end
 

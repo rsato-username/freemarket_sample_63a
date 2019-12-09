@@ -4,10 +4,10 @@ class ItemsController < ApplicationController
     # @parent_categories = Category.roots
 
     # ladies = Category.find_by(name: "レディース").subtree
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
-    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos)
-    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos)
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
   end
 
   def new
@@ -110,6 +110,18 @@ class ItemsController < ApplicationController
     # else
     #   @search = Item.all
     # end
+  end
+
+  def stopExhibit
+    @item = Item.find(params[:id])
+    @item.update(situation: "出品停止中")
+    redirect_to item_path
+  end
+
+  def resumeExhibit
+    @item = Item.find(params[:id])
+    @item.update(situation: nil)
+    redirect_to item_path
   end
   
   private

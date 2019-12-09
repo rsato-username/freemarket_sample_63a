@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def myitem
-    @item = Item.where(user_id: current_user.id).where()
+    @item = Item.where(user_id: current_user.id)
     @itemNow = Item.where(user_id: current_user.id).where(buyer_id: nil)
     @itemSelled = Item.where(user_id: current_user.id).where.not(buyer_id: nil)
   end
