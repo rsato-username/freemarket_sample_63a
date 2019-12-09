@@ -37,7 +37,7 @@
                 -# = "＞#{@item.category.children.name}"
                 -# <br>
                 -# = "＞#{@item.category.indirects.name}"
-          - if @item.brand_id != ""
+          - if @item.brand_id != nil
             %tr
               %th ブランド
               %td 
@@ -79,7 +79,7 @@
       %button.sold 売り切れました
     - else
       - if user_signed_in? && current_user.id == @item.user.id
-        = link_to edit_item_path(current_user) do
+        = link_to edit_item_path(@item), data: {"turbolinks" => false} do
           %button.progress 編集する
         - if user_signed_in? && @item.situation == nil
           = link_to stopExhibit_item_path(@item) do

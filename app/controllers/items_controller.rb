@@ -4,14 +4,14 @@ class ItemsController < ApplicationController
     # @parent_categories = Category.roots
 
     # ladies = Category.find_by(name: "レディース").subtree
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
-    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos)
-    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos)
-    @chanels_items = Item.joins(:brand).where(brands: {name: "シャネル"}).limit(10).order("created_at DESC").includes(:photos)
-    @vuittons_items = Item.joins(:brand).where(brands: {name: "ルイヴィトン"}).limit(10).order("created_at DESC").includes(:photos)
-    @sups_items = Item.joins(:brand).where(brands: {name: "シュプリーム"}).limit(10).order("created_at DESC").includes(:photos)
-    @nikes_items = Item.joins(:brand).where(brands: {name: "ナイキ"}).limit(10).order("created_at DESC").includes(:photos)
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @chanels_items = Item.joins(:brand).where(brands: {name: "シャネル"}).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @vuittons_items = Item.joins(:brand).where(brands: {name: "ルイヴィトン"}).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @sups_items = Item.joins(:brand).where(brands: {name: "シュプリーム"}).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @nikes_items = Item.joins(:brand).where(brands: {name: "ナイキ"}).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
 
   end
 
@@ -51,6 +51,24 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
     redirect_to root_path
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+    # @item.photos.build
+    10.times{
+      @item.photos.build
+    }
+    @parents = Category.all.order("id ASC").limit(13)
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_update_params)
+      redirect_to profile_users_path
+    else
+      render :edit
+    end
   end
 
   def get_category_children
@@ -132,5 +150,9 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :category_id, :user_id, brand_attributes:[:id, :name], photos_attributes:[:url]).merge(user_id: current_user.id)
+  end
+
+  def item_update_params
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:url, :id, :remove_url]).merge(user_id: current_user.id)
   end
 end
