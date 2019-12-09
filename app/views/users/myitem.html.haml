@@ -38,7 +38,7 @@
           %img{:alt => "Image from Gyazo", :src => "https://i.gyazo.com/3e82e537e0b95d59469988666af1459e.png", :width => "700"}/
         .myitem-list
           - @itemSelled.each do |item|
-            = link_to item_path(item) do
+            = link_to item_path(item), data: {"turbolinks" => false} do
               .myitem-list__box
                 .myitem-list__box--img
                   = image_tag item.photos[0].url.url, size: "50x50"
