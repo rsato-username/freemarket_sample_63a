@@ -37,12 +37,12 @@
                 -# = "＞#{@item.category.children.name}"
                 -# <br>
                 -# = "＞#{@item.category.indirects.name}"
-          - if @item.brand_id == ""
+          - if @item.brand_id != ""
             %tr
               %th ブランド
               %td 
                 = link_to root_path, data: {"turbolinks" => false} do
-                  = @item.brand
+                  = @item.brand.name
           -# - if @item
           -# %tr
           -#   %th 商品のサイズ
