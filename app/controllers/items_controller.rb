@@ -8,7 +8,10 @@ class ItemsController < ApplicationController
     @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
     @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos)
     @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos)
-    # @chanels_items = Item.joins(:brand).where(brand.name: "a").limit(10).order("created_at DESC").includes(:photos)
+    @chanels_items = Item.joins(:brand).where(brands: {name: "シャネル"}).limit(10).order("created_at DESC").includes(:photos)
+    @vuittons_items = Item.joins(:brand).where(brands: {name: "ルイヴィトン"}).limit(10).order("created_at DESC").includes(:photos)
+    @sups_items = Item.joins(:brand).where(brands: {name: "シュプリーム"}).limit(10).order("created_at DESC").includes(:photos)
+    @nikes_items = Item.joins(:brand).where(brands: {name: "ナイキ"}).limit(10).order("created_at DESC").includes(:photos)
 
   end
 
