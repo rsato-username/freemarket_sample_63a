@@ -4,30 +4,23 @@ class ItemsController < ApplicationController
     # @parent_categories = Category.roots
 
     # ladies = Category.find_by(name: "レディース").subtree
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").where(situation: nil)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").where(situation: nil)
+    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").where(situation: nil)
+    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").where(situation: nil)
   end
 
   def new
     @item = Item.new
-    @item.photos.build
+    # @item.photos.build
     @parents = Category.all.order("id ASC").limit(13)
   end
 
   def create
     @item = Item.new(item_params)
     @parents = Category.all.order("id ASC").limit(13)
-    # params[:item][:photos_attributes]["0"][:url].each do |photo|
-    #   @item.photos.build
-    #   num = 0
-    #   params[:item][:photos_attributes]["0"][:url][num] = photo
-    #   num += 1
-    # end
-    binding.pry
 
-    # params[:item][:photos_attributes]["0"][:url][0].original_filename
+    # binding.pry
     
     if @item.save
       redirect_to root_path, notice: '出品しました。'
@@ -146,6 +139,6 @@ class ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes: {url: []}).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, images: []).merge(user_id: current_user.id)
   end
 end
