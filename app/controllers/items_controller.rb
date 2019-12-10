@@ -17,9 +17,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    10.times{
-      @item.photos.build
-    }
+    @item.photos.build
     # @category_parent_array = ["---"]
     # Category.where(ancestry: nil).each do |parent|
     #   @category_parent_array << parent
@@ -31,10 +29,21 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path
-    else
-      render :new
+    # if @item.save
+    #   redirect_to root_path
+    # else
+    #   render :new
+    # end
+    respond_to do |format|
+      if @item.save
+          params[:photos][:url].each do |url|
+            @item.photos.create(url: url, item_id: @item.id)
+          end
+        format.html{redirect_to root_path}
+      else
+        @item.photos.build
+        format.html{render action: 'new'}
+      end
     end
   end
 

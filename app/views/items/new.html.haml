@@ -20,7 +20,11 @@
         -#       またはクリックしてファイルを選択してください
         -#       %input(type="file")
         = i.fields_for :photos do |p|
-          = p.file_field :url, id: "input"
+          -# = p.file_field :url, id: "input"
+          #preview
+          .input-area
+            = p.file_field :url, multiple: true, name: 'photos[url][]', id: "upload-image", class: "upload-image", 'data-image': 0
+
         -# %output#output 
 
     .exhibit__container--form
