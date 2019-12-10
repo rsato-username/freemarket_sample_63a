@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   def index
     # @parent_categories = Category.roots
+    @parents = Category.all.order("id ASC").limit(13)
 
     # ladies = Category.find_by(name: "レディース").subtree
     @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
@@ -31,11 +32,13 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
+    @parents = Category.all.order("id ASC").limit(13)
     if @item.save
       redirect_to root_path
     else
       render :new
     end
+    
   end
 
   def show
@@ -54,7 +57,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
+
     @item = Item.find(params[:id])
+    # picture = 10
+    # count = @item.photos.count
     # @item.photos.build
     10.times{
       @item.photos.build
@@ -62,14 +68,68 @@ class ItemsController < ApplicationController
     @parents = Category.all.order("id ASC").limit(13)
   end
 
+
   def update
     @item = Item.find(params[:id])
+
+
+    # ids = @item.photos.map{|photos| photos.id }
+    # # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
+    # exist_ids = registered_photo_params[:ids]
+    # # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
+    # # exist_ids.clear if exist_ids[0] == 0
+
+    # if (exist_ids != 0 || new_photo_params[:photos_attributes][0] != " ") && @item.update(item_params)
+
+    #   # 登録済画像のうち削除ボタンをおした画像を削除
+    #   unless ids.length == exist_ids.length
+    #     # 削除する画像のidの配列を生成
+    #     delete_ids = ids - exist_ids
+    #     delete_ids.each do |id|
+    #       @item.photos.find(id).destroy
+    #     end
+    #   end
+
+    #   # 新規登録画像があればcreate
+    #   unless new_photo_params[:photos][0] == " "
+    #     new_photo_params[:photos].each do |image|
+    #       @item.photos.create(url: image, id: @item.id)
+    #     end
+    #   end
+
+    #   flash[:notice] = '編集が完了しました'
+    #   redirect_to item_path(@item), data: {turbolinks: false}
+    # end
+    
+    # # 選択されたファイルを削除
+    # remove_image_at_index(params[:photos][:url])
+   
+    # unless @item.save
+    #   flash[:alert] = '変更に失敗しました'
+    #   redirect_back(fallback_location: root_path)
+    # end
+  
+    # # 画像の追加
+    # add_image(params[:item][:photos_attributes], params[:photos][:url])
+  
+    # unless @item.save
+    #   flash[:alert] = '変更に失敗しました'
+    #   redirect_back(fallback_location: root_path)
+    # end
+    
+    # flash[:notice] = '画像を変更しました'
+    # redirect_back(fallback_location: root_path)
+
+    # @item.photos.remove_url
+    # @item.photos.save
+
     if @item.update(item_update_params)
       redirect_to profile_users_path
     else
       render :edit
     end
   end
+
 
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
@@ -153,6 +213,36 @@ class ItemsController < ApplicationController
   end
 
   def item_update_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:url, :id, :remove_url]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:id, :url, :remove_url, :url_cache]).merge(user_id: current_user.id)
   end
+
+  # def item_update_params
+  #   params.require(:item).permit(photos_attributes:[:id, :url, :remove_url, :url_cache]).merge(user_id: current_user.id)
+  # end
+
+#   def item_update_params
+#     params.require(:item).permit(photos_attributes:[:id, :url, :remove_url, :url_cache]).merge(user_id: current_user.id)
+# end
+
+
+  # def remove_image_at_index(index)
+  #   remain_images = @item.photos # 画像の配列をコピーする
+  #   deleted_image = remain_images.delete(index) #指定した画像を削除
+  #   deleted_image.try(:remove!) # S3から削除する場合追加
+  #   @item.photos = remain_images # 代入し直す
+  # end
+
+  # def add_image(new_image, index)
+  #   images = @item.photos # 画像の配列をコピーする
+  #   images.insert(new_image, index) # 画像を削除した位置に挿入
+  #   @item.photos = images # 代入し直す
+  # end
+
+  # def registered_photo_params
+  #   params.require(:item).permit({photos_attributes: []})
+  # end
+
+  # def new_photo_params
+  #   params.require(:item).permit({photos_attributes: []})
+  # end
 end
