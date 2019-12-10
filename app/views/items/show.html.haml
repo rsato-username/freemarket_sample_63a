@@ -8,7 +8,7 @@
     .show__item__infobox
       .show__item__infobox__box
         .show__item__infobox__box__image
-          = image_tag @item.photos[0].url.url, size: "300x300", class: "main-image"
+          -# = image_tag @item.photos[0].url.url, size: "300x300", class: "main-image"
           - if @item.buyer_id != nil
             .sold-tag
               .sold-text
@@ -19,7 +19,7 @@
                 公開停止中
         .show__item__infobox__box__mini
           - @item.photos.each do |image|
-            = image_tag image.url.url, size: "60x60", class: "mini-image"
+            -# = image_tag image.url.url, size: "60x60", class: "mini-image"
       .show__item__infobox__user
         %table{border: "1"}
           %tr
@@ -156,7 +156,7 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+                -# = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
               .item-box__title
                 = item.name
                 .gradient
@@ -177,7 +177,7 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+                -# = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
               .item-box__title
                 = item.name
                 .gradient

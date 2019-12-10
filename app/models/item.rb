@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, optional: true
   has_many   :photos,  foreign_key: :item_id, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
   

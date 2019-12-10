@@ -12,25 +12,45 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    10.times{
-      @item.photos.build
-    }
-    # @category_parent_array = ["---"]
-    # Category.where(ancestry: nil).each do |parent|
-    #   @category_parent_array << parent
-    # end
-
+    @item.photos.build
     @parents = Category.all.order("id ASC").limit(13)
-
   end
-  
+
   def create
     @item = Item.new(item_params)
+    @parents = Category.all.order("id ASC").limit(13)
+    # params[:item][:photos_attributes]["0"][:url].each do |photo|
+    #   @item.photos.build
+    #   num = 0
+    #   params[:item][:photos_attributes]["0"][:url][num] = photo
+    #   num += 1
+    # end
+    binding.pry
+
+    # params[:item][:photos_attributes]["0"][:url][0].original_filename
+    
     if @item.save
-      redirect_to root_path
+      redirect_to root_path, notice: '出品しました。'
     else
       render :new
     end
+
+    # params[:photos_attributes]['url'].each do |a|
+    #   @item_image = @product.item_images.create!(name: a)
+    # end
+
+    # a = item_params[photos_attributes: {url: []}]
+    # a.each do |photo|
+    #   new_photo = Photo.new(url: photo)
+    #   new_photo.save
+    # end
+
+    # if @item.save
+    #   redirect_to root_path
+    # else
+    #   render :new
+    # end
+
   end
 
   def show
@@ -126,6 +146,6 @@ class ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:url]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes: {url: []}).merge(user_id: current_user.id)
   end
 end
