@@ -10,11 +10,9 @@ $(function() {
   $('img.main-image').stop().fadeIn(200);
   }
   );
-  // サムネイルの枠を変更
   $(this).css({"opacity": "0.5" });
   });
   
-  // マウスアウトでサムネイル枠もとに戻す
   $('img.mini-image').mouseout(function(){
   $(this).css({"opacity":"1"});
   });

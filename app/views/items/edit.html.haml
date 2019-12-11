@@ -1,12 +1,13 @@
 .exhibit
   .exhibit__logo
-    %a(href="https://shopping.yahoo.co.jp/" target="_blank")
-      %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2177740229" alt="ラクマ")/
+    %a(href="https://fril.jp/" target="_blank")
+      = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2177740229", alt: "ふりまの画像"
+      -# %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2177740229" alt="ラクマ")/
 = form_for @item do |i|
   .exhibit__container
     .exhibit__container--form
       .exhibit__container--form__head
-        %p 商品の情報を入力
+        %p 商品の情報を編集
     .exhibit__container--form
       .exhibit__container--form__image
         .exhibit__container--form__image--label
@@ -83,6 +84,100 @@
 
 
 
+          -# .exhibit__container--form__image--input
+
+
+
+
+
+          = i.fields_for :photos, @item.photos.all do |image|
+            = image_tag image.object.url.url, size: "300x300"
+            .item__img__dropzone.clearfix
+              #preview
+              -# １〜５枚目プレビュー表示
+              .item__img__dropzone__input
+                = image.label :image, for: "upload-image" do
+                  .input-area
+                    = image.file_field :image_url, id: "upload-image", class: "upload-image", 'data-image': 0
+
+                  .item__img__dropzone__input__description
+                    .item__img__dropzone__input__description__text
+                      ドラッグアンドドロップ
+                      %br
+                      またはクリックしてファイルをアップロード
+
+            .item__img__dropzone2.clearfix
+              #preview2
+              -# ６〜１０枚目プレビュー表示
+              .item__img__dropzone2__input2
+                = image.label :image, for: "upload-image" do
+                  .input-area
+                    = image.file_field :image_url, id: "upload-image", class: "upload-image", 'data-image': 0
+                  .item__img__dropzone2__input2__description
+                    .item__img__dropzone2__input2__description__text
+                      ドラッグアンドドロップ
+                      %br
+                      またはクリックしてファイルをアップロード
+          
+
+
+
+
+
+
+
+
+
+
+
+
+          -# = form_for @item, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
+          -#   %h2.sell-form__header
+          -#     商品情報を入力
+          -#   .sell-form-container
+          -#     %label.sell-form-container__label
+          -#       出品画像
+          -#     %span.sell-form-container__require
+          -#       必須
+          -#     = f.fields_for :photos do |image|
+          -#       .dropzone-container.clearfix
+          -#         #preview
+          -#         .dropzone-area
+          -#           = image.label :photos, class: "dropzone-box", for: "upload-image" do
+          -#             .input_area
+          -#               = image.file_field :photos, multiple: true, name: 'photos[url][]', id: "upload-image", class: "upload-image", 'data-image': 0
+          -#             %p ここをクリックしてください
+          -#         #preview2
+          -#         .dropzone-area2
+          -#           = image.label :photos, class: "dropzone-box", for: "upload-image" do
+          -#             %p ここをクリックしてください
+
+
+
+              -# = i.fields_for :photos, @item.photos.all do |p|
+                        -#   = image_tag p.object.url.url, size: "300x300"
+                        -#   #preview
+                        -#   .input-area
+                        -#     = p.file_field :url, multiple: true, name: 'photos[url][]', id: "upload-image", class: "upload-image", 'data-image': 0
+
+                    -#   = i.fields_for :photos, @item.photos.all do |p|
+                    -#     = image_tag p.object.url.url, size: "300x300"
+                    -#     .btn_wrapper
+                    -#       .btn.edit
+                    -#         編集
+                    -#       .btn.delete
+                    -#         削除
+                    -#     #preview
+                    -#     .input-label
+                    -#       = p.label :url do
+                    -#         .input-area
+                    -#           = p.file_field :url, multiple: true, name: 'photos[url][]', id: "upload-image", class: "upload-image", 'data-image': 0
+                    -# 画像追加
+                    -# = i.fields_for :photos do |p|
+                    -#   = p.file_field :url, multiple: true, name: 'photos[url][]', id: "upload-image", class: "upload-image", 'data-image': 0
+                          
+                      -# %output#output 
+
     .exhibit__container--form
       .exhibit__container--form__name
         .exhibit__container--form__name--label
@@ -110,6 +205,12 @@
             -# = i.collection_select(:category_id, Category.all, :id, :name )
             -# = i.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'item_category_id'}
 
+        .exhibit__container--form__brand--label
+          ブランド
+          %span 任意
+        .exhibit__container--form__brand--input
+          = i.fields_for :brand do |b|
+            = b.text_field :name, placeholder: "例）シャネル",id: "input"
         .exhibit__container--form__status--label
           商品の状態
           %span 必須

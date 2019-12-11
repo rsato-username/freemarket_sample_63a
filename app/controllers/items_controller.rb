@@ -65,69 +65,112 @@ class ItemsController < ApplicationController
     10.times{
       @item.photos.build
     }
+    @item.photos.build
+    
+    
+    # 10.times{
+    #   @item.photos.build
+    # }
     @parents = Category.all.order("id ASC").limit(13)
+
+    gon.item = @item
+    gon.item_images = @item.photos
+
+    # @item.item_imagse.image_urlをバイナリーデータにしてビューで表示できるようにする
+    # require 'base64'
+    # require 'aws-sdk'
+    # require 'carrierwave/storage/abstract'
+    # require 'carrierwave/storage/file'
+    # require 'carrierwave/storage/fog'
+
+    gon.item_images_binary_datas = []
+    # if Rails.env.production?
+    #   client = Aws::S3::Client.new(
+    #                          region: 'ap-northeast-1',
+    #                          aws_access_key_id: Rails.application.secrets.aws_access_key_id,
+    #                          aws_secret_access_key: Rails.application.secrets.aws_secret_access_key,
+    #                          )
+    #   @item.photos.each do |image|
+    #     binary_data = client.get_object(bucket: 'free-buckeeet', key: photos.url.url).body.read
+    #     gon.item_images_binary_datas << Base64.strict_encode64(binary_data)
+    #   end
+    # else
+    #   @item.photos.each do |image|
+    #     binary_data = File.read(image.url.url)
+    #     gon.item_images_binary_datas << Base64.strict_encode64(binary_data)
+    #   end
+    # end
   end
 
 
   def update
+
+
+
+    if  brand = Brand.find_by(name: params[:item][:brand_id])
+      params[:item][:brand_id] = brand.id
+    else
+      params[:item][:brand_id] = Brand.create(name: params[:item][:brand_id]).id
+    end
+
     @item = Item.find(params[:id])
 
+    # 登録済画像のidの配列を生成
+    ids = @item.photos.map{|image| photo.id }
+    # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
+    exist_ids = registered_image_params[:ids].map(&:to_i)
+    # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
+    exist_ids.clear if exist_ids[0] == 0
 
-    # ids = @item.photos.map{|photos| photos.id }
-    # # 登録済画像のうち、編集後もまだ残っている画像のidの配列を生成(文字列から数値に変換)
-    # exist_ids = registered_photo_params[:ids]
-    # # 登録済画像が残っていない場合(配列に０が格納されている)、配列を空にする
-    # # exist_ids.clear if exist_ids[0] == 0
+    if (exist_ids.length != 0 || new_image_params[:images][0] != " ") && @item.update(item_params)
 
-    # if (exist_ids != 0 || new_photo_params[:photos_attributes][0] != " ") && @item.update(item_params)
+      # 登録済画像のうち削除ボタンをおした画像を削除
+      unless ids.length == exist_ids.length
+        # 削除する画像のidの配列を生成
+        delete_ids = ids - exist_ids
+        delete_ids.each do |id|
+          @item.photos.find(id).destroy
+        end
+      end
 
-    #   # 登録済画像のうち削除ボタンをおした画像を削除
-    #   unless ids.length == exist_ids.length
-    #     # 削除する画像のidの配列を生成
-    #     delete_ids = ids - exist_ids
-    #     delete_ids.each do |id|
-    #       @item.photos.find(id).destroy
-    #     end
-    #   end
+      # 新規登録画像があればcreate
+      unless new_image_params[:photos][0] == " "
+        params[:photos][:url].each do |url|
+          @item.photos.create(url: url, item_id: @item.id)
+        end
+      end
 
-    #   # 新規登録画像があればcreate
-    #   unless new_photo_params[:photos][0] == " "
-    #     new_photo_params[:photos].each do |image|
-    #       @item.photos.create(url: image, id: @item.id)
-    #     end
-    #   end
+      flash[:notice] = '編集が完了しました'
+      redirect_to item_path(@item), data: {turbolinks: false}
 
-    #   flash[:notice] = '編集が完了しました'
-    #   redirect_to item_path(@item), data: {turbolinks: false}
-    # end
-    
-    # # 選択されたファイルを削除
-    # remove_image_at_index(params[:photos][:url])
-   
-    # unless @item.save
-    #   flash[:alert] = '変更に失敗しました'
-    #   redirect_back(fallback_location: root_path)
-    # end
-  
-    # # 画像の追加
-    # add_image(params[:item][:photos_attributes], params[:photos][:url])
-  
-    # unless @item.save
-    #   flash[:alert] = '変更に失敗しました'
-    #   redirect_back(fallback_location: root_path)
-    # end
-    
-    # flash[:notice] = '画像を変更しました'
-    # redirect_back(fallback_location: root_path)
-
-    # @item.photos.remove_url
-    # @item.photos.save
-
-    if @item.update(item_update_params)
-      redirect_to profile_users_path
     else
-      render :edit
+      flash[:alert] = '未入力項目があります'
+      redirect_back(fallback_location: root_path)
     end
+
+
+
+
+    # @item = Item.find(params[:id])
+
+    # respond_to do |format|
+    #   if @item.save
+    #     params[:photos][:url].each do |url|
+    #       @item.photos.create(url: url, item_id: @item.id)
+    #     end
+    #     format.html{redirect_to item_path(@item)}
+    #   else
+    #     @item.photos.build
+    #     format.html{render action: 'edit'}
+    #   end
+    # end
+
+
+    # if @item.update(item_update_params)
+    #   redirect_to profile_users_path
+    # else
+    #   render :edit
+    # end
   end
 
 
@@ -213,7 +256,21 @@ class ItemsController < ApplicationController
   end
 
   def item_update_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:id, :url, :remove_url, :url_cache]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:url, :id]).merge(user_id: current_user.id)
+  end
+  
+  def photo_params
+    params.require(:item).permit({photos_attributes:[]})
+  end
+
+
+
+  def registered_image_params
+    params.require(:registered_images_ids).permit({ids: []})
+  end
+
+  def new_image_params
+    params.require(:new_images).permit({images: []})
   end
 
   # def item_update_params
