@@ -186,9 +186,14 @@ ul{
       color: #333333;
       font-size: 24px;
       font-weight: bold;
-      a{
+      .listsearch{
         font-size: 14px;
         padding: 2px;
+        border: none;
+        outline: none;
+        color: #0099e8;
+        background-color: rgba(#fff,0);
+        cursor: pointer;
       }
     }
     //出品物たち

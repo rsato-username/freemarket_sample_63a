@@ -121,6 +121,18 @@ class ItemsController < ApplicationController
     @search = params[:name]
   end
 
+  def categorylist
+    @item = Item.categorysearch(params[:category_id]).limit(132).order("created_at DESC").where(situation: nil)
+    @list = Category.find(params[:category_id])
+  end
+
+  # def brandlist
+  #   @item = Item.brandsearch(params[:brand_id]).limit(132).order("created_at DESC").where(situation: nil)
+  #   # @list = Brand.where(name: params[:brand_id])
+  #   @list = Item.joins(:brand).brandsearch(params[:brand_id])
+  #   # @list = Brand.find(params[:brand_id])
+  # end
+
   def stopExhibit
     @item = Item.find(params[:id])
     @item.update(situation: "出品停止中")

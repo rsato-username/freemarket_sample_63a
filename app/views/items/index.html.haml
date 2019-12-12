@@ -33,8 +33,9 @@
   .toppage-body__container#topladies
     .toppage-body__container--heading
       レディース新着アイテム
-      %a(href="#")
-        もっと見る 〉
+      = form_with url: categorylist_items_path, method: :get, local: true do |f|
+        = f.hidden_field :category_id, :value =>1
+        = f.submit "もっと見る 〉",class: "listsearch"
     %ul.toppage-body__container--items
       - @ladies_items.each do |item|
         %li
@@ -56,8 +57,9 @@
   .toppage-body__container#topmens
     .toppage-body__container--heading
       メンズ新着アイテム
-      %a(href="#")
-        もっと見る 〉
+      = form_with url: categorylist_items_path, method: :get, local: true do |f|
+        = f.hidden_field :category_id, :value =>2
+        = f.submit "もっと見る 〉",class: "listsearch"
     %ul.toppage-body__container--items
       - @mens_items.each do |item|
         %li
@@ -78,8 +80,9 @@
   .toppage-body__container#topkadens
     .toppage-body__container--heading
       家電・スマホ・カメラ新着アイテム
-      %a(href="#")
-        もっと見る 〉
+      = form_with url: categorylist_items_path, method: :get, local: true do |f|
+        = f.hidden_field :category_id, :value =>8
+        = f.submit "もっと見る 〉",class: "listsearch"
     %ul.toppage-body__container--items
       - @kadens_items.each do |item|
         %li
@@ -100,8 +103,9 @@
   .toppage-body__container#toptoys
     .toppage-body__container--heading
       おもちゃ・ホビー・グッズ新着アイテム
-      %a(href="#")
-        もっと見る 〉
+      = form_with url: categorylist_items_path, method: :get, local: true do |f|
+        = f.hidden_field :category_id, :value =>6
+        = f.submit "もっと見る 〉",class: "listsearch"
     %ul.toppage-body__container--items
       - @toys_items.each do |item|
         %li
@@ -137,8 +141,9 @@
   .toppage-body__container#topchanels
     .toppage-body__container--heading
       シャネル新着アイテム
-      %a(href="#")
-        もっと見る 〉
+      = form_with url: brandlist_items_path, method: :get, local: true do |f|
+        = f.hidden_field :brand_id, :value =>"シャネル"
+        = f.submit "もっと見る 〉",class: "listsearch"
     %ul.toppage-body__container--items
       - @chanels_items.each do |item|
         %li
@@ -158,8 +163,9 @@
   .toppage-body__container#topvuittons
     .toppage-body__container--heading
       ルイヴィトン新着アイテム
-      %a(href="#")
-        もっと見る 〉
+      = form_with url: brandlist_items_path, method: :get, local: true do |f|
+        = f.hidden_field :brand_id, :value =>"ルイヴィトン"
+        = f.submit "もっと見る 〉",class: "listsearch"
     %ul.toppage-body__container--items
       - @vuittons_items.each do |item|
         %li
@@ -179,8 +185,9 @@
   .toppage-body__container#topsups
     .toppage-body__container--heading
       シュプリーム新着アイテム
-      %a(href="#")
-        もっと見る 〉
+      = form_with url: brandlist_items_path, method: :get, local: true do |f|
+        = f.hidden_field :brand_id, :value =>"シュプリーム"
+        = f.submit "もっと見る 〉",class: "listsearch"
     %ul.toppage-body__container--items
       - @sups_items.each do |item|
         %li
@@ -200,8 +207,9 @@
   .toppage-body__container#topnikes
     .toppage-body__container--heading
       ナイキ新着アイテム
-      %a(href="#")
-        もっと見る 〉
+      = form_with url: brandlist_items_path, method: :get, local: true do |f|
+        = f.hidden_field :brand_id, :value =>"ナイキ"
+        = f.submit "もっと見る 〉",class: "listsearch"
     %ul.toppage-body__container--items
       - @nikes_items.each do |item|
         %li
