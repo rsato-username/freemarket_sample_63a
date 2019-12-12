@@ -63,28 +63,32 @@
           %h3 過去の取引
       .tab-content
         %ul.tab-contentbox.showbox
-          %li
-            = link_to root_path do
-              = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "45x45"
-              .buy-item__body
-                .buy-item__body__text
-                  「フェラーリ」を購入しました。取引が完了しました
-                .buy-status
-                  取引完了
-              %i.fa.fa-fighter-jet
+          - @items.each do |item|
+            %li
+              = link_to item_path(item), data: {"turbolinks" => false} do
+                = image_tag item.images[0], alt: "商品の画像", size: "45x45"
+                .buy-item__body
+                  .buy-item__body__text
+                    = item.name 
+                    を購入しました。取引が完了しました
+                  .buy-status
+                    取引完了
+                %i.fa.fa-fighter-jet
           %li
             = link_to root_path do
               一覧を見る
         %ul.tab-contentbox
-          %li
-            = link_to root_path do
-              = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "45x45"
-              .buy-item__body
-                .buy-item__body__text
-                  「ランボルギーニ」を購入しました。取引が完了しました
-                .buy-status
-                  取引完了
-              %i.fa.fa-fighter-jet
+          - @buy_items.each do |item|
+            %li
+              = link_to item_path(item), data: {"turbolinks" => false} do
+                = image_tag item.images[0], alt: "商品の画像", size: "45x45"
+                .buy-item__body
+                  .buy-item__body__text
+                    = item.name
+                    を購入しました。取引が完了しました
+                  .buy-status
+                    取引完了
+                %i.fa.fa-fighter-jet
           %li
             = link_to root_path do
               一覧を見る

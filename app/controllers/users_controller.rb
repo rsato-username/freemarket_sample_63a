@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   def index
+    @items = Item.where(situation: "取引中").limit(5).order("created_at DESC")
+    @buy_items = Item.where(buyer_id: current_user.id).limit(5).order("created_at DESC")
   end
 
   def logout
