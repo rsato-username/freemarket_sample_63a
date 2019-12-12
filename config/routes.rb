@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'items#index'
 
-  resources :items, only: [:index, :new, :create, :show, :edit, :destroy] do
+  resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }

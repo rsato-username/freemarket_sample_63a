@@ -12,37 +12,18 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    # @item.photos.build
     @parents = Category.all.order("id ASC").limit(13)
   end
 
   def create
     @item = Item.new(item_params)
     @parents = Category.all.order("id ASC").limit(13)
-
-    # binding.pry
     
     if @item.save
       redirect_to root_path, notice: '出品しました。'
     else
       render :new
     end
-
-    # params[:photos_attributes]['url'].each do |a|
-    #   @item_image = @product.item_images.create!(name: a)
-    # end
-
-    # a = item_params[photos_attributes: {url: []}]
-    # a.each do |photo|
-    #   new_photo = Photo.new(url: photo)
-    #   new_photo.save
-    # end
-
-    # if @item.save
-    #   redirect_to root_path
-    # else
-    #   render :new
-    # end
 
   end
 
@@ -51,8 +32,23 @@ class ItemsController < ApplicationController
     @items = Item.all.limit(10).order("created_at DESC").includes(:user)
     
     # @items = Item.includes(:user).where("#{User.ids}").limit(10).order("created_at DESC")
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC")
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC")
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+    @parents = Category.all.order("id ASC").limit(13)
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @parents = Category.all.order("id ASC").limit(13)
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :show
+    end
   end
 
   def destroy
