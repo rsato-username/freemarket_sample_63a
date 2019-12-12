@@ -13,9 +13,12 @@
           出品画像
           %span 必須
           %p 最大10枚までアップロードできます
-        = i.file_field :images, multiple: true do
-          end
-        .exhibit__container--form__image--preview
+        .exhibit__container--form__image--box
+          .exhibit__container--form__image--preview
+        .exhibit__container--form__image--input
+          = i.label :images do
+            %img(src="https://4.bp.blogspot.com/-JHSn8I71ofg/W1vh0eCyEEI/AAAAAAABNzE/xB436-3gQ-sVKWiup1lfKQ5JbOZKlB-mACLcBGAs/s400/war_bakuha_switch_off.png")/
+            = i.file_field :images, multiple: true
 
     .exhibit__container--form
       .exhibit__container--form__name
