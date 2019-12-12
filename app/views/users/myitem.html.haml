@@ -21,7 +21,7 @@
             = link_to item_path(item), data: {"turbolinks" => false} do
               .myitem-list__box
                 .myitem-list__box--img
-                  = image_tag item.photos[0].url.url, size: "50x50"
+                  = image_tag item.images[0].url.url, size: "50x50"
                 .myitem-list__box--info
                   .myitem-list__box--info__name
                     = item.name
@@ -41,7 +41,7 @@
             = link_to item_path(item), data: {"turbolinks" => false} do
               .myitem-list__box
                 .myitem-list__box--img
-                  = image_tag item.photos[0].url.url, size: "50x50"
+                  = image_tag item.images[0].url.url, size: "50x50"
                 .myitem-list__box--info
                   .myitem-list__box--info__name
                     = item.name

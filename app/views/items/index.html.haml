@@ -147,7 +147,7 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+                = image_tag item.images[0], width: "188", alt: "商品の画像"
               .item-box__title
                 = item.name
                 .gradient
@@ -168,7 +168,7 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+                = image_tag item.images[0], width: "188", alt: "商品の画像"
               .item-box__title
                 = item.name
                 .gradient
@@ -189,7 +189,7 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+                = image_tag item.images[0], width: "188", alt: "商品の画像"
               .item-box__title
                 = item.name
                 .gradient
@@ -210,7 +210,7 @@
               .item-box__img
                 %span
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
-                = image_tag item.photos[0].url.url, width: "188", alt: "商品の画像"
+                = image_tag item.images[0], width: "188", alt: "商品の画像"
               .item-box__title
                 = item.name
                 .gradient

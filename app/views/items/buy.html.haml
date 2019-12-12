@@ -8,7 +8,7 @@
       %h2 購入内容の確認
       %section.buy__item
         .buy__item-box
-          = image_tag @item.photos[0].url.url, width: "80", alt: "商品の画像"
+          = image_tag @item.images[0], width: "80", alt: "商品の画像"
           -# = image_tag "/images/user-image.jpg", alt: "本人イメージ", size: "60x60"
           -# = image_tag asset_path("user-image.jpg"), alt: "本人イメージ", width: "60", height: "60"
           .buy__item-box-right
