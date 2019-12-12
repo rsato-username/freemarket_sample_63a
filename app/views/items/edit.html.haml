@@ -1,0 +1,148 @@
+.exhibit
+  .exhibit__logo
+    %a(href="https://fril.jp/" target="_blank")
+      %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2177740229" alt="ラクマ")/
+= form_for @item do |i|
+  .exhibit__container
+    .exhibit__container--form
+      .exhibit__container--form__head
+        %p 商品の情報を入力
+    .exhibit__container--form
+      .exhibit__container--form__image
+        .exhibit__container--form__image--label
+          出品画像
+          %span 必須
+          %p 最大10枚までアップロードできます
+        -# .exhibit__container--form__image--input
+        -#   %form(action="#")
+        -#     %label
+        -#       ドラッグアンドドロップ
+        -#       またはクリックしてファイルを選択してください
+        -#       %input(type="file")
+        = i.fields_for :photos, @item.photos.all do |p|
+          = image_tag p.object.url.url, size: "300x300"
+          .btn_wrapper
+            .btn.edit
+              編集
+            .btn.delete
+              削除
+          #preview
+          .input-label
+            = p.label :url do
+              .input-area
+                = p.file_field :url, multiple: true, name: 'photos[url][]', id: "upload-image", class: "upload-image", 'data-image': 0
+
+        -# %output#output 
+
+    .exhibit__container--form
+      .exhibit__container--form__name
+        .exhibit__container--form__name--label
+          商品名
+          %span 必須
+        .exhibit__container--form__name--input
+          = i.text_field :name, placeholder: "商品名 (必須40文字まで)"
+        
+      .exhibit__container--form__text
+        .exhibit__container--form__text--label
+          商品の説明
+          %span 必須
+        .exhibit__container--form__text--input
+          = i.text_area :description, placeholder: "商品名 (必須1,000文字以内) (色、素材、重さ、定価、注意点など) 例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
+        
+    .exhibit__container--form
+      %h3 商品の詳細
+      .right-box
+        .exhibit__container--form__category--label
+          = i.label 'カテゴリー', class: 'listing-default__label'
+          %span 必須
+        .exhibit__container--form__category--input
+          .category-box
+            = i.collection_select :category_id, @parents, :id, :name,{prompt: "---"}, id: "item_category_id"
+            -# = i.collection_select(:category_id, Category.all, :id, :name )
+            -# = i.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'item_category_id'}
+
+        .exhibit__container--form__brand--label
+          ブランド
+          %span 任意
+        .exhibit__container--form__brand--input
+          = i.fields_for :brand do |b|
+            = b.text_field :name, placeholder: "例）シャネル",id: "input"
+        .exhibit__container--form__status--label
+          商品の状態
+          %span 必須
+        .exhibit__container--form__status--input
+          = i.select :status,[["新品、未使用","新品、未使用"],["未使用に近い","未使用に近い"],["目立った傷や汚れなし","目立った傷や汚れなし"],["やや傷や汚れあり","やや傷や汚れあり"],["傷や汚れあり","傷や汚れあり"],["全体的に状態が悪い","全体的に状態が悪い"]],prompt: "---"
+
+    .exhibit__container--form
+      %h3 配送について
+      .right-box
+        .exhibit__container--form__category--label
+          配送料の負担
+          %span 必須
+        .exhibit__container--form__category--input
+          = i.select :post_money,[["送料込み(出品者負担)","送料込み(出品者負担)"],["着払い(購入者負担)","着払い(購入者負担)"]],prompt: "---"
+          
+        .exhibit__container--form__status--label
+          発送元の地域
+          %span 必須
+        .exhibit__container--form__status--input
+          = i.select :post_region,[["北海道","北海道"],["青森県","青森県"],["岩手県","岩手県"],["宮城県","宮城県"],["秋田県","秋田県"],["山形県","山形県"],["福島県","福島県"],["茨城県","茨城県"],["栃木県","栃木県"],["群馬県","群馬県"],["埼玉県","埼玉県"],["千葉県","千葉県"],["東京都","東京都"],["神奈川県","神奈川県"],["新潟県","新潟県"],["富山県","富山県"],["石川県","石川県"],["福井県","福井県"],["山梨県","山梨県"],["長野県","長野県"],["岐阜県","岐阜県"],["静岡県","静岡県"],["愛知県","愛知県"],["三重県","三重県"],["滋賀県","滋賀県"],["京都府","京都府"],["大阪府","大阪府"],["兵庫県","兵庫県"],["奈良県","奈良県"],["和歌山県","和歌山県"],["鳥取県","鳥取県"],["島根県","島根県"],["岡山県","岡山県"],["広島県","広島県"],["山口県","山口県"],["徳島県","徳島県"],["香川県","香川県"],["愛媛県","愛媛県"],["高知県","高知県"],["福岡県","福岡県"],["佐賀県","佐賀県"],["長崎県","長崎県"],["熊本県","熊本県"],["大分県","大分県"],["宮崎県","宮崎県"],["鹿児島県","鹿児島県"],["沖縄県","沖縄県"],["未定","未定"]],prompt: "---"
+          
+        .exhibit__container--form__status--label
+          発送までの日数
+          %span 必須
+        .exhibit__container--form__status--input
+          = i.select :post_day,[["1~2日で発送","1~2日で発送"],["2~3日で発送","2~3日で発送"],["4~7日で発送","4~7日で発送"]],prompt: "---"
+          
+    .exhibit__container--form
+      %h3 販売価格(300〜9,999,999)
+      .exhibit__container--form__price
+        .price-box
+          .price__input
+            .price__input--title
+              価格
+              %span 必須
+            .price__input--yen
+              ¥
+              = i.text_field :price, id: "price"
+          .price__fee
+            %p 販売手数料(10%)
+            .p
+              %p#pa
+              %p#p -
+          .price__profit
+            %p 販売利益
+            .p
+              %p#pb
+              %p#pp -
+
+    .exhibit__container--form
+      .exhibit__container--form__submit
+        %p
+          %a(href="#") 禁止されている出品
+          ,
+          %a(href="#") 行為
+          を必ずご確認ください。
+        %p
+          またブランド品でシリアルナンバー等がある場合はご記載ください。
+          %a(href="#") 偽ブランドの販売
+          は犯罪であり処罰される可能性があります。
+        %p
+          また,出品をもちまして
+          %a(href="#") 加盟店規約
+          に同意したことになります。
+        = i.submit value="出品する"
+        .back
+          = link_to "もどる", root_path
+  
+    //---------------------------------------------------
+  .exhibit__footer
+    .exhibit__footer--kiyaku
+      %ul.exhibit__footer--kiyaku__list
+        %li プライバシーポリシー
+        %li メルカリ利用規約
+        %li 特定商取引に関する表記
+    .exhibit__footer--logo
+      %img(src="//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2177740229" alt="Rakuten")/
+    .exhibit__footer--copy
+      %small © 2019 Mercari

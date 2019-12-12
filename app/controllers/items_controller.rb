@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.photos.build
+    10.times{@item.photos.build}
     # @category_parent_array = ["---"]
     # Category.where(ancestry: nil).each do |parent|
     #   @category_parent_array << parent
@@ -36,9 +36,9 @@ class ItemsController < ApplicationController
     # end
     respond_to do |format|
       if @item.save
-          params[:photos][:url].each do |url|
-            @item.photos.create(url: url, item_id: @item.id)
-          end
+        params[:photos][:url].each do |url|
+          @item.photos.create(url: url, item_id: @item.id)
+        end
         format.html{redirect_to root_path}
       else
         @item.photos.build
@@ -68,16 +68,45 @@ class ItemsController < ApplicationController
     10.times{
       @item.photos.build
     }
+    @item.build_brand
     @parents = Category.all.order("id ASC").limit(13)
   end
 
   def update
     @item = Item.find(params[:id])
-    if @item.update(item_update_params)
-      redirect_to profile_users_path
-    else
-      render :edit
+    # if @item.update(item_update_params)
+    #   redirect_to profile_users_path
+    # else
+    #   render :edit
+    # end
+    respond_to do |format|
+      if @item.update(item_update_params)
+        if @item.photos.update(photo_update_params)
+          params[:photos][:url].each do |url|
+            @item.photos.update(photo_update_params)
+          end
+          format.html{redirect_to item_path(@item)}
+        end
+        format.html{redirect_to item_path(@item)}
+      else
+        @item.photos.build
+        format.html{render action: 'edit'}
+      end
     end
+    # respond_to do |format|
+    #   if @item.update(item_update_params)
+    #     if @item.photos.update(photo_update_params)
+    #       params[:photos][:url].each do |url|
+    #         @item.photos.create(url: url, item_id: @item.id)
+    #       end
+    #       format.html{redirect_to item_path(@item)}
+    #     end
+    #     format.html{redirect_to item_path(@item)}
+    #   else
+    #     @item.photos.build
+    #     format.html{render action: 'edit'}
+    #   end
+    # end
   end
 
   def get_category_children
@@ -162,6 +191,12 @@ class ItemsController < ApplicationController
   end
 
   def item_update_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:url, :id, :remove_url]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, brand_attributes:[:id, :name]).merge(user_id: current_user.id)
   end
+
+  def photo_update_params
+    params.require(:item).permit(:id,:url)
+    # params.require(:item).require(:photos_attributes).permit(:id,:url)
+  end
+
 end

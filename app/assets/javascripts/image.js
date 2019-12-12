@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function(){
+  var dropzone = $('.dropzone-area');
   var photos = [];
   var inputs  =[];
   var input_area = $('.input_area');
@@ -10,7 +11,7 @@ $(document).on('turbolinks:load', function(){
     inputs.push($(this));
     var img = $(`<div class= "img_view"><img></div>`);
     reader.onload = function(e) {
-      var btn_wrapper = $('<div class="btn_wrapper"><div class="btn edit">編集</div><div class="btn delete">削除</div></div>');
+      var btn_wrapper = $('<div class="btn_wrapper"><div class="btn edit">編集</div><div class="delete">削除</div></div>');
       img.append(btn_wrapper);
       img.find('img').attr({
         src: e.target.result
@@ -23,23 +24,28 @@ $(document).on('turbolinks:load', function(){
     $.each(photos, function(index, photo) {
       photo.attr('data-image', index);
       preview.append(photo);
-      preview.css({
-        'width': `calc(100% - (135px * ${photos.length}))`
+      dropzone.css({
+        'width': 'calc(100% - (135px * ${photos.length}))'
       })
     })
 
-    var new_photo = $(`<input multiple= "multiple" name="photos[url][]" class="upload-image" data-image= ${photos.length} type="file" id="upload-image">`);
-    input_area.prepend(new_image);
+    img.css({
+      'width': `calc(100% - (135px * ${photos.length}))`
+    });
+
+    // var new_photo = $(`<input multiple= "multiple" name="photos[url][]" class="upload-image" data-image= ${photos.length} type="file" id="upload-image">`);
+    var new_photo = $(`<input multiple= "multiple" name="photos[url][]" id="upload-image" class="upload-image" data-image= ${photos.length} type="file"></input>`);
+    input_area.prepend(new_photo);
   });
 
   $(document).on('click', '.delete', function() {
     var target_photo = $(this).parent().parent();
-    $.each(inputs, function(index, input){
-      if ($(this).data('photo') == target_image.data('photo')){
+    $.each(inputs, function(index, inputs){
+      if ($(this).data('image') == target_photo.data('image')){
         $(this).remove();
         target_photo.remove();
-        var num = $(this).data('photo');
-        images.splice(num, 1);
+        var num = $(this).data('image');
+        photos.splice(num, 1);
         inputs.splice(num, 1);
         if(inputs.length == 0) {
           $('input[type= "file"].upload-image').attr({
@@ -59,9 +65,9 @@ $(document).on('turbolinks:load', function(){
       $('input[type= "file"].upload-image:first').after(input)
     })
 
-    $.each(images, function(index, image) {
-      image.attr('data-image', index);
-      preview.append(image);
+    $.each(photos, function(index, photo) {
+      photo.attr('data-image', index);
+      preview.append(photo);
     })
     dropzone.css({
       'width': `calc(100% - (135px * ${images.length}))`
