@@ -145,11 +145,11 @@ class ItemsController < ApplicationController
     redirect_to item_path
   end
 
-  def delete_image_attachment
-    @image = ActiveStorage::Blob.find_signed(params[:id])
-    @image.purge
-    render :edit
-  end
+  # def delete_image_attachment
+  #   @image = ActiveStorage::Blob.find_signed(params[:id])
+  #   @image.purge
+  #   render :edit
+  # end
   
   private
   def item_params
