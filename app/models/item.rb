@@ -15,6 +15,23 @@ class Item < ApplicationRecord
     end
   end
 
+  def self.categorysearch(search)
+    if search
+      Item.where(['category_id LIKE ?', "%#{search}%"])
+      # Item.where(['brand_id LIKE ?', "%#{search}%"])
+    else
+      Item.all
+    end
+  end
+
+  # def self.brandsearch(search)
+  #   if search
+  #     Item.where(['name LIKE ?', "%#{search}%"])
+  #   else
+  #     Item.all
+  #   end
+  # end
+
   def previous
     Item.where("id < ?", self.id).order("id DESC").first
   end
