@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_064115) do
     t.integer "price", null: false
     t.text "description", null: false
     t.string "status", null: false
-    t.string "brand"
     t.string "post_money", null: false
     t.string "post_region", null: false
     t.string "post_day", null: false

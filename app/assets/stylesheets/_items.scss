@@ -171,6 +171,7 @@ ul{
         color: #333333;
         font-weight: bold;
         border-radius: 28px;
+        cursor: pointer;
       }
     }
   }
@@ -247,13 +248,13 @@ ul{
             height: calc(100% - 188px);
             padding: 12px;
             position: relative;
+            overflow: hidden;
+            white-space: normal;
             p{
               display: block;
               height: 100%;
               color: #222;
               font-size: 14px;
-              overflow: hidden;
-              white-space: normal;
             }
             .gradient{
               position: absolute;

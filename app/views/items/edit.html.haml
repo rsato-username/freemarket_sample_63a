@@ -6,7 +6,7 @@
   .exhibit__container
     .exhibit__container--form
       .exhibit__container--form__head
-        %p 商品の情報を入力
+        %p 商品の情報を編集
     .exhibit__container--form
       .exhibit__container--form__image
         .exhibit__container--form__image--label
@@ -40,6 +40,12 @@
         .exhibit__container--form__category--input
           .category-box
             = i.collection_select :category_id, @parents, :id, :name,{prompt: "---"}, id: "item_category_id"
+        .exhibit__container--form__brand--label
+          ブランド
+          %span 任意
+        .exhibit__container--form__brand--input
+          = i.fields_for :brand do |b|
+            = b.text_field :name, placeholder: "例）シャネル",id: "input"
         .exhibit__container--form__status--label
           商品の状態
           %span 必須
@@ -104,7 +110,9 @@
           また,出品をもちまして
           %a(href="#") 加盟店規約
           に同意したことになります。
-        = i.submit value="更新する"
+        = i.submit value="変更する"
+        .back
+          = link_to "もどる", root_path
   
     //---------------------------------------------------
   .exhibit__footer

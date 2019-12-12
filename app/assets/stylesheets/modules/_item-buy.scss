@@ -30,24 +30,29 @@
           flex-wrap: wrap;
           max-width: 320px;
           margin: 0 auto;
-          p.item-name {
-            font-size: 16px;
-            padding-left: 16px;
+          &-right {
             width: calc(100% - 80px);
-            text-align: left;
-            font-weight: bold;
+            padding-left: 16px;
+            border-bottom: none;
+            p.item-name {
+              font-size: 14px;
+              width: 100%;
+              text-align: left;
+            }
+            .buy-price {
+              margin-top: 5px;
+              line-height: 20px;
+              font-size: 12px;
+              font-weight: bold;
+              text-align: left;
+              span {
+                font-size: 12px;
+                font-weight: bold;
+              }
+            }
           }
           form {
             width: 100%;
-            .buy-price {
-              margin-top: 8px;
-              line-height: 30px;
-              font-size: 22px;
-              span {
-                font-size: 14px;
-                margin-left: 8px;
-              }
-            }
             .buy__point-box {
               margin-top: 16px;
               padding: 16px;

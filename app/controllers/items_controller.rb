@@ -8,10 +8,16 @@ class ItemsController < ApplicationController
     @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").where(situation: nil)
     @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").where(situation: nil)
     @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").where(situation: nil)
+    @chanels_items = Item.joins(:brand).where(brands: {name: "シャネル"}).limit(10).order("created_at DESC").where(situation: nil)
+    @vuittons_items = Item.joins(:brand).where(brands: {name: "ルイヴィトン"}).limit(10).order("created_at DESC").where(situation: nil)
+    @sups_items = Item.joins(:brand).where(brands: {name: "シュプリーム"}).limit(10).order("created_at DESC").where(situation: nil)
+    @nikes_items = Item.joins(:brand).where(brands: {name: "ナイキ"}).limit(10).order("created_at DESC").where(situation: nil)
+
   end
 
   def new
     @item = Item.new
+    @item.build_brand
     @parents = Category.all.order("id ASC").limit(13)
   end
 
@@ -31,14 +37,14 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @items = Item.all.limit(10).order("created_at DESC").includes(:user)
     
-    # @items = Item.includes(:user).where("#{User.ids}").limit(10).order("created_at DESC")
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC")
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC")
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").where(situation: nil)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").where(situation: nil)
   end
 
   def edit
     @item = Item.find(params[:id])
     @parents = Category.all.order("id ASC").limit(13)
+    
   end
 
   def update
@@ -111,14 +117,8 @@ class ItemsController < ApplicationController
   end
 
   def search
-    # @item = Item.where(name: true).search(params[:search])
     @item = Item.search(params[:name]).limit(132)
     @search = params[:name]
-    # if params[:search]
-    #   @search = Item.where(['name LIKE ?', "%#{search}%"])
-    # else
-    #   @search = Item.all
-    # end
   end
 
   def stopExhibit
@@ -135,6 +135,7 @@ class ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, images: []).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, brand_attributes:[:id, :name], images: []).merge(user_id: current_user.id)
   end
+
 end

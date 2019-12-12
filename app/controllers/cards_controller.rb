@@ -3,10 +3,6 @@ class CardsController < ApplicationController
   require 'payjp'
   before_action :get_payjp_info, only: [:create, :delete, :show]
 
-  def index
-    
-  end
-
   def new
     
   end
@@ -22,8 +18,11 @@ class CardsController < ApplicationController
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        # redirect_to action: :show
-        redirect_to controller: :signups, action: :done
+        if request.referer.include?('fifth')
+          redirect_to controller: :signups, action: :done
+        else
+          redirect_to action: :show
+        end
       else
         render action: :new, id: current_user.id
       end
