@@ -154,7 +154,8 @@
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
                 = image_tag item.images[0], width: "188", alt: "商品の画像"
               .item-box__title
-                = item.name
+                %p
+                  = item.name
                 .gradient
             - if item.buyer_id != nil
               .sold-tag
@@ -176,7 +177,8 @@
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
                 = image_tag item.images[0], width: "188", alt: "商品の画像"
               .item-box__title
-                = item.name
+                %p
+                  = item.name
                 .gradient
             - if item.buyer_id != nil
               .sold-tag
@@ -198,7 +200,8 @@
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
                 = image_tag item.images[0], width: "188", alt: "商品の画像"
               .item-box__title
-                = item.name
+                %p
+                  = item.name
                 .gradient
             - if item.buyer_id != nil
               .sold-tag
@@ -220,7 +223,8 @@
                   = "¥#{item.price.to_s(:delimited, delimiter: ',')}"
                 = image_tag item.images[0], width: "188", alt: "商品の画像"
               .item-box__title
-                = item.name
+                %p
+                  = item.name
                 .gradient
             - if item.buyer_id != nil
               .sold-tag
