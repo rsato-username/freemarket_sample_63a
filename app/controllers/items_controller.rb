@@ -52,8 +52,8 @@ class ItemsController < ApplicationController
     @items = Item.all.limit(10).order("created_at DESC").includes(:user)
     
     # @items = Item.includes(:user).where("#{User.ids}").limit(10).order("created_at DESC")
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos)
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos)
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
   end
 
   def destroy
@@ -64,17 +64,17 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    # @item.photos.build
-    10.times{
-      @item.photos.build
-    }
+    @item.photos.build
+    # 10.times{
+    #   @item.photos.build
+    # }
     @parents = Category.all.order("id ASC").limit(13)
   end
 
   def update
     @item = Item.find(params[:id])
     if @item.update(item_update_params)
-      redirect_to profile_users_path
+      redirect_to item_path(@item)
     else
       render :edit
     end
@@ -134,14 +134,8 @@ class ItemsController < ApplicationController
   end
 
   def search
-    # @item = Item.where(name: true).search(params[:search])
     @item = Item.search(params[:name]).limit(132)
     @search = params[:name]
-    # if params[:search]
-    #   @search = Item.where(['name LIKE ?', "%#{search}%"])
-    # else
-    #   @search = Item.all
-    # end
   end
 
   def stopExhibit
