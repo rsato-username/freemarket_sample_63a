@@ -7,7 +7,7 @@
     .toppage-header__container--ue
       .toppage-header__container--ue__logo
         = link_to root_path, data: {"turbolinks" => false} do
-          %img(src="https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg" alt="mercari" class="top__logo--img")/
+          = image_tag "/images/div.png", alt: "ふりまの画像"
       .toppage-header__container--ue__search
         = form_with url: search_items_path, method: :get, local: true do |f|
           = f.text_field :name, placeholder: "何かお探しですか？"
