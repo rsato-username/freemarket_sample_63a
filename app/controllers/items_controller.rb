@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @items = Item.all.limit(10).order("created_at DESC").includes(:user)
+    @items = Item.all.limit(10).order("created_at DESC").includes(:user).where(situation: nil)
     
     @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").where(situation: nil)
     @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").where(situation: nil)
