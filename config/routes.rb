@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post :pay
       get :stopExhibit
       get :resumeExhibit
+      delete :delete_image_attachment
     end
   end
 

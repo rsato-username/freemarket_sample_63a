@@ -15,7 +15,7 @@
         - @item.each do |search|
           %li
             .item-box
-              = link_to item_path(search) do
+              = link_to item_path(search), data: {"turbolinks" => false} do
                 .item-box__img
                   %span
                     = "¥#{search.price.to_s(:delimited, delimiter: ',')}"
