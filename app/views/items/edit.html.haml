@@ -12,7 +12,11 @@
         .exhibit__container--form__image--label
           出品画像
           %span 必須
-          %p 最大10枚までアップロードできます
+          %p 最大10枚までアップロードできます<br>
+        - @item.images.each do |image|
+          = image_tag image, size: "200x200", alt: "商品の画像"
+          = link_to '削除', delete_image_attachment_item_path(image.signed_id), method: :delete, data: { confirm: '画像削除...してやんよ？' }
+        <br>=====画像追加======
         = i.file_field :images, multiple: true do
           end
 
