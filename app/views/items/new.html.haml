@@ -13,19 +13,9 @@
           出品画像
           %span 必須
           %p 最大10枚までアップロードできます
-        -# .exhibit__container--form__image--input
-        -#   %form(action="#")
-        -#     %label
-        -#       ドラッグアンドドロップ
-        -#       またはクリックしてファイルを選択してください
-        -#       %input(type="file")
-        = i.fields_for :photos do |p|
-          -# = p.file_field :url, id: "input"
-          #preview
-          .input-area
-            = p.file_field :url, multiple: true, name: 'photos[url][]', id: "upload-image", class: "upload-image", 'data-image': 0
-
-        -# %output#output 
+        = i.file_field :images, multiple: true do
+          end
+        .exhibit__container--form__image--preview
 
     .exhibit__container--form
       .exhibit__container--form__name

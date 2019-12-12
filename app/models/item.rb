@@ -1,10 +1,9 @@
 class Item < ApplicationRecord
   belongs_to :user
   belongs_to :category
+  has_many_attached :images
   belongs_to :brand, optional: true
-  has_many   :photos,  foreign_key: :item_id, dependent: :destroy
   accepts_nested_attributes_for :brand, reject_if: :reject_both_blank
-  accepts_nested_attributes_for :photos, allow_destroy: true
 
   
 

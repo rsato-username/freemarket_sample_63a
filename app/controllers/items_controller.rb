@@ -4,80 +4,63 @@ class ItemsController < ApplicationController
     # @parent_categories = Category.roots
 
     # ladies = Category.find_by(name: "レディース").subtree
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @chanels_items = Item.joins(:brand).where(brands: {name: "シャネル"}).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @vuittons_items = Item.joins(:brand).where(brands: {name: "ルイヴィトン"}).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @sups_items = Item.joins(:brand).where(brands: {name: "シュプリーム"}).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @nikes_items = Item.joins(:brand).where(brands: {name: "ナイキ"}).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").where(situation: nil)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").where(situation: nil)
+    @kadens_items = Item.where(category_id: 8).limit(10).order("created_at DESC").where(situation: nil)
+    @toys_items = Item.where(category_id: 6).limit(10).order("created_at DESC").where(situation: nil)
+    @chanels_items = Item.joins(:brand).where(brands: {name: "シャネル"}).limit(10).order("created_at DESC").where(situation: nil)
+    @vuittons_items = Item.joins(:brand).where(brands: {name: "ルイヴィトン"}).limit(10).order("created_at DESC").where(situation: nil)
+    @sups_items = Item.joins(:brand).where(brands: {name: "シュプリーム"}).limit(10).order("created_at DESC").where(situation: nil)
+    @nikes_items = Item.joins(:brand).where(brands: {name: "ナイキ"}).limit(10).order("created_at DESC").where(situation: nil)
 
   end
 
   def new
     @item = Item.new
-    @item.photos.build
-    # @category_parent_array = ["---"]
-    # Category.where(ancestry: nil).each do |parent|
-    #   @category_parent_array << parent
-    # end
     @item.build_brand
     @parents = Category.all.order("id ASC").limit(13)
-
   end
-  
+
   def create
     @item = Item.new(item_params)
-    # if @item.save
-    #   redirect_to root_path
-    # else
-    #   render :new
-    # end
-    respond_to do |format|
-      if @item.save
-          params[:photos][:url].each do |url|
-            @item.photos.create(url: url, item_id: @item.id)
-          end
-        format.html{redirect_to root_path}
-      else
-        @item.photos.build
-        format.html{render action: 'new'}
-      end
+    @parents = Category.all.order("id ASC").limit(13)
+    
+    if @item.save
+      redirect_to root_path, notice: '出品しました。'
+    else
+      render :new
     end
+
   end
 
   def show
     @item = Item.find(params[:id])
     @items = Item.all.limit(10).order("created_at DESC").includes(:user)
     
-    # @items = Item.includes(:user).where("#{User.ids}").limit(10).order("created_at DESC")
-    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
-    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").includes(:photos).where(situation: nil)
+    @ladies_items = Item.where(category_id: 1).limit(10).order("created_at DESC").where(situation: nil)
+    @mens_items = Item.where(category_id: 2).limit(10).order("created_at DESC").where(situation: nil)
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+    @parents = Category.all.order("id ASC").limit(13)
+    
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @parents = Category.all.order("id ASC").limit(13)
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :show
+    end
   end
 
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
     redirect_to root_path
-  end
-
-  def edit
-    @item = Item.find(params[:id])
-    @item.photos.build
-    # 10.times{
-    #   @item.photos.build
-    # }
-    @parents = Category.all.order("id ASC").limit(13)
-  end
-
-  def update
-    @item = Item.find(params[:id])
-    if @item.update(item_update_params)
-      redirect_to item_path(@item)
-    else
-      render :edit
-    end
   end
 
   def get_category_children
@@ -152,10 +135,7 @@ class ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :category_id, :user_id, brand_attributes:[:id, :name], photos_attributes:[:url]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, brand_attributes:[:id, :name], images: []).merge(user_id: current_user.id)
   end
 
-  def item_update_params
-    params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, photos_attributes:[:url, :id, :remove_url]).merge(user_id: current_user.id)
-  end
 end
