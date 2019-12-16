@@ -117,7 +117,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @item = Item.search(params[:name]).limit(132)
+    @item = Item.search(params[:name]).limit(132).where(situation: nil)
     @search = params[:name]
   end
 
