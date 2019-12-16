@@ -20,5 +20,10 @@ class UsersController < ApplicationController
     @itemNow = Item.where(user_id: current_user.id).where(buyer_id: nil)
     @itemSelled = Item.where(user_id: current_user.id).where.not(buyer_id: nil)
   end
+
+  def buyitem
+    @items = Item.where(situation: "取引中").limit(5).order("created_at DESC")
+    @buy_items = Item.where(buyer_id: current_user.id).limit(5).order("created_at DESC")
+  end
   
 end

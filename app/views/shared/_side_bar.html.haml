@@ -34,11 +34,11 @@
           出品した商品・売却済み
           %i.fa.fa-fighter-jet
       %li
-        = link_to root_path do
+        = link_to buyitem_users_path, data: {"turbolinks" => false} do
           購入した商品・取引中
           %i.fa.fa-fighter-jet
       %li
-        = link_to root_path do
+        = link_to buyitem_users_path, data: {"turbolinks" => false} do
           購入した商品・過去の取引
           %i.fa.fa-fighter-jet
       %li
@@ -84,7 +84,7 @@
           支払い方法
           %i.fa.fa-fighter-jet
       %li
-        = link_to root_path do
+        = link_to edit_user_registration_path do
           メール/パスワード
           %i.fa.fa-fighter-jet
       %li

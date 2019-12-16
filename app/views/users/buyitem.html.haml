@@ -1,0 +1,54 @@
+= render 'shared/top_header'
+.breadcrumbs-box
+  - breadcrumb :buyitem
+  = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "
+%main.container.clearfix
+  = render 'shared/side_bar'
+  .l-container
+    %section.mypage__buy.buyitem--header
+      %h2 購入した商品
+      %ul.mypage__buy__tab
+        %li.active
+          %h3 取引中
+        %li
+          %h3 過去の取引
+      .tab-content
+        %ul.tab-contentbox.showbox
+          - if @items.present?
+            - @items.each do |item|
+              %li
+                = link_to item_path(item), data: {"turbolinks" => false} do
+                  = image_tag item.images[0], alt: "商品の画像", size: "45x45"
+                  .buy-item__body
+                    .buy-item__body__text
+                      = item.name 
+                      を購入しました。取引が完了しました
+                    .buy-status
+                      取引完了
+                  %i.fa.fa-fighter-jet
+          - else
+            %li.noitem
+              = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "60x60"
+              %span 取引中の商品はありません
+
+        %ul.tab-contentbox
+          - if @buy_items.present?
+            - @buy_items.each do |item|
+              %li
+                = link_to item_path(item), data: {"turbolinks" => false} do
+                  = image_tag item.images[0], alt: "商品の画像", size: "45x45"
+                  .buy-item__body
+                    .buy-item__body__text
+                      = item.name
+                      を購入しました。取引が完了しました
+                    .buy-status
+                      取引完了
+                  %i.fa.fa-fighter-jet
+          - else
+            %li.noitem
+              = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "60x60"
+              %span 過去に取引した商品はありません
+
+= render 'shared/exhibit_btn'
+
+= render 'shared/top_footer'

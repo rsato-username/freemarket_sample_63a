@@ -17,7 +17,11 @@
             %span 0
           .user--transaction
             出品数
-            %span 0
+            - if @exhibit_item.present?
+              %span
+                = @exhibit_item.count
+            - else
+              %span 0
     %section.mypage__tab
       %ul.mypage__tab
         %li.active
@@ -36,23 +40,26 @@
                   %i.fa.fa-clock
                   %span 1日前
               %i.fa.fa-fighter-jet
-          %li
+          %li.last
             = link_to root_path do
               一覧を見る
         %ul.tab-contentbox
-          %li
-            = link_to root_path do
-              = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "45x45"
-              .mypage__item-body
-                .mypage__item-body__text
-                  本社から...
-                %time
-                  %i.fa.fa-clock
-                  %span 2日前
-              %i.fa.fa-fighter-jet
-          %li
-            = link_to root_path do
-              一覧を見る
+          %li.noitem
+            = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "60x60"
+            %span 現在、やることリストはありません
+          -# %li
+          -#   = link_to root_path do
+          -#     = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "45x45"
+          -#     .mypage__item-body
+          -#       .mypage__item-body__text
+          -#         本社から...
+          -#       %time
+          -#         %i.fa.fa-clock
+          -#         %span 2日前
+          -#     %i.fa.fa-fighter-jet
+          -# %li.last
+          -#   = link_to root_path do
+          -#     一覧を見る
 
     %section.mypage__buy
       %h2 購入した商品
@@ -63,35 +70,45 @@
           %h3 過去の取引
       .tab-content
         %ul.tab-contentbox.showbox
-          - @items.each do |item|
-            %li
-              = link_to item_path(item), data: {"turbolinks" => false} do
-                = image_tag item.images[0], alt: "商品の画像", size: "45x45"
-                .buy-item__body
-                  .buy-item__body__text
-                    = item.name 
-                    を購入しました。取引が完了しました
-                  .buy-status
-                    取引完了
-                %i.fa.fa-fighter-jet
-          %li
-            = link_to root_path do
-              一覧を見る
+          - if @items.present?
+            - @items.each do |item|
+              %li
+                = link_to item_path(item), data: {"turbolinks" => false} do
+                  = image_tag item.images[0], alt: "商品の画像", size: "45x45"
+                  .buy-item__body
+                    .buy-item__body__text
+                      = item.name 
+                      を購入しました。取引が完了しました
+                    .buy-status
+                      取引完了
+                  %i.fa.fa-fighter-jet
+            %li.last
+              = link_to root_path do
+                一覧を見る
+          - else
+            %li.noitem
+              = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "60x60"
+              %span 取引中の商品はありません
         %ul.tab-contentbox
-          - @buy_items.each do |item|
-            %li
-              = link_to item_path(item), data: {"turbolinks" => false} do
-                = image_tag item.images[0], alt: "商品の画像", size: "45x45"
-                .buy-item__body
-                  .buy-item__body__text
-                    = item.name
-                    を購入しました。取引が完了しました
-                  .buy-status
-                    取引完了
-                %i.fa.fa-fighter-jet
-          %li
-            = link_to root_path do
-              一覧を見る
+          - if @buy_items.present?
+            - @buy_items.each do |item|
+              %li
+                = link_to item_path(item), data: {"turbolinks" => false} do
+                  = image_tag item.images[0], alt: "商品の画像", size: "45x45"
+                  .buy-item__body
+                    .buy-item__body__text
+                      = item.name
+                      を購入しました。取引が完了しました
+                    .buy-status
+                      取引完了
+                  %i.fa.fa-fighter-jet
+            %li.last
+              = link_to root_path do
+                一覧を見る
+          - else
+            %li.noitem
+              = image_tag "/images/logo_white.svg", alt: "ロゴ", size: "60x60"
+              %span 過去に取引した商品はありません
 
 = render 'shared/exhibit_btn'
 

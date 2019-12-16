@@ -21,6 +21,11 @@ crumb :card do
   parent :mypage
 end
 
+crumb :buyitem do
+  link "購入した商品", buyitem_users_path
+  parent :mypage
+end
+
 crumb :itemsearch do
   link "#{params[:name]}", search_items_path
 end
