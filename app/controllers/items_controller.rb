@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
 
+  require 'payjp'
+  before_action :get_payjp_info, only: [:buy, :pay, :purchash]
+
   def index
     # @parent_categories = Category.roots
 
@@ -77,7 +80,6 @@ class ItemsController < ApplicationController
 
   def buy
     @item = Item.find(params[:id])
-    Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
     card = current_user.card.first
     if card.present?
       customer = Payjp::Customer.retrieve(card.customer_id)
@@ -88,7 +90,6 @@ class ItemsController < ApplicationController
   end
 
   def pay
-    Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
     card = current_user.card.first
     if card.blank?
       redirect_to confirmation_card_path
@@ -105,7 +106,6 @@ class ItemsController < ApplicationController
   end
 
   def purchash
-    Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
     @item = Item.find(params[:id])
     card = current_user.card.first
     if card.present?
@@ -154,6 +154,10 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :price, :description, :status, :post_money, :post_region, :post_day, :brand, :category_id, :user_id, brand_attributes:[:id, :name], images: []).merge(user_id: current_user.id)
+  end
+
+  def get_payjp_info
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_ACCESS_KEY)
   end
 
 end
