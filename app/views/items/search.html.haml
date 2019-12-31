@@ -1,7 +1,7 @@
 = render 'shared/top_header'
 
 %main.container.clearfix
-  = render 'shared/side_bar'
+  -# = render 'shared/side_bar'
   .l-container
     .search
       .search__input
@@ -31,5 +31,7 @@
 .breadcrumbs-box-itemsearch
   - breadcrumb :itemsearch
   = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-double-right')} "
-= render 'shared/exhibit_btn'
+
+- if user_signed_in?
+  = render 'shared/exhibit_btn'
 = render 'shared/top_footer'

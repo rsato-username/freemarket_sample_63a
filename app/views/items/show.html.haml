@@ -77,6 +77,8 @@
         送料込み
     - if @item.buyer_id != nil
       %button.sold 売り切れました
+    - elsif @item.situation == '出品停止中'
+      %button.sold 出品停止中です
     - else
       - if user_signed_in? && current_user.id == @item.user.id
         = link_to edit_item_path(@item), data: {"turbolinks" => false} do
@@ -125,15 +127,17 @@
     %input.text_area
     - if @item.buyer_id != nil
       %button.comment 売り切れのためコメントできません
+    - elsif @item.situation == '出品停止中'
+      %button.comment 出品停止中のためコメントできません
     - else
       %button.comment コメントする
   .show__list
     - if @item.previous
-      = link_to item_path(@item.previous) do
-        = "＜#{@item.previous.name}"
+      = link_to item_path(@item.previous), data: {"turbolinks" => false} do
+        = "＜#{@item.previous.name}".truncate(15, omission: '...')
     - if @item.next
-      = link_to item_path(@item.next) do 
-        = "#{@item.next.name}＞"
+      = link_to item_path(@item.next), data: {"turbolinks" => false} do
+        = "#{@item.next.name}＞".truncate(15, omission: '...＞')
   .show__snsbox
     = link_to root_path, class: "facebook" do
       = icon 'fab', 'facebook-square'
