@@ -17,7 +17,7 @@
           = image_tag image, size: "200x200", alt: "商品の画像"
           -# = link_to '削除', delete_image_attachment_item_path(image.signed_id), method: :delete, data: { confirm: '画像削除...してやんよ？' }
         .exhibit__container--form__image--label
-          <br>画像追加を追加する
+          <br>画像を追加する
           = i.file_field :images, multiple: true
 
     .exhibit__container--form
