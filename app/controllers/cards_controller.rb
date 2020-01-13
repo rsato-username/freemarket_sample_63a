@@ -58,7 +58,7 @@ class CardsController < ApplicationController
   private
 
   def get_payjp_info
-    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_ACCESS_KEY)
+    Payjp.api_key = ENV['PAYJP_ACCESS_KEY']
   end
 
 end
