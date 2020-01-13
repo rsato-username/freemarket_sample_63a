@@ -85,8 +85,6 @@
           = link_to stopExhibit_item_path(@item) do
             %button.progress 出品停止
         - else
-          = @item.situation == '出品停止中'
-            %button.sold 出品停止中です
           = link_to resumeExhibit_item_path(@item) do
             %button.progress 出品を再開
         = link_to item_path(@item), method: :delete do
